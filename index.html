@@ -152,44 +152,6 @@
           <div id="js-content" class="content-ll">
             
   
-    <article id="post-tcpip_1_kuaisuchongchuan" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>Title: TCP Retransmit,TCP重传<br>Date:2017-01-05 19:45:00<br>Category: 网络<br>Tags: 网络,TCP/IP,TCP重传<br>Slug:<br>Author: Dylan Zhou</p>
-<p>#TCP重传</p>
-<p>###为什么要重传<br>TCP需要保证数据包的可靠性送达，必须有重传机制<br>tcp数据传输中syncnum和ack机制的单位是发送的字节数，那么如果1，2，3，4，5份数据发送过去，3出现丢失，收到4，5 那么数据该如何回复确认，ack机制只能确保确认最大的收到字节数，对于存在跳跃数据没法确认。</p>
-<p>###超时重传<br>tcp有多重定时器，其中重传定时器，处理超时重传,数据3投递存在丢失，等待ack超时后可以重传3数据。  </p>
-<p>###快速重传<br>鉴于超时重传取决于超时时间，快速重传的，快速相对于超时重传机制，实际可以理解为主动重传。例子同上，3接收丢失，收到4，5 仍旧回复2数据的ack， 那么发送方知道3丢失，重复传送3数据，此时接收方已收到4，5数据，收到3数据后回复5数据ack</p>
-<p>###思考问题<br>超时重传，tcp如何确认超时时间<br>快速重传，如果去优化连续数据中的若干部分段传输丢失，有何利弊</p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/05/02/tcpip_1_kuaisuchongchuan/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-  
     <article id="post-xinqin20170303" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -226,17 +188,14 @@
 
 
   
-    <article id="post-kernel" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-xinqin20160630" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>Title: 用户态和系统态区分<br>Date:2016-06-08 16:01:00<br>Category: 网络<br>Tags: Socket,IO,kernel<br>Slug:<br>Author: Dylan Zhou </p>
-<p>#介绍<br>在操作系统中，有着分区域保护特性，也作保护环、或者CPU环，简称Rings。用来处理发生故障时候数据错误处理，及恶意操作处理。内层Ring可以使用外层Ring的任意资源。而外层需要请求权限才能访问内层资源。<br>在此基础上就区分了系统态（核心态）和用户态。每一个用户进程运行自己的代码存在在用户运行态，当调用系统函数的时候，运行模式转变为进入系统态。</p>
-<p>#系统态<br>系统态在wiki百科上的解释:在处理器的存储保护中，核心态，或者特权态，又称之为内核态（与之相对应的是用户态），是操作系统内核所运行的模式。运行在该模式的代码，可以无限制地对系统存储、外部设备进行访问。  </p>
-<p>#用户态<br>操作系统执行用户代码空间的运行形态。</p>
-<p>#下面来自转载<br>当一个进程执行系统调用而陷入内核代码中执行时，我们就称进程处于内核运行态（或简称为系统态）。此时处理器处于特权级最高的（0级）内核代码中执行。当进程处于内核态时，执行的内核代码会使用当前进程的内核栈。每个进程都有自己的内核栈。当进程在执行用户自己的代码时，则称其处于用户运行态（用户态）。即此时处理器在特权级最低的（3级）用户代码中运行。当正在执行用户程序而突然被中断程序中断时，此时用户程序也可以象征性地称为处于进程的内核态。因为中断处理程序将使用当前进程的内核栈。这与处于内核态的进程的状态有些类似。<br>内核态与用户态是操作系统的两种运行级别,跟intel cpu没有必然的联系, cpu提供Ring0-Ring3四种级别的运行模式，Ring0级别最高，Ring3最低。Linux使用了Ring3级别运行用户态，Ring0作为内核态，没有使用Ring1和Ring2。Ring3状态不能访问Ring0的地址空间，包括代码和数据。Linux进程的4GB地址空间，3G-4G部分大家是共享的，是内核态的地址空间，这里存放在整个内核的代码和所有的内核模块，以及内核所维护的数据。用户运行一个程序，该程序所创建的进程开始是运行在用户态的，如果要执行文件操作，网络数据发送等操作，必须通过write，send等系统调用，这些系统调用会调用内核中的代码来完成操作，这时必须切换到Ring0，然后进入3GB-4GB中的内核地址空间去执行这些代码完成操作，完成后，切换回Ring3，回到用户态。这样，用户态的程序就不能随意操作内核地址空间，具有一定的安全保护作用。   </p>
-<p>#总结<br>操作系统运行的不同级别，导致有这两种运行形态的区分。cpu总处于以下状态中的一种，用户态即用户空间，系统态，两者间的切换。</p>
+        <p>Title: 20160630日记<br>Date:2016-06-30 19:36:00<br>Category: 其他<br>Tags: 心情,日记<br>Slug:<br>Author: Dylan Zhou</p>
+<p>#如此</p>
+<p>###此刻多么渴望成功，机遇很重要，决策也重要。</p>
 
       
 
@@ -249,51 +208,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2017/05/02/kernel/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-  
-    <article id="post-quorum_consensus_algorithm" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>Title: Quorum一致性算法<br>Date:2016-04-11 14:36:00<br>Category: 分布式小记<br>Tags: 分布式,一致性<br>Slug:<br>Author: Dylan Zhou</p>
-<p>#Quorum一致性算法简介</p>
-<p>##背景<br>一个组包含若干副本集合，个数为N。每个副本集合存储着items的集合，这个集合可以使文件或者内容，每个item有着唯一的标示和一个状态。</p>
-<p>##定义<br>R：定义R为读的最小票数，W：定义为写的最小票数。N为副本个数。<br>每个副本集存储着同一个item的不同的版本号码，越大的版本号标示这个数据是最近的。<br>读的个数是对写的个数感兴趣的，因为读到的数据应该是大多数写成功的结果。  </p>
-<p>##公式<br>R+W&gt;N;读写的票数和应该大于总的副本集数（节点数）<br>W&gt;N/2;写的票数应该大于一般的副本集数（节点数）  </p>
-<p>##举例<br>对于一个三个副本集组，有着如下的可能：<br>R=3,W=1:这个有着高效的写性能，但是昂贵的读数据开销，对于读较多的场景，这种尤其较为糟糕。并且在一个副本节点异常或者失败的情况下，写不成功。一般来说我们需要保证W&gt;1。<br>R=1,W=3:这种分配对于读较多的场景较为友好，但是对于一个节点写失败的情况会导致等待此节点恢复写才能完成写的操作。<br>R=2,W=2:对比上面是一种较为优化的分配方案,虽然增加了读消耗的花费。  </p>
-<p>##分段描述</p>
-<p>###写操作<br>写操作分为一段或者两段<br>&nbsp;&nbsp;1、发出一个读请求给所有的副本集合，等待一个读提议的回复，获取一个最大的版本号<br>&nbsp;&nbsp;2、发出一个包含状态和最新版本的写请求给所有的副本集，等待一个写提议的返回，如果返回表示操作完成并返回状态码给client。<br>如果存在并发的写，需要使用方保持写的安全性。第一步的读请求可以避免，如果客户端知道正确的版本数据。</p>
-<p>###读操作<br>读操作也可以分为一段或者两段请求<br>&nbsp;&nbsp;1、发起一个读请求给所有的副本集合，等待一个读提议的返回，如果所有的版本返回一致的状态，那么返回结果给客户端。<br>&nbsp;&nbsp;2、否则发起一个大版本数据的写请求给所有副本集合，等待写提议的返回，如果返回成功，则返回结果给客户端。<br>第二步称之为”回写”段，通常情况下，第二段是没必要的，因为在写请求的操作中所有可用的写返回是一致的数据，那么在读返回中，都是同样的返回数据。  </p>
-<p>##特性<br>协议需要提供原子性（线性性）  </p>
-<hr>
-<p>##后记<br>一种投票算法协议</p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/05/02/quorum_consensus_algorithm/">展开全文 >></a>
+          <a class="article-more-a" href="/2017/05/02/xinqin20160630/">展开全文 >></a>
         </p>
       
 
@@ -493,14 +408,17 @@
 
 
   
-    <article id="post-xinqin20170207" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-tcpip_1_kuaisuchongchuan" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>Title: 20170207日记<br>Date:2017-02-07 13:08:00<br>Category: 其他<br>Tags: 心情,日记<br>Slug:<br>Author: Dylan Zhou</p>
-<p>#新的一年</p>
-<p>###还是这句话给自己 be honest to yourself and then the world.</p>
+        <p>Title: TCP Retransmit,TCP重传<br>Date:2017-01-05 19:45:00<br>Category: 网络<br>Tags: 网络,TCP/IP,TCP重传<br>Slug:<br>Author: Dylan Zhou</p>
+<p>#TCP重传</p>
+<p>###为什么要重传<br>TCP需要保证数据包的可靠性送达，必须有重传机制<br>tcp数据传输中syncnum和ack机制的单位是发送的字节数，那么如果1，2，3，4，5份数据发送过去，3出现丢失，收到4，5 那么数据该如何回复确认，ack机制只能确保确认最大的收到字节数，对于存在跳跃数据没法确认。</p>
+<p>###超时重传<br>tcp有多重定时器，其中重传定时器，处理超时重传,数据3投递存在丢失，等待ack超时后可以重传3数据。  </p>
+<p>###快速重传<br>鉴于超时重传取决于超时时间，快速重传的，快速相对于超时重传机制，实际可以理解为主动重传。例子同上，3接收丢失，收到4，5 仍旧回复2数据的ack， 那么发送方知道3丢失，重复传送3数据，此时接收方已收到4，5数据，收到3数据后回复5数据ack</p>
+<p>###思考问题<br>超时重传，tcp如何确认超时时间<br>快速重传，如果去优化连续数据中的若干部分段传输丢失，有何利弊</p>
 
       
 
@@ -513,7 +431,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2017/05/02/xinqin20170207/">展开全文 >></a>
+          <a class="article-more-a" href="/2017/05/02/tcpip_1_kuaisuchongchuan/">展开全文 >></a>
         </p>
       
 
@@ -528,14 +446,23 @@
 
 
   
-    <article id="post-xinqin20160630" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-quorum_consensus_algorithm" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>Title: 20160630日记<br>Date:2016-06-30 19:36:00<br>Category: 其他<br>Tags: 心情,日记<br>Slug:<br>Author: Dylan Zhou</p>
-<p>#如此</p>
-<p>###此刻多么渴望成功，机遇很重要，决策也重要。</p>
+        <p>Title: Quorum一致性算法<br>Date:2016-04-11 14:36:00<br>Category: 分布式小记<br>Tags: 分布式,一致性<br>Slug:<br>Author: Dylan Zhou</p>
+<p>#Quorum一致性算法简介</p>
+<p>##背景<br>一个组包含若干副本集合，个数为N。每个副本集合存储着items的集合，这个集合可以使文件或者内容，每个item有着唯一的标示和一个状态。</p>
+<p>##定义<br>R：定义R为读的最小票数，W：定义为写的最小票数。N为副本个数。<br>每个副本集存储着同一个item的不同的版本号码，越大的版本号标示这个数据是最近的。<br>读的个数是对写的个数感兴趣的，因为读到的数据应该是大多数写成功的结果。  </p>
+<p>##公式<br>R+W&gt;N;读写的票数和应该大于总的副本集数（节点数）<br>W&gt;N/2;写的票数应该大于一般的副本集数（节点数）  </p>
+<p>##举例<br>对于一个三个副本集组，有着如下的可能：<br>R=3,W=1:这个有着高效的写性能，但是昂贵的读数据开销，对于读较多的场景，这种尤其较为糟糕。并且在一个副本节点异常或者失败的情况下，写不成功。一般来说我们需要保证W&gt;1。<br>R=1,W=3:这种分配对于读较多的场景较为友好，但是对于一个节点写失败的情况会导致等待此节点恢复写才能完成写的操作。<br>R=2,W=2:对比上面是一种较为优化的分配方案,虽然增加了读消耗的花费。  </p>
+<p>##分段描述</p>
+<p>###写操作<br>写操作分为一段或者两段<br>&nbsp;&nbsp;1、发出一个读请求给所有的副本集合，等待一个读提议的回复，获取一个最大的版本号<br>&nbsp;&nbsp;2、发出一个包含状态和最新版本的写请求给所有的副本集，等待一个写提议的返回，如果返回表示操作完成并返回状态码给client。<br>如果存在并发的写，需要使用方保持写的安全性。第一步的读请求可以避免，如果客户端知道正确的版本数据。</p>
+<p>###读操作<br>读操作也可以分为一段或者两段请求<br>&nbsp;&nbsp;1、发起一个读请求给所有的副本集合，等待一个读提议的返回，如果所有的版本返回一致的状态，那么返回结果给客户端。<br>&nbsp;&nbsp;2、否则发起一个大版本数据的写请求给所有副本集合，等待写提议的返回，如果返回成功，则返回结果给客户端。<br>第二步称之为”回写”段，通常情况下，第二段是没必要的，因为在写请求的操作中所有可用的写返回是一致的数据，那么在读返回中，都是同样的返回数据。  </p>
+<p>##特性<br>协议需要提供原子性（线性性）  </p>
+<hr>
+<p>##后记<br>一种投票算法协议</p>
 
       
 
@@ -548,7 +475,42 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2017/05/02/xinqin20160630/">展开全文 >></a>
+          <a class="article-more-a" href="/2017/05/02/quorum_consensus_algorithm/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+  
+    <article id="post-xinqin20160803" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>Title: 20160803日记<br>Date:2016-08-03 15:36:00<br>Category: 其他<br>Tags: 心情,日记<br>Slug:<br>Author: Dylan Zhou</p>
+<p>#情绪</p>
+<p>###控制到情绪是多么困难的事情吗</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/05/02/xinqin20160803/">展开全文 >></a>
         </p>
       
 
@@ -583,6 +545,41 @@
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2017/05/02/xinqin20161011/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+  
+    <article id="post-xinqin20161020" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>Title: 20161020日记<br>Date:2016-10-20 20:36:00<br>Category: 其他<br>Tags: 心情,日记<br>Slug:<br>Author: Dylan Zhou</p>
+<p>#national geographic</p>
+<p>###最近迷恋上了 national geographic的应用，每天一期；mac桌面也换上了Irvue，切换的图片很让人赏心悦目</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/05/02/xinqin20161020/">展开全文 >></a>
         </p>
       
 
@@ -693,11 +690,15 @@ return o(t,i(n),arguments.length<3?void 0:u(arguments[2]))}})},function(t,n,r){v
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">​</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">about</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">contact</a>
+                <a href="javascript:void(0)" class="js-tag color4">abouttag</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -706,6 +707,26 @@ return o(t,i(n),arguments.length<3?void 0:u(arguments[2]))}})},function(t,n,r){v
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">heap memory</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">contact</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">JVM</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Socket</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">IO</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">kernel</a>
               </li>
             
             <div class="clearfix"></div>

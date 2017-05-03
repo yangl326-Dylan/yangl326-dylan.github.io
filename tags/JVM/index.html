@@ -6,18 +6,17 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yangl326-dylan.github.io">
-  <title>Dylan&#39;haha</title>
+  <title>Tag: JVM | Dylan&#39;haha</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Title: 用户态和系统态区分Date:2016-06-08 16:01:00Category: 网络Tags: Socket,IO,kernelSlug:Author: Dylan Zhou  #介绍在操作系统中，有着分区域保护特性，也作保护环、或者CPU环，简称Rings。用来处理发生故障时候数据错误处理，及恶意操作处理。内层Ring可以使用外层Ring的任意资源。而外层需要请求权限才能访问">
-<meta property="og:type" content="article">
+  <meta name="description" content="be honest to yourself and then the world.">
+<meta property="og:type" content="website">
 <meta property="og:title" content="Dylan&#39;haha">
-<meta property="og:url" content="http://yangl326-dylan.github.io/2017/05/02/kernel/index.html">
+<meta property="og:url" content="http://yangl326-dylan.github.io/tags/JVM/index.html">
 <meta property="og:site_name" content="Dylan&#39;haha">
-<meta property="og:description" content="Title: 用户态和系统态区分Date:2016-06-08 16:01:00Category: 网络Tags: Socket,IO,kernelSlug:Author: Dylan Zhou  #介绍在操作系统中，有着分区域保护特性，也作保护环、或者CPU环，简称Rings。用来处理发生故障时候数据错误处理，及恶意操作处理。内层Ring可以使用外层Ring的任意资源。而外层需要请求权限才能访问">
-<meta property="og:updated_time" content="2017-05-02T12:15:18.000Z">
+<meta property="og:description" content="be honest to yourself and then the world.">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Dylan&#39;haha">
-<meta name="twitter:description" content="Title: 用户态和系统态区分Date:2016-06-08 16:01:00Category: 网络Tags: Socket,IO,kernelSlug:Author: Dylan Zhou  #介绍在操作系统中，有着分区域保护特性，也作保护环、或者CPU环，简称Rings。用来处理发生故障时候数据错误处理，及恶意操作处理。内层Ring可以使用外层Ring的任意资源。而外层需要请求权限才能访问">
+<meta name="twitter:description" content="be honest to yourself and then the world.">
   
   
     <link rel="icon" href="/favicon.png">
@@ -151,117 +150,83 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-kernel" class="article article-type-post " itemscope itemprop="blogPost">
-  <div class="article-inner">
+            
+  
+  
     
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>Title: 用户态和系统态区分<br>Date:2016-06-08 16:01:00<br>Category: 网络<br>Tags: Socket,IO,kernel<br>Slug:<br>Author: Dylan Zhou </p>
-<p>#介绍<br>在操作系统中，有着分区域保护特性，也作保护环、或者CPU环，简称Rings。用来处理发生故障时候数据错误处理，及恶意操作处理。内层Ring可以使用外层Ring的任意资源。而外层需要请求权限才能访问内层资源。<br>在此基础上就区分了系统态（核心态）和用户态。每一个用户进程运行自己的代码存在在用户运行态，当调用系统函数的时候，运行模式转变为进入系统态。</p>
-<p>#系统态<br>系统态在wiki百科上的解释:在处理器的存储保护中，核心态，或者特权态，又称之为内核态（与之相对应的是用户态），是操作系统内核所运行的模式。运行在该模式的代码，可以无限制地对系统存储、外部设备进行访问。  </p>
-<p>#用户态<br>操作系统执行用户代码空间的运行形态。</p>
-<p>#下面来自转载<br>当一个进程执行系统调用而陷入内核代码中执行时，我们就称进程处于内核运行态（或简称为系统态）。此时处理器处于特权级最高的（0级）内核代码中执行。当进程处于内核态时，执行的内核代码会使用当前进程的内核栈。每个进程都有自己的内核栈。当进程在执行用户自己的代码时，则称其处于用户运行态（用户态）。即此时处理器在特权级最低的（3级）用户代码中运行。当正在执行用户程序而突然被中断程序中断时，此时用户程序也可以象征性地称为处于进程的内核态。因为中断处理程序将使用当前进程的内核栈。这与处于内核态的进程的状态有些类似。<br>内核态与用户态是操作系统的两种运行级别,跟intel cpu没有必然的联系, cpu提供Ring0-Ring3四种级别的运行模式，Ring0级别最高，Ring3最低。Linux使用了Ring3级别运行用户态，Ring0作为内核态，没有使用Ring1和Ring2。Ring3状态不能访问Ring0的地址空间，包括代码和数据。Linux进程的4GB地址空间，3G-4G部分大家是共享的，是内核态的地址空间，这里存放在整个内核的代码和所有的内核模块，以及内核所维护的数据。用户运行一个程序，该程序所创建的进程开始是运行在用户态的，如果要执行文件操作，网络数据发送等操作，必须通过write，send等系统调用，这些系统调用会调用内核中的代码来完成操作，这时必须切换到Ring0，然后进入3GB-4GB中的内核地址空间去执行这些代码完成操作，完成后，切换回Ring3，回到用户态。这样，用户态的程序就不能随意操作内核地址空间，具有一定的安全保护作用。   </p>
-<p>#总结<br>操作系统运行的不同级别，导致有这两种运行形态的区分。cpu总处于以下状态中的一种，用户态即用户空间，系统态，两者间的切换。</p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
+    
       
       
-      
-
-      
-
-      
-        
-<div class="share-btn share-icons tooltip-left">
-  <div class="tooltip tooltip-east">
-    <span class="tooltip-item">
-      <a href="javascript:;" class="share-sns share-outer">
-        <i class="icon icon-share"></i>
-      </a>
-    </span>
-    <span class="tooltip-content">
-      <div class="share-wrap">
-        <div class="share-icons">
-          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
-            <i class="icon icon-weibo"></i>
-          </a>
-          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
-            <i class="icon icon-weixin"></i>
-          </a>
-          <a class="qq share-sns" href="javascript:;" data-type="qq">
-            <i class="icon icon-qq"></i>
-          </a>
-          <a class="douban share-sns" href="javascript:;" data-type="douban">
-            <i class="icon icon-douban"></i>
-          </a>
-          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
-            <i class="icon icon-qzone"></i>
-          </a>
-          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
-            <i class="icon icon-facebook"></i>
-          </a>
-          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
-            <i class="icon icon-twitter"></i>
-          </a>
-          <a class="google share-sns" href="javascript:;" data-type="google">
-            <i class="icon icon-google"></i>
-          </a>
+      <section class="archives-wrap">
+        <div class="archive-year-wrap">
+          <a href="/archives/2016" class="archive-year">2016</a>
         </div>
-      </div>
-    </span>
-  </div>
-</div>
+        <div class="archives">
+    
+    <article class="archive-article archive-type-post">
+  <div class="archive-article-inner">
+    <header class="archive-article-header">
+      	<div class="article-meta">
+	      	<a href="/2016/08/10/java_mem_size/" class="archive-article-date">
+  	<time datetime="2016-08-10T08:01:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-08-10</time>
+</a>
+        </div>
+    	 
+  
+    <h1 itemprop="name">
+      <a class="archive-article-title" href="/2016/08/10/java_mem_size/">Swallow size和Retained size区别（+ deep size）</a>
+    </h1>
+  
 
-<div class="page-modal wx-share js-wx-box">
-    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
-    <p>扫一扫，分享到微信</p>
-    <div class="wx-qrcode">
-      <img src="http://s.jiathis.com/qrcode.php?url=http://yangl326-dylan.github.io/2017/05/02/kernel/" alt="微信分享二维码">
-    </div>
-</div>
+        <div class="article-info info-on-right">
+          
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">java</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">heap memory</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">JVM</a>
+        		</li>
+      		
+		</ul>
+	</div>
 
-<div class="mask js-mask"></div>
-      
-      <div class="clearfix"></div>
-    </div>
+          
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/语言/" class="article-tag-list-link color3">语言</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/JVM/" class="article-tag-list-link color4">JVM</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+        </div>
+        <div class="clearfix"></div>
+    </header>
   </div>
 </article>
-
-  
-<nav id="article-nav">
-  
-    <a href="/2017/05/02/xinqin20170303/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          (no title)
-        
-      </div>
-    </a>
   
   
-    <a href="/2017/05/02/quorum_consensus_algorithm/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title"></div>
-      <i class="icon-circle-right"></i>
-    </a>
-  
-</nav>
-
-
-
-
-
-  
-  
+    </div></section>
   
 
-  
-
-  
+    
 
 
           </div>
@@ -284,9 +249,9 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: true,
+		isPost: false,
 		isArchive: false,
-		isTag: false,
+		isTag: true,
 		isCategory: false,
 		open_in_new: false,
 		root: "/",
@@ -353,11 +318,15 @@ return o(t,i(n),arguments.length<3?void 0:u(arguments[2]))}})},function(t,n,r){v
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">​</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">about</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">contact</a>
+                <a href="javascript:void(0)" class="js-tag color4">abouttag</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -366,6 +335,26 @@ return o(t,i(n),arguments.length<3?void 0:u(arguments[2]))}})},function(t,n,r){v
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">heap memory</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">contact</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">JVM</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Socket</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">IO</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">kernel</a>
               </li>
             
             <div class="clearfix"></div>
