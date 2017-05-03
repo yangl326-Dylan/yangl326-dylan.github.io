@@ -6,17 +6,18 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yangl326-dylan.github.io">
-  <title>Category: 关于 | Dylan&#39;haha</title>
+  <title>Raft协议算法简介 | Dylan&#39;haha</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="be honest to yourself and then the world.">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Dylan&#39;haha">
-<meta property="og:url" content="http://yangl326-dylan.github.io/categories/关于/index.html">
+  <meta name="description" content="#Raft 协议算法简介 ###简介Raft协议算法产生的结果和Paxos的效果相同，Raft算法设计较Paxos设计易懂，并且有着更好的生产环境的实现方式。 ###背景事务操作的四要素ACID：原子性、一致性、隔离性、持久性、 对于一个分布式环境的服务来说，较难满足一个事务的要求。比如对于一致性来说就是一个较难处理的问题，Raft正是为了解决分布式环境中一致性而产生的一种一致性协议算法。 ###">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Raft协议算法简介">
+<meta property="og:url" content="http://yangl326-dylan.github.io/2016/04/12/raft/index.html">
 <meta property="og:site_name" content="Dylan&#39;haha">
-<meta property="og:description" content="be honest to yourself and then the world.">
+<meta property="og:description" content="#Raft 协议算法简介 ###简介Raft协议算法产生的结果和Paxos的效果相同，Raft算法设计较Paxos设计易懂，并且有着更好的生产环境的实现方式。 ###背景事务操作的四要素ACID：原子性、一致性、隔离性、持久性、 对于一个分布式环境的服务来说，较难满足一个事务的要求。比如对于一致性来说就是一个较难处理的问题，Raft正是为了解决分布式环境中一致性而产生的一种一致性协议算法。 ###">
+<meta property="og:updated_time" content="2017-05-03T09:39:54.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Dylan&#39;haha">
-<meta name="twitter:description" content="be honest to yourself and then the world.">
+<meta name="twitter:title" content="Raft协议算法简介">
+<meta name="twitter:description" content="#Raft 协议算法简介 ###简介Raft协议算法产生的结果和Paxos的效果相同，Raft算法设计较Paxos设计易懂，并且有着更好的生产环境的实现方式。 ###背景事务操作的四要素ACID：原子性、一致性、隔离性、持久性、 对于一个分布式环境的服务来说，较难满足一个事务的要求。比如对于一致性来说就是一个较难处理的问题，Raft正是为了解决分布式环境中一致性而产生的一种一致性协议算法。 ###">
   
   
     <link rel="icon" href="/favicon.png">
@@ -150,75 +151,151 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-raft" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2016" class="archive-year">2016</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2016/07/13/about/" class="archive-article-date">
-  	<time datetime="2016-07-13T12:46:25.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-07-13</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2016/07/13/about/">About ME</a>
+    <h1 class="article-title" itemprop="name">
+      Raft协议算法简介
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">about</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">contact</a>
-        		</li>
-      		
-		</ul>
-	</div>
+        
+        <a href="/2016/04/12/raft/" class="archive-article-date">
+  	<time datetime="2016-04-12T09:36:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-04-12</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>#Raft 协议算法简介</p>
+<p>###简介<br>Raft协议算法产生的结果和Paxos的效果相同，Raft算法设计较Paxos设计易懂，并且有着更好的生产环境的实现方式。</p>
+<p>###背景<br>事务操作的四要素ACID：原子性、一致性、隔离性、持久性、 对于一个分布式环境的服务来说，较难满足一个事务的要求。比如对于一致性来说就是一个较难处理的问题，Raft正是为了解决分布式环境中一致性而产生的一种一致性协议算法。</p>
+<p>###Raft概念<br>&nbsp;&nbsp;1、Follower(追随者)角色<br>&nbsp;&nbsp;2、Candidate(候选者)角色<br>&nbsp;&nbsp;3、Leader(追随者)角色<br>&nbsp;&nbsp;4、Term(时间阶段)<br>&nbsp;&nbsp;5、server(或者node 泛指服务节点,算法中指log节点)</p>
+<p>###基本背景<br>&nbsp;&nbsp;1、集群包含若干server（或者node），数目5是一个典型的分布式集群数目，对于这样一个系统来说，最多容忍的失败server个数为2（N&gt;=2F+1)，总的服务数N， 容忍失败的个数F。<br>&nbsp;&nbsp;2、所有的node在同一个时期（term）只会有以上三种角色状态的其中一种。<br>&nbsp;&nbsp;3、Term是一个不定的时间长度，每个term最多只会有一个leader，可能没有。成功选举后由这个leader领导cluster直到term结束。  </p>
+<p>###Leader选举</p>
+<p>####选举流程<br>&nbsp;&nbsp;1、初始节点状态都是follower<br>&nbsp;&nbsp;2、收不到leader 通知或者candidate请求（超时），开始触发选举流程<br>&nbsp;&nbsp;3、F.增加自己的term num并转换为candidate状态（过程时间随机）<br>&nbsp;&nbsp;4、F.投票自己并且发送给其他人“投我”的请求<br>&nbsp;&nbsp;5、F.最终结果有三类：获得大多票数成为leader、其他f成为leader、无结果继续第二轮投票  </p>
+<p>####状态转换<br>Follower-&gt;Candidate 开始选举<br>Candidate-&gt;Candidate 选举超时<br>Candidate-&gt;Leader 选举成功<br>Candidate-&gt;Follower 发现其他leader 或者新的term时期<br>Leader-&gt;Follower 发现其他leader 或者更好的term时期  </p>
+<hr>
+<p>###Log Replication</p>
+<p>####协议针对log 副本。数据同步流程<br>&nbsp;&nbsp;1、client发送数据请求<br>&nbsp;&nbsp;2、leader接收数据请求，其他角色接收到请求转给leader<br>&nbsp;&nbsp;3、L.发出append请求（记录数据）<br>&nbsp;&nbsp;4、L.收到大多数数据回复，返回client请求状态<br>&nbsp;&nbsp;5、L.下个心跳把commit给到follower<br>&nbsp;&nbsp;6、如果传输失败，leader可以不断重试  </p>
+<p>####流程约定<br>&nbsp;&nbsp;1、log entry数据特性：log index、term num、commond<br>&nbsp;&nbsp;2、log 持久化存储<br>&nbsp;&nbsp;3、entry被大多数存储成功则为commited<br>&nbsp;&nbsp;4、index和term相同那么之前的数据（entry）都是相同的<br>&nbsp;&nbsp;5、某个commit之前的数据都是commited的<br>&nbsp;&nbsp;6、append操作带上上一个的entry信息（index和term）并做检查<br>&nbsp;&nbsp;7、检查不匹配，leader重试前一条。采用迭代重试方式直到完成   </p>
+<hr>
+<p>###参考资料<br>Raft协议特性简介<br>参考资料：<br>动画演示 <a href="http://thesecretlivesofdata.com/raft/" target="_blank" rel="external">http://thesecretlivesofdata.com/raft/</a><br>Raft官网 <a href="https://raft.github.io/" target="_blank" rel="external">https://raft.github.io/</a>  </p>
 
-          
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
 	<div class="article-category tagcloud">
 		<i class="icon-book icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="/categories/关于/" class="article-tag-list-link color3">关于</a>
+        			<a href="/categories/分布式系统/" class="article-tag-list-link color1">分布式系统</a>
         		</li>
       		
 		</ul>
 	</div>
 
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="http://s.jiathis.com/qrcode.php?url=http://yangl326-dylan.github.io/2016/04/12/raft/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
+  
+<nav id="article-nav">
+  
+    <a href="/2016/06/08/kernel/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          用户态和系统态区分
+        
+      </div>
+    </a>
   
   
-    </div></section>
+    <a href="/2016/04/11/quorum_consensus_algorithm/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Quorum一致性算法</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+
+
+
+  
+  
   
 
-    
+  
+
+  
 
 
           </div>
@@ -241,10 +318,10 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
+		isPost: true,
 		isArchive: false,
 		isTag: false,
-		isCategory: true,
+		isCategory: false,
 		open_in_new: false,
 		root: "/",
 		innerArchive: true,
