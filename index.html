@@ -152,124 +152,6 @@
           <div id="js-content" class="content-ll">
             
   
-    <article id="post-xinqin20170303" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>Title: 20170303日记<br>Date:2017-03-03 19:31:00<br>Category: 其他<br>Tags: 心情,日记<br>Slug:<br>Author: Dylan Zhou</p>
-<p>#最近面试</p>
-<p>###<br>今年年后最近面试了好多<br>基本原则<br>优先考察考察基本能力、潜在能力，思考和学习能力。对应届生尤其重要<br>掌握的知识面的宽广和相关知识面的深入程度。不过分的追求掌握的多少<br>简历内容及所述符合实际，不实者慎重或不考虑<br>相关内容由浅入深，专业性或者职位要求较强的，可有相关类型的考察<br>语言表达、对待事情的态度、责任心等相关软素质</p>
-<p>面试注意事项<br>提前review候选人简历，做好相关面试准备<br>先有介绍，主要经历中贡献了什么，解决了什么。若考察风格没有太多的不妥，可按个人的风格考察<br>如遇到相关迟疑，可提示相关信息，看候选者的理解和分析能力<br>围绕候选者掌握情况，考察如何分析和处理相关问题<br>不是知识，是搜索和学习知识的能力<br>不是答案，是解决问题的思路和方法<br>通过后给到下一面试官，不通过送走。做好相关面试记录</p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/05/02/xinqin20170303/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-  
-    <article id="post-xinqin20160630" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>Title: 20160630日记<br>Date:2016-06-30 19:36:00<br>Category: 其他<br>Tags: 心情,日记<br>Slug:<br>Author: Dylan Zhou</p>
-<p>#如此</p>
-<p>###此刻多么渴望成功，机遇很重要，决策也重要。</p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/05/02/xinqin20160630/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-  
-    <article id="post-raft" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>Title: Raft协议算法简介<br>Date:2016-04-12 17:36:00<br>Category: 分布式小记<br>Tags: raft,一致性,分布式<br>Slug:<br>Author: Dylan Zhou</p>
-<p>#Raft 协议算法简介</p>
-<p>###简介<br>Raft协议算法产生的结果和Paxos的效果相同，Raft算法设计较Paxos设计易懂，并且有着更好的生产环境的实现方式。</p>
-<p>###背景<br>事务操作的四要素ACID：原子性、一致性、隔离性、持久性、 对于一个分布式环境的服务来说，较难满足一个事务的要求。比如对于一致性来说就是一个较难处理的问题，Raft正是为了解决分布式环境中一致性而产生的一种一致性协议算法。</p>
-<p>###Raft概念<br>&nbsp;&nbsp;1、Follower(追随者)角色<br>&nbsp;&nbsp;2、Candidate(候选者)角色<br>&nbsp;&nbsp;3、Leader(追随者)角色<br>&nbsp;&nbsp;4、Term(时间阶段)<br>&nbsp;&nbsp;5、server(或者node 泛指服务节点,算法中指log节点)</p>
-<p>###基本背景<br>&nbsp;&nbsp;1、集群包含若干server（或者node），数目5是一个典型的分布式集群数目，对于这样一个系统来说，最多容忍的失败server个数为2（N&gt;=2F+1)，总的服务数N， 容忍失败的个数F。<br>&nbsp;&nbsp;2、所有的node在同一个时期（term）只会有以上三种角色状态的其中一种。<br>&nbsp;&nbsp;3、Term是一个不定的时间长度，每个term最多只会有一个leader，可能没有。成功选举后由这个leader领导cluster直到term结束。  </p>
-<p>###Leader选举</p>
-<p>####选举流程<br>&nbsp;&nbsp;1、初始节点状态都是follower<br>&nbsp;&nbsp;2、收不到leader 通知或者candidate请求（超时），开始触发选举流程<br>&nbsp;&nbsp;3、F.增加自己的term num并转换为candidate状态（过程时间随机）<br>&nbsp;&nbsp;4、F.投票自己并且发送给其他人“投我”的请求<br>&nbsp;&nbsp;5、F.最终结果有三类：获得大多票数成为leader、其他f成为leader、无结果继续第二轮投票  </p>
-<p>####状态转换<br>Follower-&gt;Candidate 开始选举<br>Candidate-&gt;Candidate 选举超时<br>Candidate-&gt;Leader 选举成功<br>Candidate-&gt;Follower 发现其他leader 或者新的term时期<br>Leader-&gt;Follower 发现其他leader 或者更好的term时期  </p>
-<hr>
-<p>###Log Replication</p>
-<p>####协议针对log 副本。数据同步流程<br>&nbsp;&nbsp;1、client发送数据请求<br>&nbsp;&nbsp;2、leader接收数据请求，其他角色接收到请求转给leader<br>&nbsp;&nbsp;3、L.发出append请求（记录数据）<br>&nbsp;&nbsp;4、L.收到大多数数据回复，返回client请求状态<br>&nbsp;&nbsp;5、L.下个心跳把commit给到follower<br>&nbsp;&nbsp;6、如果传输失败，leader可以不断重试  </p>
-<p>####流程约定<br>&nbsp;&nbsp;1、log entry数据特性：log index、term num、commond<br>&nbsp;&nbsp;2、log 持久化存储<br>&nbsp;&nbsp;3、entry被大多数存储成功则为commited<br>&nbsp;&nbsp;4、index和term相同那么之前的数据（entry）都是相同的<br>&nbsp;&nbsp;5、某个commit之前的数据都是commited的<br>&nbsp;&nbsp;6、append操作带上上一个的entry信息（index和term）并做检查<br>&nbsp;&nbsp;7、检查不匹配，leader重试前一条。采用迭代重试方式直到完成   </p>
-<hr>
-<p>###后记<br>一定了解后的Raft协议特性简介<br>参考资料：<br>动画演示 <a href="http://thesecretlivesofdata.com/raft/" target="_blank" rel="external">http://thesecretlivesofdata.com/raft/</a><br>Raft官网 <a href="https://raft.github.io/" target="_blank" rel="external">https://raft.github.io/</a>  </p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/05/02/raft/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-  
     <article id="post-socket_io" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -292,6 +174,75 @@
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2017/05/02/socket_io/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+  
+    <article id="post-xinqin20170110" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>Title: 20170110日记<br>Date:2017-01-10 15:36:00<br>Category: 其他<br>Tags: 心情,日记,日常<br>Slug:<br>Author: Dylan Zhou</p>
+<p>#日常-早上出门<br>每天早上出门，lp总说我穿的漂漂亮亮做什么，说！什么意图</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/05/02/xinqin20170110/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+  
+    <article id="post-xinqin20170207" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>Title: 20170207日记<br>Date:2017-02-07 13:08:00<br>Category: 其他<br>Tags: 心情,日记<br>Slug:<br>Author: Dylan Zhou</p>
+<p>#新的一年</p>
+<p>###还是这句话给自己 be honest to yourself and then the world.</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/05/02/xinqin20170207/">展开全文 >></a>
         </p>
       
 
@@ -408,44 +359,6 @@
 
 
   
-    <article id="post-tcpip_1_kuaisuchongchuan" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>Title: TCP Retransmit,TCP重传<br>Date:2017-01-05 19:45:00<br>Category: 网络<br>Tags: 网络,TCP/IP,TCP重传<br>Slug:<br>Author: Dylan Zhou</p>
-<p>#TCP重传</p>
-<p>###为什么要重传<br>TCP需要保证数据包的可靠性送达，必须有重传机制<br>tcp数据传输中syncnum和ack机制的单位是发送的字节数，那么如果1，2，3，4，5份数据发送过去，3出现丢失，收到4，5 那么数据该如何回复确认，ack机制只能确保确认最大的收到字节数，对于存在跳跃数据没法确认。</p>
-<p>###超时重传<br>tcp有多重定时器，其中重传定时器，处理超时重传,数据3投递存在丢失，等待ack超时后可以重传3数据。  </p>
-<p>###快速重传<br>鉴于超时重传取决于超时时间，快速重传的，快速相对于超时重传机制，实际可以理解为主动重传。例子同上，3接收丢失，收到4，5 仍旧回复2数据的ack， 那么发送方知道3丢失，重复传送3数据，此时接收方已收到4，5数据，收到3数据后回复5数据ack</p>
-<p>###思考问题<br>超时重传，tcp如何确认超时时间<br>快速重传，如果去优化连续数据中的若干部分段传输丢失，有何利弊</p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/05/02/tcpip_1_kuaisuchongchuan/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-  
     <article id="post-quorum_consensus_algorithm" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -490,6 +403,162 @@
 
 
   
+    <article id="post-tcpip_1_kuaisuchongchuan" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>Title: TCP Retransmit,TCP重传<br>Date:2017-01-05 19:45:00<br>Category: 网络<br>Tags: 网络,TCP/IP,TCP重传<br>Slug:<br>Author: Dylan Zhou</p>
+<p>#TCP重传</p>
+<p>###为什么要重传<br>TCP需要保证数据包的可靠性送达，必须有重传机制<br>tcp数据传输中syncnum和ack机制的单位是发送的字节数，那么如果1，2，3，4，5份数据发送过去，3出现丢失，收到4，5 那么数据该如何回复确认，ack机制只能确保确认最大的收到字节数，对于存在跳跃数据没法确认。</p>
+<p>###超时重传<br>tcp有多重定时器，其中重传定时器，处理超时重传,数据3投递存在丢失，等待ack超时后可以重传3数据。  </p>
+<p>###快速重传<br>鉴于超时重传取决于超时时间，快速重传的，快速相对于超时重传机制，实际可以理解为主动重传。例子同上，3接收丢失，收到4，5 仍旧回复2数据的ack， 那么发送方知道3丢失，重复传送3数据，此时接收方已收到4，5数据，收到3数据后回复5数据ack</p>
+<p>###思考问题<br>超时重传，tcp如何确认超时时间<br>快速重传，如果去优化连续数据中的若干部分段传输丢失，有何利弊</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/05/02/tcpip_1_kuaisuchongchuan/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+  
+    <article id="post-raft" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>Title: Raft协议算法简介<br>Date:2016-04-12 17:36:00<br>Category: 分布式小记<br>Tags: raft,一致性,分布式<br>Slug:<br>Author: Dylan Zhou</p>
+<p>#Raft 协议算法简介</p>
+<p>###简介<br>Raft协议算法产生的结果和Paxos的效果相同，Raft算法设计较Paxos设计易懂，并且有着更好的生产环境的实现方式。</p>
+<p>###背景<br>事务操作的四要素ACID：原子性、一致性、隔离性、持久性、 对于一个分布式环境的服务来说，较难满足一个事务的要求。比如对于一致性来说就是一个较难处理的问题，Raft正是为了解决分布式环境中一致性而产生的一种一致性协议算法。</p>
+<p>###Raft概念<br>&nbsp;&nbsp;1、Follower(追随者)角色<br>&nbsp;&nbsp;2、Candidate(候选者)角色<br>&nbsp;&nbsp;3、Leader(追随者)角色<br>&nbsp;&nbsp;4、Term(时间阶段)<br>&nbsp;&nbsp;5、server(或者node 泛指服务节点,算法中指log节点)</p>
+<p>###基本背景<br>&nbsp;&nbsp;1、集群包含若干server（或者node），数目5是一个典型的分布式集群数目，对于这样一个系统来说，最多容忍的失败server个数为2（N&gt;=2F+1)，总的服务数N， 容忍失败的个数F。<br>&nbsp;&nbsp;2、所有的node在同一个时期（term）只会有以上三种角色状态的其中一种。<br>&nbsp;&nbsp;3、Term是一个不定的时间长度，每个term最多只会有一个leader，可能没有。成功选举后由这个leader领导cluster直到term结束。  </p>
+<p>###Leader选举</p>
+<p>####选举流程<br>&nbsp;&nbsp;1、初始节点状态都是follower<br>&nbsp;&nbsp;2、收不到leader 通知或者candidate请求（超时），开始触发选举流程<br>&nbsp;&nbsp;3、F.增加自己的term num并转换为candidate状态（过程时间随机）<br>&nbsp;&nbsp;4、F.投票自己并且发送给其他人“投我”的请求<br>&nbsp;&nbsp;5、F.最终结果有三类：获得大多票数成为leader、其他f成为leader、无结果继续第二轮投票  </p>
+<p>####状态转换<br>Follower-&gt;Candidate 开始选举<br>Candidate-&gt;Candidate 选举超时<br>Candidate-&gt;Leader 选举成功<br>Candidate-&gt;Follower 发现其他leader 或者新的term时期<br>Leader-&gt;Follower 发现其他leader 或者更好的term时期  </p>
+<hr>
+<p>###Log Replication</p>
+<p>####协议针对log 副本。数据同步流程<br>&nbsp;&nbsp;1、client发送数据请求<br>&nbsp;&nbsp;2、leader接收数据请求，其他角色接收到请求转给leader<br>&nbsp;&nbsp;3、L.发出append请求（记录数据）<br>&nbsp;&nbsp;4、L.收到大多数数据回复，返回client请求状态<br>&nbsp;&nbsp;5、L.下个心跳把commit给到follower<br>&nbsp;&nbsp;6、如果传输失败，leader可以不断重试  </p>
+<p>####流程约定<br>&nbsp;&nbsp;1、log entry数据特性：log index、term num、commond<br>&nbsp;&nbsp;2、log 持久化存储<br>&nbsp;&nbsp;3、entry被大多数存储成功则为commited<br>&nbsp;&nbsp;4、index和term相同那么之前的数据（entry）都是相同的<br>&nbsp;&nbsp;5、某个commit之前的数据都是commited的<br>&nbsp;&nbsp;6、append操作带上上一个的entry信息（index和term）并做检查<br>&nbsp;&nbsp;7、检查不匹配，leader重试前一条。采用迭代重试方式直到完成   </p>
+<hr>
+<p>###后记<br>一定了解后的Raft协议特性简介<br>参考资料：<br>动画演示 <a href="http://thesecretlivesofdata.com/raft/" target="_blank" rel="external">http://thesecretlivesofdata.com/raft/</a><br>Raft官网 <a href="https://raft.github.io/" target="_blank" rel="external">https://raft.github.io/</a>  </p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/05/02/raft/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+  
+    <article id="post-xinqin20170303" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>Title: 20170303日记<br>Date:2017-03-03 19:31:00<br>Category: 其他<br>Tags: 心情,日记<br>Slug:<br>Author: Dylan Zhou</p>
+<p>#最近面试</p>
+<p>###<br>今年年后最近面试了好多<br>基本原则<br>优先考察考察基本能力、潜在能力，思考和学习能力。对应届生尤其重要<br>掌握的知识面的宽广和相关知识面的深入程度。不过分的追求掌握的多少<br>简历内容及所述符合实际，不实者慎重或不考虑<br>相关内容由浅入深，专业性或者职位要求较强的，可有相关类型的考察<br>语言表达、对待事情的态度、责任心等相关软素质</p>
+<p>面试注意事项<br>提前review候选人简历，做好相关面试准备<br>先有介绍，主要经历中贡献了什么，解决了什么。若考察风格没有太多的不妥，可按个人的风格考察<br>如遇到相关迟疑，可提示相关信息，看候选者的理解和分析能力<br>围绕候选者掌握情况，考察如何分析和处理相关问题<br>不是知识，是搜索和学习知识的能力<br>不是答案，是解决问题的思路和方法<br>通过后给到下一面试官，不通过送走。做好相关面试记录</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/05/02/xinqin20170303/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+  
+    <article id="post-xinqin20160630" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>Title: 20160630日记<br>Date:2016-06-30 19:36:00<br>Category: 其他<br>Tags: 心情,日记<br>Slug:<br>Author: Dylan Zhou</p>
+<p>#如此</p>
+<p>###此刻多么渴望成功，机遇很重要，决策也重要。</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/05/02/xinqin20160630/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+  
     <article id="post-xinqin20160803" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -511,75 +580,6 @@
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2017/05/02/xinqin20160803/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-  
-    <article id="post-xinqin20161011" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>Title: 20161011日记<br>Date:2016-10-11 19:36:00<br>Category: 其他<br>Tags: 心情,日记<br>Slug:<br>Author: Dylan Zhou</p>
-<p>#sign</p>
-<h3 id="过完十一后的几天，-今天拿到驾照了，北京这边周期还挺短的，一个半月左右"><a href="#过完十一后的几天，-今天拿到驾照了，北京这边周期还挺短的，一个半月左右" class="headerlink" title="过完十一后的几天， 今天拿到驾照了，北京这边周期还挺短的，一个半月左右"></a>过完十一后的几天， 今天拿到驾照了，北京这边周期还挺短的，一个半月左右</h3>
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/05/02/xinqin20161011/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-  
-    <article id="post-xinqin20161020" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>Title: 20161020日记<br>Date:2016-10-20 20:36:00<br>Category: 其他<br>Tags: 心情,日记<br>Slug:<br>Author: Dylan Zhou</p>
-<p>#national geographic</p>
-<p>###最近迷恋上了 national geographic的应用，每天一期；mac桌面也换上了Irvue，切换的图片很让人赏心悦目</p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/05/02/xinqin20161020/">展开全文 >></a>
         </p>
       
 
@@ -690,15 +690,11 @@ return o(t,i(n),arguments.length<3?void 0:u(arguments[2]))}})},function(t,n,r){v
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">​</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">about</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">abouttag</a>
+                <a href="javascript:void(0)" class="js-tag color3">contact</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -707,10 +703,6 @@ return o(t,i(n),arguments.length<3?void 0:u(arguments[2]))}})},function(t,n,r){v
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">heap memory</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">contact</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -781,7 +773,7 @@ return o(t,i(n),arguments.length<3?void 0:u(arguments[2]))}})},function(t,n,r){v
     
     	<section class="tools-section tools-section-me" q-show="aboutme">
   	  	
-  	  		<div class="aboutme-wrap" id="js-aboutme">很惭愧&lt;br&gt;&lt;br&gt;只做了一点微小的工作&lt;br&gt;谢谢大家</div>
+  	  		<div class="aboutme-wrap" id="js-aboutme">Dylan326&lt;br&gt;zhoudunyang@gmail.com</div>
   	  	
     	</section>
     
