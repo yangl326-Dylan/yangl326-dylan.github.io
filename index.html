@@ -152,42 +152,6 @@
           <div id="js-content" class="content-ll">
             
   
-    <article id="post-socket_io" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>Title: IO类型介绍<br>Date:2016-05-05 16:01:00<br>Category: 网络<br>Tags: Socket,IO<br>Slug:<br>Author: Dylan Zhou </p>
-<p>#IO分类<br>按照《Unix网络编程》的划分，IO模型可以分为：阻塞IO、非阻塞IO、IO复用、信号驱动IO和异步IO，按照POSIX标准来划分只分为两类：同步IO和异步IO。区分是一个麻烦事情，有相关的背景条件。<br>BIO（OIO）：同步阻塞IO<br>NIO：同步非阻塞IO，基于事件驱动模型的设计<br>AIO：异步非阻塞IO，也是基于事件驱动的设计，和NIO不一样的是在读写交互方式，采用异步或者回调的方式返回相关结果  </p>
-<p>#名词解释<br>同步VS异步：同步和异步概念的角度是对于叙说对象来定义的，描述的是用户态和系统态的关系， socket的读写操作，是直接同步返回结果还是异步返回结果。<br>阻塞VS非阻塞：这个较好理解，阻塞住等待事情处理完毕还是处理其他事情</p>
-<p>#后记<br>先这么简短的区别这几个概念</p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/05/02/socket_io/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-  
     <article id="post-xinqin20170303" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -293,6 +257,75 @@
 
 
   
+    <article id="post-xinqin20161011" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>Title: 20161011日记<br>Date:2016-10-11 19:36:00<br>Category: 其他<br>Tags: 心情,日记<br>Slug:<br>Author: Dylan Zhou</p>
+<p>#sign</p>
+<h3 id="过完十一后的几天，-今天拿到驾照了，北京这边周期还挺短的，一个半月左右"><a href="#过完十一后的几天，-今天拿到驾照了，北京这边周期还挺短的，一个半月左右" class="headerlink" title="过完十一后的几天， 今天拿到驾照了，北京这边周期还挺短的，一个半月左右"></a>过完十一后的几天， 今天拿到驾照了，北京这边周期还挺短的，一个半月左右</h3>
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/05/02/xinqin20161011/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+  
+    <article id="post-xinqin20160803" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>Title: 20160803日记<br>Date:2016-08-03 15:36:00<br>Category: 其他<br>Tags: 心情,日记<br>Slug:<br>Author: Dylan Zhou</p>
+<p>#情绪</p>
+<p>###控制到情绪是多么困难的事情吗</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/05/02/xinqin20160803/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+  
     <article id="post-xinqin20161020" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -328,17 +361,280 @@
 
 
   
-    <article id="post-tcpip_1" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-tcpip_1_kuaisuchongchuan" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/01/05/tcpip_1_kuaisuchongchuan/">TCP Retransmit,TCP重传</a>
+    </h1>
+  
+
+        
+        <a href="/2017/01/05/tcpip_1_kuaisuchongchuan/" class="archive-article-date">
+  	<time datetime="2017-01-05T11:45:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-01-05</time>
+</a>
+        
+      </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>Title: TCP/IP卷1笔记大纲<br>Date:2016-06-30 19:59:00<br>Category: 网络<br>Tags: 网络,TCP/IP<br>Slug:<br>Author: Dylan Zhou</p>
-<p>#协议卷1备注笔记</p>
+        <p>#TCP重传</p>
+<p>###为什么要重传<br>TCP需要保证数据包的可靠性送达，必须有重传机制<br>tcp数据传输中syncnum和ack机制的单位是发送的字节数，那么如果1，2，3，4，5份数据发送过去，3出现丢失，收到4，5 那么数据该如何回复确认，ack机制只能确保确认最大的收到字节数，对于存在跳跃数据没法确认。</p>
+<p>###超时重传<br>tcp有多重定时器，其中重传定时器，处理超时重传,数据3投递存在丢失，等待ack超时后可以重传3数据。  </p>
+<p>###快速重传<br>鉴于超时重传取决于超时时间，快速重传的，快速相对于超时重传机制，实际可以理解为主动重传。例子同上，3接收丢失，收到4，5 仍旧回复2数据的ack， 那么发送方知道3丢失，重复传送3数据，此时接收方已收到4，5数据，收到3数据后回复5数据ack</p>
+<p>###思考问题<br>超时重传，tcp如何确认超时时间<br>快速重传，如果去优化连续数据中的若干部分段传输丢失，有何利弊</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">网络</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">TCP/IP</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">TCP重传</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/网络/" class="article-tag-list-link color3">网络</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/01/05/tcpip_1_kuaisuchongchuan/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+  
+    <article id="post-java_mem_size" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/08/10/java_mem_size/">Swallow size和Retained size区别（+ deep size）</a>
+    </h1>
+  
+
+        
+        <a href="/2016/08/10/java_mem_size/" class="archive-article-date">
+  	<time datetime="2016-08-10T08:01:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-08-10</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="JVM-heap中对象大小有着如下大小表示"><a href="#JVM-heap中对象大小有着如下大小表示" class="headerlink" title="JVM heap中对象大小有着如下大小表示 "></a>JVM heap中对象大小有着如下大小表示 </h2><p>如果对象存在其他引用，那么我们来描述对象大小有如下几种类型：</p>
+<p>a)Swallow Size: 存储对象自身所包含的内存占用量</p>
+<p>1.仅表示对象自身  </p>
+<p>2.集合等，对象自己和对象中元素或者域（fields)的“引用”的大小。只包含引用数据的大小   </p>
+<p>3.可以使用instrumentation.getObjectSize(obj)获取到大小</p>
+<p>b)Retained Size: 对象自身的swallow size加上此对象可达的所有对象的swallow size</p>
+<p>1.直接可达，间接可达  </p>
+<p>2.在GC树上，仅仅来自此对象，不包含其他引用（包括gc root reference）</p>
+<p>3.汇总理解就是此对象被垃圾收集器回收时候GC释放掉的内存大小</p>
+<p>c)Deep Size: 相比如上两种这类较为少使用，递归遍历class: fields+superclass 的swallow size总和</p>
+<h3 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h3><p>Java Performance: The Definitive Guide</p>
+<p>大小计算方式：<a href="http://www.javaspecialists.eu/archive/Issue142.html" title="Instrumentation Memory Counter" target="_blank" rel="external">Instrumentation Memory Counter</a></p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">java</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">heap memory</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">JVM</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/语言/" class="article-tag-list-link color3">语言</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/JVM/" class="article-tag-list-link color4">JVM</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2016/08/10/java_mem_size/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+  
+    <article id="post-about" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/07/13/about/">About ME</a>
+    </h1>
+  
+
+        
+        <a href="/2016/07/13/about/" class="archive-article-date">
+  	<time datetime="2016-07-13T12:46:25.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-07-13</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="be-honest-to-yourself-and-then-the-world"><a href="#be-honest-to-yourself-and-then-the-world" class="headerlink" title="be honest to yourself and then the world."></a>be honest to yourself and then the world.</h2><p>email:zhoudunyang[at]gmail.com<br>weixin:<br><img src="/2016/07/13/about/weixin_qr.png" alt="weixin"></p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">about</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">contact</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/关于/" class="article-tag-list-link color3">关于</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2016/07/13/about/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+  
+    <article id="post-tcpip_1" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/06/30/tcpip_1/">TCP/IP卷1笔记大纲</a>
+    </h1>
+  
+
+        
+        <a href="/2016/06/30/tcpip_1/" class="archive-article-date">
+  	<time datetime="2016-06-30T11:59:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-06-30</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>#协议卷1备注笔记</p>
 <h3 id="四层网络应用模型"><a href="#四层网络应用模型" class="headerlink" title="四层网络应用模型"></a>四层网络应用模型</h3><p>1.应用层 ftp email telnet<br>2.传输层 TCP UDP<br>3.网络层 IP（ICMP IGMP）<br>4.链路层 设备驱动程序及接口卡（arp-地址解析协议 rarp-反地址解析协议）<br>传输层提供端到端， IP层提供点到点  </p>
 <p>###五类互联网地址<br>A 0.0.0.0~127.255.255.255<br>B 128.0.0.0~191.255.255.255<br>C 192.0.0.0~223.255.255.255<br>D 224.0.0.0~239.255.255.255<br>E 240.0.0.0~247.255.255.255  </p>
 <p>###域名系统DNS 实际为一个分布式数据库<br>子网掩码 192.0.2.96/24表示的是一个前24位被用作网络号的IP地址（和255.255.255.000的意思一样）<br>计算方式是位与运算，如：<br>类别<br>起始位<br>开始<br>结束<br>点分十进制掩码<br>A  </p>
-<p>0  </p>
+<p>0 </p>
 <p>0.0.0.0  </p>
 <p>127.0.0.0  </p>
 <p>255.0.0.0  </p>
@@ -411,153 +707,37 @@
     <div class="article-info article-info-index">
       
       
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">网络</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">TCP/IP</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
       
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/网络/" class="article-tag-list-link color3">网络</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2017/05/02/tcpip_1/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-  
-    <article id="post-tcpip_1_kuaisuchongchuan" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>Title: TCP Retransmit,TCP重传<br>Date:2017-01-05 19:45:00<br>Category: 网络<br>Tags: 网络,TCP/IP,TCP重传<br>Slug:<br>Author: Dylan Zhou</p>
-<p>#TCP重传</p>
-<p>###为什么要重传<br>TCP需要保证数据包的可靠性送达，必须有重传机制<br>tcp数据传输中syncnum和ack机制的单位是发送的字节数，那么如果1，2，3，4，5份数据发送过去，3出现丢失，收到4，5 那么数据该如何回复确认，ack机制只能确保确认最大的收到字节数，对于存在跳跃数据没法确认。</p>
-<p>###超时重传<br>tcp有多重定时器，其中重传定时器，处理超时重传,数据3投递存在丢失，等待ack超时后可以重传3数据。  </p>
-<p>###快速重传<br>鉴于超时重传取决于超时时间，快速重传的，快速相对于超时重传机制，实际可以理解为主动重传。例子同上，3接收丢失，收到4，5 仍旧回复2数据的ack， 那么发送方知道3丢失，重复传送3数据，此时接收方已收到4，5数据，收到3数据后回复5数据ack</p>
-<p>###思考问题<br>超时重传，tcp如何确认超时时间<br>快速重传，如果去优化连续数据中的若干部分段传输丢失，有何利弊</p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/05/02/tcpip_1_kuaisuchongchuan/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-  
-    <article id="post-xinqin20161011" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>Title: 20161011日记<br>Date:2016-10-11 19:36:00<br>Category: 其他<br>Tags: 心情,日记<br>Slug:<br>Author: Dylan Zhou</p>
-<p>#sign</p>
-<h3 id="过完十一后的几天，-今天拿到驾照了，北京这边周期还挺短的，一个半月左右"><a href="#过完十一后的几天，-今天拿到驾照了，北京这边周期还挺短的，一个半月左右" class="headerlink" title="过完十一后的几天， 今天拿到驾照了，北京这边周期还挺短的，一个半月左右"></a>过完十一后的几天， 今天拿到驾照了，北京这边周期还挺短的，一个半月左右</h3>
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/05/02/xinqin20161011/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-  
-    <article id="post-xinqin20160630" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>Title: 20160630日记<br>Date:2016-06-30 19:36:00<br>Category: 其他<br>Tags: 心情,日记<br>Slug:<br>Author: Dylan Zhou</p>
-<p>#如此</p>
-<p>###此刻多么渴望成功，机遇很重要，决策也重要。</p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/05/02/xinqin20160630/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-  
-    <article id="post-xinqin20160803" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>Title: 20160803日记<br>Date:2016-08-03 15:36:00<br>Category: 其他<br>Tags: 心情,日记<br>Slug:<br>Author: Dylan Zhou</p>
-<p>#情绪</p>
-<p>###控制到情绪是多么困难的事情吗</p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/05/02/xinqin20160803/">展开全文 >></a>
+          <a class="article-more-a" href="/2016/06/30/tcpip_1/">展开全文 >></a>
         </p>
       
 
@@ -668,6 +848,14 @@ return o(t,i(n),arguments.length<3?void 0:u(arguments[2]))}})},function(t,n,r){v
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">about</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">contact</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">java</a>
               </li>
              
@@ -677,14 +865,6 @@ return o(t,i(n),arguments.length<3?void 0:u(arguments[2]))}})},function(t,n,r){v
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">JVM</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">about</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">contact</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -705,6 +885,26 @@ return o(t,i(n),arguments.length<3?void 0:u(arguments[2]))}})},function(t,n,r){v
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">一致性</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">网络</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">TCP/IP</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">TCP重传</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">心情</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">日记</a>
               </li>
             
             <div class="clearfix"></div>
