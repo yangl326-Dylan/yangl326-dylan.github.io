@@ -5,14 +5,14 @@
   
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
-  <link rel="dns-prefetch" href="http://yangl326-dylan.github.io">
-  <title>Raft协议算法简介 | Dylan&#39;haha</title>
+  <link rel="dns-prefetch" href="http://www.dylan326.com">
+  <title>Raft协议算法简介 | Dylan&#39;Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="#Raft 协议算法简介 ###简介Raft协议算法产生的结果和Paxos的效果相同，Raft算法设计较Paxos设计易懂，并且有着更好的生产环境的实现方式。 ###背景事务操作的四要素ACID：原子性、一致性、隔离性、持久性、 对于一个分布式环境的服务来说，较难满足一个事务的要求。比如对于一致性来说就是一个较难处理的问题，Raft正是为了解决分布式环境中一致性而产生的一种一致性协议算法。 ###">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Raft协议算法简介">
-<meta property="og:url" content="http://yangl326-dylan.github.io/2016/04/12/raft/index.html">
-<meta property="og:site_name" content="Dylan&#39;haha">
+<meta property="og:url" content="http://www.dylan326.com/2016/04/12/raft/index.html">
+<meta property="og:site_name" content="Dylan&#39;Blog">
 <meta property="og:description" content="#Raft 协议算法简介 ###简介Raft协议算法产生的结果和Paxos的效果相同，Raft算法设计较Paxos设计易懂，并且有着更好的生产环境的实现方式。 ###背景事务操作的四要素ACID：原子性、一致性、隔离性、持久性、 对于一个分布式环境的服务来说，较难满足一个事务的要求。比如对于一致性来说就是一个较难处理的问题，Raft正是为了解决分布式环境中一致性而产生的一种一致性协议算法。 ###">
 <meta property="og:updated_time" content="2017-05-03T09:39:54.000Z">
 <meta name="twitter:card" content="summary">
@@ -20,7 +20,7 @@
 <meta name="twitter:description" content="#Raft 协议算法简介 ###简介Raft协议算法产生的结果和Paxos的效果相同，Raft算法设计较Paxos设计易懂，并且有着更好的生产环境的实现方式。 ###背景事务操作的四要素ACID：原子性、一致性、隔离性、持久性、 对于一个分布式环境的服务来说，较难满足一个事务的要求。比如对于一致性来说就是一个较难处理的问题，Raft正是为了解决分布式环境中一致性而产生的一种一致性协议算法。 ###">
   
   
-    <link rel="icon" href="/favicon.png">
+    <link rel="icon" href="/favicon.ico">
   
   <link rel="stylesheet" type="text/css" href="/./main.b3331d.css">
   <style type="text/css">
@@ -254,7 +254,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="http://s.jiathis.com/qrcode.php?url=http://yangl326-dylan.github.io/2016/04/12/raft/" alt="微信分享二维码">
+      <img src="http://s.jiathis.com/qrcode.php?url=http://www.dylan326.com/2016/04/12/raft/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -387,15 +387,11 @@ return o(t,i(n),arguments.length<3?void 0:u(arguments[2]))}})},function(t,n,r){v
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">java</a>
+                <a href="javascript:void(0)" class="js-tag color1">about</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">heap memory</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">JVM</a>
+                <a href="javascript:void(0)" class="js-tag color3">contact</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -411,11 +407,15 @@ return o(t,i(n),arguments.length<3?void 0:u(arguments[2]))}})},function(t,n,r){v
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">about</a>
+                <a href="javascript:void(0)" class="js-tag color5">java</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">contact</a>
+                <a href="javascript:void(0)" class="js-tag color2">heap memory</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">JVM</a>
               </li>
              
               <li class="article-tag-list-item">
