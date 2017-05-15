@@ -8,17 +8,17 @@
   <link rel="dns-prefetch" href="http://www.dylan326.com">
   <title>TCP Retransmit,TCP重传 | Dylan&#39;s ...</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="#TCP重传 ###为什么要重传TCP需要保证数据包的可靠性送达，必须有重传机制tcp数据传输中syncnum和ack机制的单位是发送的字节数，那么如果1，2，3，4，5份数据发送过去，3出现丢失，收到4，5 那么数据该如何回复确认，ack机制只能确保确认最大的收到字节数，对于存在跳跃数据没法确认。 ###超时重传tcp有多重定时器，其中重传定时器，处理超时重传,数据3投递存在丢失，等待ack超时">
+  <meta name="description" content="TCP重传为什么要重传TCP需要保证数据包的可靠性送达，必须有重传机制tcp数据传输中syncnum和ack机制的单位是发送的字节数，那么如果1，2，3，4，5份数据发送过去，3出现丢失，收到4，5 那么数据该如何回复确认，ack机制只能确保确认最大的收到字节数，对于存在跳跃数据没法确认。 超时重传tcp有多重定时器，其中重传定时器，处理超时重传,数据3投递存在丢失，等待ack超时后可以重传3数据">
 <meta name="keywords" content="网络,TCP&#x2F;IP,TCP重传">
 <meta property="og:type" content="article">
 <meta property="og:title" content="TCP Retransmit,TCP重传">
 <meta property="og:url" content="http://www.dylan326.com/2017/01/05/tcpip_1_kuaisuchongchuan/index.html">
 <meta property="og:site_name" content="Dylan&#39;s ...">
-<meta property="og:description" content="#TCP重传 ###为什么要重传TCP需要保证数据包的可靠性送达，必须有重传机制tcp数据传输中syncnum和ack机制的单位是发送的字节数，那么如果1，2，3，4，5份数据发送过去，3出现丢失，收到4，5 那么数据该如何回复确认，ack机制只能确保确认最大的收到字节数，对于存在跳跃数据没法确认。 ###超时重传tcp有多重定时器，其中重传定时器，处理超时重传,数据3投递存在丢失，等待ack超时">
-<meta property="og:updated_time" content="2017-05-04T12:32:18.000Z">
+<meta property="og:description" content="TCP重传为什么要重传TCP需要保证数据包的可靠性送达，必须有重传机制tcp数据传输中syncnum和ack机制的单位是发送的字节数，那么如果1，2，3，4，5份数据发送过去，3出现丢失，收到4，5 那么数据该如何回复确认，ack机制只能确保确认最大的收到字节数，对于存在跳跃数据没法确认。 超时重传tcp有多重定时器，其中重传定时器，处理超时重传,数据3投递存在丢失，等待ack超时后可以重传3数据">
+<meta property="og:updated_time" content="2017-05-11T02:07:27.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="TCP Retransmit,TCP重传">
-<meta name="twitter:description" content="#TCP重传 ###为什么要重传TCP需要保证数据包的可靠性送达，必须有重传机制tcp数据传输中syncnum和ack机制的单位是发送的字节数，那么如果1，2，3，4，5份数据发送过去，3出现丢失，收到4，5 那么数据该如何回复确认，ack机制只能确保确认最大的收到字节数，对于存在跳跃数据没法确认。 ###超时重传tcp有多重定时器，其中重传定时器，处理超时重传,数据3投递存在丢失，等待ack超时">
+<meta name="twitter:description" content="TCP重传为什么要重传TCP需要保证数据包的可靠性送达，必须有重传机制tcp数据传输中syncnum和ack机制的单位是发送的字节数，那么如果1，2，3，4，5份数据发送过去，3出现丢失，收到4，5 那么数据该如何回复确认，ack机制只能确保确认最大的收到字节数，对于存在跳跃数据没法确认。 超时重传tcp有多重定时器，其中重传定时器，处理超时重传,数据3投递存在丢失，等待ack超时后可以重传3数据">
   
   
     <link rel="icon" href="/favicon.ico">
@@ -31,6 +31,19 @@
     }
   </style>
   
+<!-- Google Analytics -->
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'enable:true id:76870988 site:www.dylan326.com', 'auto');
+ga('send', 'pageview');
+
+</script>
+<!-- End Google Analytics -->
+
 
   
 
@@ -172,11 +185,10 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>#TCP重传</p>
-<p>###为什么要重传<br>TCP需要保证数据包的可靠性送达，必须有重传机制<br>tcp数据传输中syncnum和ack机制的单位是发送的字节数，那么如果1，2，3，4，5份数据发送过去，3出现丢失，收到4，5 那么数据该如何回复确认，ack机制只能确保确认最大的收到字节数，对于存在跳跃数据没法确认。</p>
-<p>###超时重传<br>tcp有多重定时器，其中重传定时器，处理超时重传,数据3投递存在丢失，等待ack超时后可以重传3数据。  </p>
-<p>###快速重传<br>鉴于超时重传取决于超时时间，快速重传的，快速相对于超时重传机制，实际可以理解为主动重传。例子同上，3接收丢失，收到4，5 仍旧回复2数据的ack， 那么发送方知道3丢失，重复传送3数据，此时接收方已收到4，5数据，收到3数据后回复5数据ack</p>
-<p>###思考问题<br>超时重传，tcp如何确认超时时间<br>快速重传，如果去优化连续数据中的若干部分段传输丢失，有何利弊</p>
+        <h1 id="TCP重传"><a href="#TCP重传" class="headerlink" title="TCP重传"></a>TCP重传</h1><h3 id="为什么要重传"><a href="#为什么要重传" class="headerlink" title="为什么要重传"></a>为什么要重传</h3><p>TCP需要保证数据包的可靠性送达，必须有重传机制<br>tcp数据传输中syncnum和ack机制的单位是发送的字节数，那么如果1，2，3，4，5份数据发送过去，3出现丢失，收到4，5 那么数据该如何回复确认，ack机制只能确保确认最大的收到字节数，对于存在跳跃数据没法确认。</p>
+<h3 id="超时重传"><a href="#超时重传" class="headerlink" title="超时重传"></a>超时重传</h3><p>tcp有多重定时器，其中重传定时器，处理超时重传,数据3投递存在丢失，等待ack超时后可以重传3数据。  </p>
+<h3 id="快速重传"><a href="#快速重传" class="headerlink" title="快速重传"></a>快速重传</h3><p>鉴于超时重传取决于超时时间，快速重传的，快速相对于超时重传机制，实际可以理解为主动重传。例子同上，3接收丢失，收到4，5 仍旧回复2数据的ack， 那么发送方知道3丢失，重复传送3数据，此时接收方已收到4，5数据，收到3数据后回复5数据ack</p>
+<h3 id="思考问题"><a href="#思考问题" class="headerlink" title="思考问题"></a>思考问题</h3><p>超时重传，tcp如何确认超时时间<br>快速重传，如果去优化连续数据中的若干部分段传输丢失，有何利弊</p>
 
       
 
@@ -446,15 +458,15 @@ return o(t,i(n),arguments.length<3?void 0:u(arguments[2]))}})},function(t,n,r){v
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">TCP重传</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">心情</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">日记</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">TCP重传</a>
               </li>
              
               <li class="article-tag-list-item">
