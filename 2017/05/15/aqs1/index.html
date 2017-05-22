@@ -6,17 +6,19 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://www.dylan326.com">
-  <title>Tag: kernel | Dylan&#39;s ...</title>
+  <title>AbstractQueuedSynchronizer实现分析 | Dylan&#39;s ...</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="be honest to yourself and then the world.">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Dylan&#39;s ...">
-<meta property="og:url" content="http://www.dylan326.com/tags/kernel/index.html">
+  <meta name="description" content="背景介绍JDK1.5开始的java.util.concurrent包（简称J.U.C包）提供了大部分同步器的构建源框架类：AbstractQueuedSynchronizer，简称AQS类。我们使用到的大部分同步器都会有一个实现了AQS的子类。 原理分析简单的理解，AQS类实现了两者  自动管理了一个int类型的state同步状态，CAS保证其原子性 一个阻塞、唤醒线程的队列管理，双向链表  先从">
+<meta name="keywords" content="java,JVM">
+<meta property="og:type" content="article">
+<meta property="og:title" content="AbstractQueuedSynchronizer实现分析">
+<meta property="og:url" content="http://www.dylan326.com/2017/05/15/aqs1/index.html">
 <meta property="og:site_name" content="Dylan&#39;s ...">
-<meta property="og:description" content="be honest to yourself and then the world.">
+<meta property="og:description" content="背景介绍JDK1.5开始的java.util.concurrent包（简称J.U.C包）提供了大部分同步器的构建源框架类：AbstractQueuedSynchronizer，简称AQS类。我们使用到的大部分同步器都会有一个实现了AQS的子类。 原理分析简单的理解，AQS类实现了两者  自动管理了一个int类型的state同步状态，CAS保证其原子性 一个阻塞、唤醒线程的队列管理，双向链表  先从">
+<meta property="og:updated_time" content="2017-05-22T12:07:36.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Dylan&#39;s ...">
-<meta name="twitter:description" content="be honest to yourself and then the world.">
+<meta name="twitter:title" content="AbstractQueuedSynchronizer实现分析">
+<meta name="twitter:description" content="背景介绍JDK1.5开始的java.util.concurrent包（简称J.U.C包）提供了大部分同步器的构建源框架类：AbstractQueuedSynchronizer，简称AQS类。我们使用到的大部分同步器都会有一个实现了AQS的子类。 原理分析简单的理解，AQS类实现了两者  自动管理了一个int类型的state同步状态，CAS保证其原子性 一个阻塞、唤醒线程的队列管理，双向链表  先从">
   
   
     <link rel="icon" href="/favicon.ico">
@@ -163,83 +165,168 @@ ga('send', 'pageview');
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-aqs1" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2016" class="archive-year">2016</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2016/06/08/kernel/" class="archive-article-date">
-  	<time datetime="2016-06-08T08:01:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-06-08</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2016/06/08/kernel/">用户态和系统态区分</a>
+    <h1 class="article-title" itemprop="name">
+      AbstractQueuedSynchronizer实现分析
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
+        
+        <a href="/2017/05/15/aqs1/" class="archive-article-date">
+  	<time datetime="2017-05-15T12:01:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-05-15</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="背景介绍"><a href="#背景介绍" class="headerlink" title="背景介绍"></a>背景介绍</h3><p>JDK1.5开始的java.util.concurrent包（简称J.U.C包）提供了大部分同步器的构建源框架类：AbstractQueuedSynchronizer，简称AQS类。我们使用到的大部分同步器都会有一个实现了AQS的子类。</p>
+<h3 id="原理分析"><a href="#原理分析" class="headerlink" title="原理分析"></a>原理分析</h3><p>简单的理解，AQS类实现了两者</p>
+<ol>
+<li>自动管理了一个int类型的state同步状态，CAS保证其原子性</li>
+<li>一个阻塞、唤醒线程的队列管理，双向链表</li>
+</ol>
+<p>先从同步器基本讲起，一个同步器一般提供两种方法：一种是acquire；一种是release。acquire会阻塞线程调用或者非阻塞方式直接返回同步状态，release操作就是改变此同步状态，唤醒其他被阻塞的线程执行。</p>
+<p>例如：ReentrantLock的lock() /unlock()、CountDownLatch的await()/countDown()、Semaphore的acquire()/release()等都是上述两种的实现。只是每个实现子类中的state表达的同步状态有着自己的含义。注：FutureTask同步类中没直接使用AQS类，但基本的同步器设计思路同AQS。</p>
+<p>需要下面三个基本功能组件相互协作：</p>
+<ul>
+<li>一个具有原子性的同步状态</li>
+<li>线程的阻塞与唤醒</li>
+<li>队列的管理，支持排队或者闯入，即处理公平非公平</li>
+</ul>
+<h5 id="原子性状态"><a href="#原子性状态" class="headerlink" title="原子性状态"></a>原子性状态</h5><p>AQS类提供了一个int类型的state状态（备注当然也提供long类型的state状态，实际情况下int满足绝大部分场景），通过state的读取和修改来表示不同的状态，修改基于atomic原子类中CAS（compareAndSet）源语等操作来维护这个状态。它在不同的同步器中表达的含义不一样，例如重入锁中，当某个线程从条件等待中返回，然后重新获取锁时，为了重新建立循环计数的场景就可以使用到这个状态。当然有些同步器中也可以不使用此状态。</p>
+<h5 id="阻塞"><a href="#阻塞" class="headerlink" title="阻塞"></a>阻塞</h5><p>说道阻塞当然会想到线程的wait和notify， 对比JUC中的j.u.c包有一个LockSupport类， 两者的区别是:LockSuport提供主动的唤醒机制，而notify则是抢占形式的唤醒模式。LockSupport的unpark方法支持主动唤醒某个线程，提供了相对于notify更优良的机制。</p>
+<h5 id="队列"><a href="#队列" class="headerlink" title="队列"></a>队列</h5><p>实际上AQS的本质就是一个阻塞线程队列的管理，严格的FIFO（先入先出）备注：不支持优先级队列。</p>
+<h3 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h3><ul>
+<li>AbstractQueuedSynchronizer类注释doc， 基本这个文档明白了，再加上一个实现类，基本每个同步类都会实现一个AQS的实现类作为内部类</li>
+<li>Doug Lea大师（八字胡老爷爷）论文：<a href="http://gee.cs.oswego.edu/dl/papers/aqs.pdf" title="The java.util.concurrent Synchronizer Framework" target="_blank" rel="external">The java.util.concurrent Synchronizer Framework</a></li>
+</ul>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Socket</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">java</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">IO</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">kernel</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">JVM</a>
         		</li>
       		
 		</ul>
 	</div>
 
-          
+      
 	<div class="article-category tagcloud">
 		<i class="icon-book icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="/categories/网络/" class="article-tag-list-link color3">网络</a>
+        			<a href="/categories/语言/" class="article-tag-list-link color3">语言</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="/categories/系统/" class="article-tag-list-link color3">系统</a>
+        			<a href="/categories/JDK/" class="article-tag-list-link color4">JDK</a>
         		</li>
       		
 		</ul>
 	</div>
 
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="http://s.jiathis.com/qrcode.php?url=http://www.dylan326.com/2017/05/15/aqs1/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
+  
+<nav id="article-nav">
   
   
-    </div></section>
+    <a href="/2017/03/03/xinqin20170303/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">面试官感想</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+
+
+
+  
+  
   
 
-    
+  
+
+  
 
 
           </div>
@@ -262,9 +349,9 @@ ga('send', 'pageview');
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
+		isPost: true,
 		isArchive: false,
-		isTag: true,
+		isTag: false,
 		isCategory: false,
 		open_in_new: false,
 		root: "/",

@@ -165,6 +165,104 @@ ga('send', 'pageview');
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-aqs1" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/05/15/aqs1/">AbstractQueuedSynchronizer实现分析</a>
+    </h1>
+  
+
+        
+        <a href="/2017/05/15/aqs1/" class="archive-article-date">
+  	<time datetime="2017-05-15T12:01:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-05-15</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="背景介绍"><a href="#背景介绍" class="headerlink" title="背景介绍"></a>背景介绍</h3><p>JDK1.5开始的java.util.concurrent包（简称J.U.C包）提供了大部分同步器的构建源框架类：AbstractQueuedSynchronizer，简称AQS类。我们使用到的大部分同步器都会有一个实现了AQS的子类。</p>
+<h3 id="原理分析"><a href="#原理分析" class="headerlink" title="原理分析"></a>原理分析</h3><p>简单的理解，AQS类实现了两者</p>
+<ol>
+<li>自动管理了一个int类型的state同步状态，CAS保证其原子性</li>
+<li>一个阻塞、唤醒线程的队列管理，双向链表</li>
+</ol>
+<p>先从同步器基本讲起，一个同步器一般提供两种方法：一种是acquire；一种是release。acquire会阻塞线程调用或者非阻塞方式直接返回同步状态，release操作就是改变此同步状态，唤醒其他被阻塞的线程执行。</p>
+<p>例如：ReentrantLock的lock() /unlock()、CountDownLatch的await()/countDown()、Semaphore的acquire()/release()等都是上述两种的实现。只是每个实现子类中的state表达的同步状态有着自己的含义。注：FutureTask同步类中没直接使用AQS类，但基本的同步器设计思路同AQS。</p>
+<p>需要下面三个基本功能组件相互协作：</p>
+<ul>
+<li>一个具有原子性的同步状态</li>
+<li>线程的阻塞与唤醒</li>
+<li>队列的管理，支持排队或者闯入，即处理公平非公平</li>
+</ul>
+<h5 id="原子性状态"><a href="#原子性状态" class="headerlink" title="原子性状态"></a>原子性状态</h5><p>AQS类提供了一个int类型的state状态（备注当然也提供long类型的state状态，实际情况下int满足绝大部分场景），通过state的读取和修改来表示不同的状态，修改基于atomic原子类中CAS（compareAndSet）源语等操作来维护这个状态。它在不同的同步器中表达的含义不一样，例如重入锁中，当某个线程从条件等待中返回，然后重新获取锁时，为了重新建立循环计数的场景就可以使用到这个状态。当然有些同步器中也可以不使用此状态。</p>
+<h5 id="阻塞"><a href="#阻塞" class="headerlink" title="阻塞"></a>阻塞</h5><p>说道阻塞当然会想到线程的wait和notify， 对比JUC中的j.u.c包有一个LockSupport类， 两者的区别是:LockSuport提供主动的唤醒机制，而notify则是抢占形式的唤醒模式。LockSupport的unpark方法支持主动唤醒某个线程，提供了相对于notify更优良的机制。</p>
+<h5 id="队列"><a href="#队列" class="headerlink" title="队列"></a>队列</h5><p>实际上AQS的本质就是一个阻塞线程队列的管理，严格的FIFO（先入先出）备注：不支持优先级队列。</p>
+<h3 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h3><ul>
+<li>AbstractQueuedSynchronizer类注释doc， 基本这个文档明白了，再加上一个实现类，基本每个同步类都会实现一个AQS的实现类作为内部类</li>
+<li>Doug Lea大师（八字胡老爷爷）论文：<a href="http://gee.cs.oswego.edu/dl/papers/aqs.pdf" title="The java.util.concurrent Synchronizer Framework" target="_blank" rel="external">The java.util.concurrent Synchronizer Framework</a></li>
+</ul>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">java</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">JVM</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/语言/" class="article-tag-list-link color3">语言</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/JDK/" class="article-tag-list-link color4">JDK</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/05/15/aqs1/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+  
     <article id="post-xinqin20170303" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -671,11 +769,11 @@ ga('send', 'pageview');
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">heap memory</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">JVM</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">JVM</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">heap memory</a>
         		</li>
       		
 		</ul>
@@ -864,147 +962,6 @@ ga('send', 'pageview');
 
 
   
-    <article id="post-tcpip_1" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/06/30/tcpip_1/">TCP/IP卷1笔记大纲</a>
-    </h1>
-  
-
-        
-        <a href="/2016/06/30/tcpip_1/" class="archive-article-date">
-  	<time datetime="2016-06-30T11:59:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-06-30</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="协议卷1备注笔记"><a href="#协议卷1备注笔记" class="headerlink" title="协议卷1备注笔记"></a>协议卷1备注笔记</h1><h2 id="四层网络应用模型"><a href="#四层网络应用模型" class="headerlink" title="四层网络应用模型"></a>四层网络应用模型</h2><p>1.应用层 ftp email telnet<br>2.传输层 TCP UDP<br>3.网络层 IP（ICMP IGMP）<br>4.链路层 设备驱动程序及接口卡（arp-地址解析协议 rarp-反地址解析协议）<br>传输层提供端到端， IP层提供点到点  </p>
-<h2 id="五类互联网地址"><a href="#五类互联网地址" class="headerlink" title="五类互联网地址"></a>五类互联网地址</h2><p>A 0.0.0.0~127.255.255.255<br>B 128.0.0.0~191.255.255.255<br>C 192.0.0.0~223.255.255.255<br>D 224.0.0.0~239.255.255.255<br>E 240.0.0.0~247.255.255.255  </p>
-<h2 id="域名系统DNS-实际为一个分布式数据库"><a href="#域名系统DNS-实际为一个分布式数据库" class="headerlink" title="域名系统DNS 实际为一个分布式数据库"></a>域名系统DNS 实际为一个分布式数据库</h2><p>子网掩码 192.0.2.96/24表示的是一个前24位被用作网络号的IP地址（和255.255.255.000的意思一样）<br>计算方式是位与运算，如：<br>类别<br>起始位<br>开始<br>结束<br>点分十进制掩码<br>A  </p>
-<p>0 </p>
-<p>0.0.0.0  </p>
-<p>127.0.0.0  </p>
-<p>255.0.0.0  </p>
-<p>B  </p>
-<p>10  </p>
-<p>128.0.0.0  </p>
-<p>191.255.0.0  </p>
-<p>255.255.0.0  </p>
-<p>C  </p>
-<p>110  </p>
-<p>192.0.0.0  </p>
-<p>223.255.255.0  </p>
-<p>255.255.255.0  </p>
-<h3 id="封装与分用-封装"><a href="#封装与分用-封装" class="headerlink" title="封装与分用-封装"></a>封装与分用-封装</h3><p>TCP数据段（tcp segment）<br>IP数据报文 （ip datagram）<br>以太网数据帧（frame）46~1500（字节 可设置）<br>IP头有一个8bit的协议域，标示协议类型1=ICMP 2=IGMP 6=TCP 17=UDP</p>
-<h3 id="封装与分用-分用"><a href="#封装与分用-分用" class="headerlink" title="封装与分用-分用"></a>封装与分用-分用</h3><p>端口号：<br>大部分知名端口号为奇数? 半双工历史<br>tcp 23<br>udp 53  </p>
-<h3 id="环回接口"><a href="#环回接口" class="headerlink" title="环回接口"></a>环回接口</h3><p>国际惯例ip是127.0.0.1  并设置localhost</p>
-<h3 id="IP网际协议"><a href="#IP网际协议" class="headerlink" title="IP网际协议"></a>IP网际协议</h3><p>ip不可靠性。<br>ip无连接。 每个ip数据报文独立， 可以没有先后顺序<br>网络字节序：大端字节序<br>TTL 生存时间，一般为源主机设置  </p>
-<h3 id="ARP地址解析协议"><a href="#ARP地址解析协议" class="headerlink" title="ARP地址解析协议"></a>ARP地址解析协议</h3><p>ARP功能是IP地址和不同网络技术的硬件地址做一个映射。arp发出一个arp数据请求给每个以太网上的主机，对应主机符合后回复arp应答，发送ip报文到目标主机<br>RARP 是许多无盘系统在引导时候获取ip地址的</p>
-<h3 id="ICMP-网络控制报文协议Internet-Control-Message-Protocol"><a href="#ICMP-网络控制报文协议Internet-Control-Message-Protocol" class="headerlink" title="ICMP 网络控制报文协议Internet Control Message Protocol"></a>ICMP 网络控制报文协议Internet Control Message Protocol</h3><p>常用于返回错误信息及分析路由，如 ping（icmp echo的request和reply） traceroute</p>
-<p>PING<br>不经过传输层，仅为ICMP的echo的request和reply</p>
-<p>IP分片<br>MTU 以太网硬件（网卡）一般设置为1500：例如：IP首20， UDP首8 剩余1472数据字节</p>
-<h3 id="广播多播单播"><a href="#广播多播单播" class="headerlink" title="广播多播单播"></a>广播多播单播</h3><p>使用单播IP地址的IP传输方式，叫做IP单播（Unicast），简称为单播。<br>使用广播IP地址的IP传输方式，叫做IP广播（Broadcast），简称为广播。<br>使用组播IP地址的IP传输方式，叫做IP组播（Multicast），简称为组播。<br>广播不实际增加网络通讯量， 但是如ICMP协议端口不可达会额外引起广播流量  </p>
-<h3 id="IGMP-internet组管理协议"><a href="#IGMP-internet组管理协议" class="headerlink" title="IGMP internet组管理协议"></a>IGMP internet组管理协议</h3><p>广播长局限于局域网中，多播协议可以降低不参与通讯的主机负担  </p>
-<h3 id="DNS域名系统"><a href="#DNS域名系统" class="headerlink" title="DNS域名系统"></a>DNS域名系统</h3><p>一个基于tcpip的分布式缓存</p>
-<h3 id="TCP传输控制协议"><a href="#TCP传输控制协议" class="headerlink" title="TCP传输控制协议"></a>TCP传输控制协议</h3><p>面向连接可靠地字节流服务<br>可靠性保障：  </p>
-<ul>
-<li>tcp segment 数据块封装成ip协议发送  </li>
-<li>发送一个段后，启动一个定时器等待回复（自适应超时和重传）  </li>
-<li>收到发送端的数据后给一个确认的回复（不一定是立即回复）  </li>
-<li>首部和校验和来保证数据正确性  </li>
-<li>ip数据报文到达可能无序， tcp对数据报文重排序交给应用层  </li>
-<li>IP数据包会重复，需要丢弃重复  </li>
-<li>提供流量控制，接收端只容许发送端发送本段缓冲能接收的数据  </li>
-</ul>
-<p>tcp首部中有6个标示bit:  </p>
-<ul>
-<li>URG 紧急指针  </li>
-<li>ACK确认序号有效  </li>
-<li>PSH 尽快发送到应用层  </li>
-<li>RST 重新建立连接  </li>
-<li>SYN 同步序号用来发起一个链接 （ISN 初始序列号，随机+数据包长度）  </li>
-<li>FIN 发送完毕  </li>
-</ul>
-<p>三次握手：SYN n-&gt;SYN m、ack n+1-&gt;ack m+1<br>四次握手：FIN n、ack -&gt;ack n+1-&gt;FIN m、ack -&gt;ack m+1  </p>
-<p>链接主要状态：<br>S  : Listen=被动打开<br>C  : SYN_SENT=主动打开<br>SC: ESTABLISHED=链接建立<br>C  : FIN_WAIT=主动关闭<br>S  : CLOSE_WAIT=被动关闭<br>C  : TIME_WAIT=关闭等待<br>S  : CLOSED=关闭（假想）  </p>
-<p>Nagle算法， 尽量的合并发送包，合并条件：  </p>
-<ul>
-<li>达到MSS（最大segment 大小） 大小 MSS来自MTU（包含IP和tcp或者udp头）  </li>
-<li>FIN协议  </li>
-<li>tcp nodelay（关闭 Nagle algorithm）  </li>
-<li>或者一段时间（200ms）超时  </li>
-</ul>
-<h3 id="滑动窗口"><a href="#滑动窗口" class="headerlink" title="滑动窗口"></a>滑动窗口</h3><p>控制流量避免拥塞。 分为发送窗口和接收窗口  </p>
-<h3 id="超时和重传机制"><a href="#超时和重传机制" class="headerlink" title="超时和重传机制"></a>超时和重传机制</h3><p>定时器：  </p>
-<ul>
-<li>重传定时器  </li>
-<li>坚持定时器 使窗口大小信息保持流动  </li>
-<li>保活定时器  </li>
-<li>2MSL定时器 测量timewait时间  </li>
-</ul>
-<p>超时和重传： 指数避退策略  </p>
-<p>插口对（socket pair）套接字对， ip_port-r_ip_port<br>ISN 初始序列号， 随机值  </p>
-<p>MSL（最大segment lifetime）<br>TIME_WAIT 为2MSL状态，在等待期内，这部分时间socket pair 不容许被使用  </p>
-<h3 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h3><p>待续和完善， 目前简要备注大纲</p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">网络</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">TCP/IP</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/网络/" class="article-tag-list-link color3">网络</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2016/06/30/tcpip_1/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-  
   
     <nav id="page-nav">
       <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
@@ -1101,15 +1058,23 @@ return o(t,i(n),arguments.length<3?void 0:u(arguments[2]))}})},function(t,n,r){v
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">about</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">contact</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">java</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">heap memory</a>
+                <a href="javascript:void(0)" class="js-tag color4">JVM</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">JVM</a>
+                <a href="javascript:void(0)" class="js-tag color2">heap memory</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1122,14 +1087,6 @@ return o(t,i(n),arguments.length<3?void 0:u(arguments[2]))}})},function(t,n,r){v
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">kernel</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">about</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">contact</a>
               </li>
              
               <li class="article-tag-list-item">
