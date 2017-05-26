@@ -15,7 +15,7 @@
 <meta property="og:url" content="http://www.dylan326.com/2017/05/15/aqs1/index.html">
 <meta property="og:site_name" content="Dylan&#39;s ...">
 <meta property="og:description" content="背景介绍JDK1.5开始的java.util.concurrent包（简称J.U.C包）提供了大部分同步器的构建源框架类：AbstractQueuedSynchronizer，简称AQS类。我们使用到的大部分同步器都会有一个实现了AQS的子类。 原理分析简单的理解，AQS类实现了两者  自动管理了一个int类型的state同步状态，CAS保证其原子性 一个阻塞、唤醒线程的队列管理，双向链表  先从">
-<meta property="og:updated_time" content="2017-05-22T12:11:32.000Z">
+<meta property="og:updated_time" content="2017-05-25T08:24:05.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="AbstractQueuedSynchronizer实现分析">
 <meta name="twitter:description" content="背景介绍JDK1.5开始的java.util.concurrent包（简称J.U.C包）提供了大部分同步器的构建源框架类：AbstractQueuedSynchronizer，简称AQS类。我们使用到的大部分同步器都会有一个实现了AQS的子类。 原理分析简单的理解，AQS类实现了两者  自动管理了一个int类型的state同步状态，CAS保证其原子性 一个阻塞、唤醒线程的队列管理，双向链表  先从">
@@ -200,7 +200,7 @@ ga('send', 'pageview');
 <li>队列的管理，支持排队或者闯入，即处理公平非公平</li>
 </ul>
 <h5 id="原子性状态"><a href="#原子性状态" class="headerlink" title="原子性状态"></a>原子性状态</h5><p>AQS类提供了一个int类型的state状态（备注当然也提供long类型的state状态，实际情况下int满足绝大部分场景），通过state的读取和修改来表示不同的状态，修改基于atomic原子类中CAS（compareAndSet）源语等操作来维护这个状态。它在不同的同步器中表达的含义不一样，例如重入锁中，当某个线程从条件等待中返回，然后重新获取锁时，为了重新建立循环计数的场景就可以使用到这个状态。当然有些同步器中也可以不使用此状态。</p>
-<h5 id="阻塞"><a href="#阻塞" class="headerlink" title="阻塞"></a>阻塞</h5><p>说道阻塞当然会想到线程的wait和notify， 对比JUC中的的LockSupport类， 两者的区别是:LockSupport提供主动的唤醒机制，而notify则是抢占形式的唤醒模式。LockSupport的unpark方法支持主动唤醒某个线程，提供了相对于notify更优良的机制。</p>
+<h5 id="阻塞"><a href="#阻塞" class="headerlink" title="阻塞"></a>阻塞</h5><p>说到阻塞当然会想到线程的wait和notify， 对比JUC中的的LockSupport类， 两者的区别是:LockSupport提供主动的唤醒机制，而notify则是抢占形式的唤醒模式。LockSupport的unpark方法支持主动唤醒某个线程，提供了相对于notify更优良的机制。</p>
 <h5 id="队列"><a href="#队列" class="headerlink" title="队列"></a>队列</h5><p>实际上AQS的本质就是一个阻塞线程队列的管理器，严格的FIFO（先入先出）备注：不支持优先级队列。它以类似自旋锁的自旋模式来判定现成的获取和释放。</p>
 <h3 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h3><ul>
 <li>AbstractQueuedSynchronizer类注释doc， 基本这个文档明白了，再加上一个实现类，基本每个同步类都会实现一个AQS的实现类作为内部类</li>
@@ -418,6 +418,14 @@ return o(t,i(n),arguments.length<3?void 0:u(arguments[2]))}})},function(t,n,r){v
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">about</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">contact</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">java</a>
               </li>
              
@@ -430,22 +438,6 @@ return o(t,i(n),arguments.length<3?void 0:u(arguments[2]))}})},function(t,n,r){v
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">about</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">contact</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">分布式</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">一致性</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Socket</a>
               </li>
              
@@ -455,6 +447,14 @@ return o(t,i(n),arguments.length<3?void 0:u(arguments[2]))}})},function(t,n,r){v
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">kernel</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">分布式</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">一致性</a>
               </li>
              
               <li class="article-tag-list-item">
