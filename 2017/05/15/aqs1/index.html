@@ -15,7 +15,7 @@
 <meta property="og:url" content="http://www.dylan326.com/2017/05/15/aqs1/index.html">
 <meta property="og:site_name" content="Dylan&#39;s ...">
 <meta property="og:description" content="背景介绍JDK1.5开始的java.util.concurrent包（简称J.U.C包）提供了大部分同步器的构建源框架类：AbstractQueuedSynchronizer，简称AQS类。我们使用到的大部分同步器都会有一个实现了AQS的子类。 原理分析简单的理解，AQS类实现了两者  自动管理了一个int类型的state同步状态，CAS保证其原子性 一个阻塞、唤醒线程的队列管理，双向链表  先从">
-<meta property="og:updated_time" content="2017-05-25T08:24:05.000Z">
+<meta property="og:updated_time" content="2017-06-01T16:37:58.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="AbstractQueuedSynchronizer实现分析">
 <meta name="twitter:description" content="背景介绍JDK1.5开始的java.util.concurrent包（简称J.U.C包）提供了大部分同步器的构建源框架类：AbstractQueuedSynchronizer，简称AQS类。我们使用到的大部分同步器都会有一个实现了AQS的子类。 原理分析简单的理解，AQS类实现了两者  自动管理了一个int类型的state同步状态，CAS保证其原子性 一个阻塞、唤醒线程的队列管理，双向链表  先从">
@@ -98,7 +98,7 @@ ga('send', 'pageview');
 		        
 					<a class="weibo" target="_blank" href="http://weibo.com/youngchou326" title="weibo"><i class="icon-weibo"></i></a>
 		        
-					<a class="mail" target="_blank" href="mailto:zhoudunyang@gmail.com" title="mail"><i class="icon-mail"></i></a>
+					<a class="weixin" target="_blank" href="http://www.dylan326.com/2013/02/13/about/" title="weixin"><i class="icon-weixin"></i></a>
 		        
 			</div>
 		</nav>
@@ -139,7 +139,7 @@ ga('send', 'pageview');
 			        
 						<a class="weibo" target="_blank" href="http://weibo.com/youngchou326" title="weibo"><i class="icon-weibo"></i></a>
 			        
-						<a class="mail" target="_blank" href="mailto:zhoudunyang@gmail.com" title="mail"><i class="icon-mail"></i></a>
+						<a class="weixin" target="_blank" href="http://www.dylan326.com/2013/02/13/about/" title="weixin"><i class="icon-weixin"></i></a>
 			        
 				</div>
 			</nav>
@@ -206,6 +206,8 @@ ga('send', 'pageview');
 <li>AbstractQueuedSynchronizer类注释doc， 基本这个文档明白了，再加上一个实现类，基本每个同步类都会实现一个AQS的实现类作为内部类</li>
 <li>Doug Lea大师（八字胡老爷爷）论文：<a href="http://gee.cs.oswego.edu/dl/papers/aqs.pdf" title="The java.util.concurrent Synchronizer Framework" target="_blank" rel="external">The java.util.concurrent Synchronizer Framework</a></li>
 </ul>
+<hr>
+<p><strong>版权声明：本文为博主原创文章，未经允许不得转载。</strong></p>
 
       
 
@@ -426,7 +428,15 @@ return o(t,i(n),arguments.length<3?void 0:u(arguments[2]))}})},function(t,n,r){v
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">设计模式</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">java</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">collection</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -434,19 +444,11 @@ return o(t,i(n),arguments.length<3?void 0:u(arguments[2]))}})},function(t,n,r){v
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">heap memory</a>
+                <a href="javascript:void(0)" class="js-tag color1">final</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Socket</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">IO</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">kernel</a>
+                <a href="javascript:void(0)" class="js-tag color3">译文</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -458,6 +460,14 @@ return o(t,i(n),arguments.length<3?void 0:u(arguments[2]))}})},function(t,n,r){v
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Socket</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">IO</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">网络</a>
               </li>
              
@@ -466,7 +476,15 @@ return o(t,i(n),arguments.length<3?void 0:u(arguments[2]))}})},function(t,n,r){v
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">heap memory</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">TCP重传</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">kernel</a>
               </li>
              
               <li class="article-tag-list-item">

@@ -15,7 +15,7 @@
 <meta property="og:url" content="http://www.dylan326.com/2016/04/11/quorum_consensus_algorithm/index.html">
 <meta property="og:site_name" content="Dylan&#39;s ...">
 <meta property="og:description" content="Quorum一致性算法简介背景一个组包含若干副本集合，个数为N。每个副本集合存储着items的集合，这个集合可以是文件或者内容，每个item有着唯一的标示和一个状态，我们称之为NWR问题。 定义R：定义R为读的最小票数，W：定义为写的最小票数。N为副本个数。每个副本集存储着同一个item的不同的版本号码，越大的版本号标示这个数据是最近的。读的个数是对写的个数感兴趣的，因为读到的数据应该是大多数写成">
-<meta property="og:updated_time" content="2017-05-11T02:07:27.000Z">
+<meta property="og:updated_time" content="2017-06-01T16:18:11.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Quorum一致性算法">
 <meta name="twitter:description" content="Quorum一致性算法简介背景一个组包含若干副本集合，个数为N。每个副本集合存储着items的集合，这个集合可以是文件或者内容，每个item有着唯一的标示和一个状态，我们称之为NWR问题。 定义R：定义R为读的最小票数，W：定义为写的最小票数。N为副本个数。每个副本集存储着同一个item的不同的版本号码，越大的版本号标示这个数据是最近的。读的个数是对写的个数感兴趣的，因为读到的数据应该是大多数写成">
@@ -98,7 +98,7 @@ ga('send', 'pageview');
 		        
 					<a class="weibo" target="_blank" href="http://weibo.com/youngchou326" title="weibo"><i class="icon-weibo"></i></a>
 		        
-					<a class="mail" target="_blank" href="mailto:zhoudunyang@gmail.com" title="mail"><i class="icon-mail"></i></a>
+					<a class="weixin" target="_blank" href="http://www.dylan326.com/2013/02/13/about/" title="weixin"><i class="icon-weixin"></i></a>
 		        
 			</div>
 		</nav>
@@ -139,7 +139,7 @@ ga('send', 'pageview');
 			        
 						<a class="weibo" target="_blank" href="http://weibo.com/youngchou326" title="weibo"><i class="icon-weibo"></i></a>
 			        
-						<a class="mail" target="_blank" href="mailto:zhoudunyang@gmail.com" title="mail"><i class="icon-mail"></i></a>
+						<a class="weixin" target="_blank" href="http://www.dylan326.com/2013/02/13/about/" title="weixin"><i class="icon-weixin"></i></a>
 			        
 				</div>
 			</nav>
@@ -193,6 +193,8 @@ ga('send', 'pageview');
 <h4 id="读操作"><a href="#读操作" class="headerlink" title="读操作"></a>读操作</h4><p>读操作也可以分为一段或者两段请求<br>  1、发起一个读请求给所有的副本集合，等待一个读提议的返回，如果所有的版本返回一致的状态，那么返回结果给客户端。<br>  2、否则发起一个大版本数据的写请求给所有副本集合，等待写提议的返回，如果返回成功，则返回结果给客户端。<br>第二步称之为”回写”段，通常情况下，第二段是没必要的，因为在写请求的操作中所有可用的写返回是一致的数据，那么在读返回中，都是同样的返回数据。  </p>
 <h3 id="特性"><a href="#特性" class="headerlink" title="特性"></a>特性</h3><p>协议需要提供原子性（线性性）  </p>
 <h3 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h3><p>维基百科 <a href="https://en.wikipedia.org/wiki/Quorum" title="Quorum" target="_blank" rel="external">Quorum</a></p>
+<hr>
+<p><strong>版权声明：本文为博主原创文章，未经允许不得转载。</strong></p>
 
       
 
@@ -300,6 +302,11 @@ ga('send', 'pageview');
       </div>
     </a>
   
+  
+    <a href="/2014/03/12/lockAndSync/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">JAVA 内部锁与同步[Intrinsic Locks and Synchronization]</div>
+      <i class="icon-circle-right"></i>
+    </a>
   
 </nav>
 
@@ -413,7 +420,15 @@ return o(t,i(n),arguments.length<3?void 0:u(arguments[2]))}})},function(t,n,r){v
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">设计模式</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">java</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">collection</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -421,19 +436,11 @@ return o(t,i(n),arguments.length<3?void 0:u(arguments[2]))}})},function(t,n,r){v
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">heap memory</a>
+                <a href="javascript:void(0)" class="js-tag color1">final</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Socket</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">IO</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">kernel</a>
+                <a href="javascript:void(0)" class="js-tag color3">译文</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -445,6 +452,14 @@ return o(t,i(n),arguments.length<3?void 0:u(arguments[2]))}})},function(t,n,r){v
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Socket</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">IO</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">网络</a>
               </li>
              
@@ -453,7 +468,15 @@ return o(t,i(n),arguments.length<3?void 0:u(arguments[2]))}})},function(t,n,r){v
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">heap memory</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">TCP重传</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">kernel</a>
               </li>
              
               <li class="article-tag-list-item">

@@ -15,7 +15,7 @@
 <meta property="og:url" content="http://www.dylan326.com/2016/05/05/socket_io/index.html">
 <meta property="og:site_name" content="Dylan&#39;s ...">
 <meta property="og:description" content="IO分类按照《Unix网络编程》划分，IO模型可以分为：阻塞IO、非阻塞IO、IO复用、信号驱动IO和异步IO， 按照POSIX标准来划分只分为两类：同步IO和异步IO。区分是一个麻烦事情，有相关的背景条件。BIO（OIO）：同步阻塞IONIO：同步非阻塞IO，基于事件驱动模型的设计AIO：异步非阻塞IO，也是基于事件驱动的设计，和NIO不一样的是在读写交互方式，采用异步或者回调的方式返回相关结果">
-<meta property="og:updated_time" content="2017-05-11T02:07:27.000Z">
+<meta property="og:updated_time" content="2017-06-01T16:21:14.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="IO类型介绍">
 <meta name="twitter:description" content="IO分类按照《Unix网络编程》划分，IO模型可以分为：阻塞IO、非阻塞IO、IO复用、信号驱动IO和异步IO， 按照POSIX标准来划分只分为两类：同步IO和异步IO。区分是一个麻烦事情，有相关的背景条件。BIO（OIO）：同步阻塞IONIO：同步非阻塞IO，基于事件驱动模型的设计AIO：异步非阻塞IO，也是基于事件驱动的设计，和NIO不一样的是在读写交互方式，采用异步或者回调的方式返回相关结果">
@@ -98,7 +98,7 @@ ga('send', 'pageview');
 		        
 					<a class="weibo" target="_blank" href="http://weibo.com/youngchou326" title="weibo"><i class="icon-weibo"></i></a>
 		        
-					<a class="mail" target="_blank" href="mailto:zhoudunyang@gmail.com" title="mail"><i class="icon-mail"></i></a>
+					<a class="weixin" target="_blank" href="http://www.dylan326.com/2013/02/13/about/" title="weixin"><i class="icon-weixin"></i></a>
 		        
 			</div>
 		</nav>
@@ -139,7 +139,7 @@ ga('send', 'pageview');
 			        
 						<a class="weibo" target="_blank" href="http://weibo.com/youngchou326" title="weibo"><i class="icon-weibo"></i></a>
 			        
-						<a class="mail" target="_blank" href="mailto:zhoudunyang@gmail.com" title="mail"><i class="icon-mail"></i></a>
+						<a class="weixin" target="_blank" href="http://www.dylan326.com/2013/02/13/about/" title="weixin"><i class="icon-weixin"></i></a>
 			        
 				</div>
 			</nav>
@@ -188,6 +188,8 @@ ga('send', 'pageview');
         <h1 id="IO分类"><a href="#IO分类" class="headerlink" title="IO分类"></a>IO分类</h1><p>按照《Unix网络编程》划分，IO模型可以分为：阻塞IO、非阻塞IO、IO复用、信号驱动IO和异步IO，</p>
 <p>按照POSIX标准来划分只分为两类：同步IO和异步IO。区分是一个麻烦事情，有相关的背景条件。<br>BIO（OIO）：同步阻塞IO<br>NIO：同步非阻塞IO，基于事件驱动模型的设计<br>AIO：异步非阻塞IO，也是基于事件驱动的设计，和NIO不一样的是在读写交互方式，采用异步或者回调的方式返回相关结果  </p>
 <h1 id="名词解释"><a href="#名词解释" class="headerlink" title="名词解释"></a>名词解释</h1><p>同步VS异步：同步和异步概念的角度是对于叙说对象来定义的，描述的是用户态和系统态的关系， socket的读写操作，是直接同步返回结果还是异步返回结果。<br>阻塞VS非阻塞：这个较好理解，阻塞住等待事情处理完毕还是处理其他事情。</p>
+<hr>
+<p><strong>版权声明：本文为博主原创文章，未经允许不得转载。</strong></p>
 
       
 
@@ -413,7 +415,15 @@ return o(t,i(n),arguments.length<3?void 0:u(arguments[2]))}})},function(t,n,r){v
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">设计模式</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">java</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">collection</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -421,19 +431,11 @@ return o(t,i(n),arguments.length<3?void 0:u(arguments[2]))}})},function(t,n,r){v
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">heap memory</a>
+                <a href="javascript:void(0)" class="js-tag color1">final</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Socket</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">IO</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">kernel</a>
+                <a href="javascript:void(0)" class="js-tag color3">译文</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -445,6 +447,14 @@ return o(t,i(n),arguments.length<3?void 0:u(arguments[2]))}})},function(t,n,r){v
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Socket</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">IO</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">网络</a>
               </li>
              
@@ -453,7 +463,15 @@ return o(t,i(n),arguments.length<3?void 0:u(arguments[2]))}})},function(t,n,r){v
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">heap memory</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">TCP重传</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">kernel</a>
               </li>
              
               <li class="article-tag-list-item">

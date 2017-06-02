@@ -14,7 +14,7 @@
 <meta property="og:url" content="http://www.dylan326.com/2016/04/12/raft/index.html">
 <meta property="og:site_name" content="Dylan&#39;s ...">
 <meta property="og:description" content="Raft 协议算法简介简介Raft协议算法产生的结果和Paxos的效果相同，Raft算法设计较Paxos设计易懂，并且有着更好的生产环境的实现方式。 背景事务操作的四要素ACID：原子性、一致性、隔离性、持久性、 对于一个分布式环境的服务来说，较难满足一个事务的要求。比如对于一致性来说就是一个较难处理的问题，Raft正是为了解决分布式环境中一致性而产生的一种一致性协议算法。 Raft概念  1、F">
-<meta property="og:updated_time" content="2017-05-11T02:07:27.000Z">
+<meta property="og:updated_time" content="2017-06-01T16:18:11.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Raft协议算法简介">
 <meta name="twitter:description" content="Raft 协议算法简介简介Raft协议算法产生的结果和Paxos的效果相同，Raft算法设计较Paxos设计易懂，并且有着更好的生产环境的实现方式。 背景事务操作的四要素ACID：原子性、一致性、隔离性、持久性、 对于一个分布式环境的服务来说，较难满足一个事务的要求。比如对于一致性来说就是一个较难处理的问题，Raft正是为了解决分布式环境中一致性而产生的一种一致性协议算法。 Raft概念  1、F">
@@ -97,7 +97,7 @@ ga('send', 'pageview');
 		        
 					<a class="weibo" target="_blank" href="http://weibo.com/youngchou326" title="weibo"><i class="icon-weibo"></i></a>
 		        
-					<a class="mail" target="_blank" href="mailto:zhoudunyang@gmail.com" title="mail"><i class="icon-mail"></i></a>
+					<a class="weixin" target="_blank" href="http://www.dylan326.com/2013/02/13/about/" title="weixin"><i class="icon-weixin"></i></a>
 		        
 			</div>
 		</nav>
@@ -138,7 +138,7 @@ ga('send', 'pageview');
 			        
 						<a class="weibo" target="_blank" href="http://weibo.com/youngchou326" title="weibo"><i class="icon-weibo"></i></a>
 			        
-						<a class="mail" target="_blank" href="mailto:zhoudunyang@gmail.com" title="mail"><i class="icon-mail"></i></a>
+						<a class="weixin" target="_blank" href="http://www.dylan326.com/2013/02/13/about/" title="weixin"><i class="icon-weixin"></i></a>
 			        
 				</div>
 			</nav>
@@ -193,6 +193,8 @@ ga('send', 'pageview');
 <h2 id="Log-Replication"><a href="#Log-Replication" class="headerlink" title="Log Replication"></a>Log Replication</h2><h3 id="协议针对log-副本。数据同步流程"><a href="#协议针对log-副本。数据同步流程" class="headerlink" title="协议针对log 副本。数据同步流程"></a>协议针对log 副本。数据同步流程</h3><p>  1、client发送数据请求<br>  2、leader接收数据请求，其他角色接收到请求转给leader<br>  3、L.发出append请求（记录数据）<br>  4、L.收到大多数数据回复，返回client请求状态<br>  5、L.下个心跳把commit给到follower<br>  6、如果传输失败，leader可以不断重试  </p>
 <h3 id="流程约定"><a href="#流程约定" class="headerlink" title="流程约定"></a>流程约定</h3><p>  1、log entry数据特性：log index、term num、commond<br>  2、log 持久化存储<br>  3、entry被大多数存储成功则为commited<br>  4、index和term相同那么之前的数据（entry）都是相同的<br>  5、某个commit之前的数据都是commited的<br>  6、append操作带上上一个的entry信息（index和term）并做检查<br>  7、检查不匹配，leader重试前一条。采用迭代重试方式直到完成   </p>
 <h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><p>Raft协议特性简介<br>参考资料：<br>动画演示 <a href="http://thesecretlivesofdata.com/raft/" target="_blank" rel="external">http://thesecretlivesofdata.com/raft/</a><br>Raft官网 <a href="https://raft.github.io/" target="_blank" rel="external">https://raft.github.io/</a>  </p>
+<hr>
+<p><strong>版权声明：本文为博主原创文章，未经允许不得转载。</strong></p>
 
       
 
@@ -403,7 +405,15 @@ return o(t,i(n),arguments.length<3?void 0:u(arguments[2]))}})},function(t,n,r){v
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">设计模式</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">java</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">collection</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -411,19 +421,11 @@ return o(t,i(n),arguments.length<3?void 0:u(arguments[2]))}})},function(t,n,r){v
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">heap memory</a>
+                <a href="javascript:void(0)" class="js-tag color1">final</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Socket</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">IO</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">kernel</a>
+                <a href="javascript:void(0)" class="js-tag color3">译文</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -435,6 +437,14 @@ return o(t,i(n),arguments.length<3?void 0:u(arguments[2]))}})},function(t,n,r){v
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Socket</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">IO</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">网络</a>
               </li>
              
@@ -443,7 +453,15 @@ return o(t,i(n),arguments.length<3?void 0:u(arguments[2]))}})},function(t,n,r){v
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">heap memory</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">TCP重传</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">kernel</a>
               </li>
              
               <li class="article-tag-list-item">
