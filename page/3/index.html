@@ -70,7 +70,9 @@ ga('send', 'pageview');
 			
 				<li><a href="/">主页</a></li>
 	        
-				<li><a href="/tags/日记/">随笔</a></li>
+				<li><a href="/tags/日记/">日记</a></li>
+	        
+				<li><a href="/tags/脑子秀逗/">秀逗</a></li>
 	        
 			</ul>
 		</nav>
@@ -97,6 +99,8 @@ ga('send', 'pageview');
 					<a class="weibo" target="_blank" href="http://weibo.com/youngchou326" title="weibo"><i class="icon-weibo"></i></a>
 		        
 					<a class="weixin" target="_blank" href="http://www.dylan326.com/2013/02/13/about/" title="weixin"><i class="icon-weixin"></i></a>
+		        
+					<a class="linkedin" target="_blank" href="https://www.linkedin.com/in/%E6%95%A6%E9%A3%8F-%E5%91%A8-49a752b7/" title="linkedin"><i class="icon-linkedin"></i></a>
 		        
 			</div>
 		</nav>
@@ -128,6 +132,8 @@ ga('send', 'pageview');
 			
 				
 			
+				
+			
 			
 			
 			<nav class="header-nav">
@@ -139,16 +145,20 @@ ga('send', 'pageview');
 			        
 						<a class="weixin" target="_blank" href="http://www.dylan326.com/2013/02/13/about/" title="weixin"><i class="icon-weixin"></i></a>
 			        
+						<a class="linkedin" target="_blank" href="https://www.linkedin.com/in/%E6%95%A6%E9%A3%8F-%E5%91%A8-49a752b7/" title="linkedin"><i class="icon-linkedin"></i></a>
+			        
 				</div>
 			</nav>
 
 			<nav class="header-menu js-header-menu">
-				<ul style="width: 50%">
+				<ul style="width: 70%">
 				
 				
-					<li style="width: 50%"><a href="/">主页</a></li>
+					<li style="width: 33.333333333333336%"><a href="/">主页</a></li>
 		        
-					<li style="width: 50%"><a href="/tags/日记/">随笔</a></li>
+					<li style="width: 33.333333333333336%"><a href="/tags/日记/">日记</a></li>
+		        
+					<li style="width: 33.333333333333336%"><a href="/tags/脑子秀逗/">秀逗</a></li>
 		        
 				</ul>
 			</nav>
@@ -164,6 +174,295 @@ ga('send', 'pageview');
           </div>
           <div id="js-content" class="content-ll">
             
+  
+    <article id="post-string_null" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+<div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2013/09/11/string_null/">String.valueOf()能否传入null</a>
+    </h1>
+  
+
+        
+        <a href="/2013/09/11/string_null/" class="archive-article-date">
+  	<time datetime="2013-09-11T03:23:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2013-09-11</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>最近发现一个有意思的问题，可以看看这两个的输出结果</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">String.valueOf(map.get(&quot;key&quot;)) //①</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">String.valueOf(null)          //②</div></pre></td></tr></table></figure>
+<p>会发现map中①返回正常 ”null“字符串，而②抛出NLP异常</p>
+<p>跳转到String类的valueOf发现使用的是这个重载的方法：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> String <span class="title">valueOf</span><span class="params">(<span class="keyword">char</span> data[])</span> </span>&#123;</div><div class="line">    <span class="keyword">return</span> <span class="keyword">new</span> String(data);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>再看看char[] string的构造方法：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> <span class="title">String</span><span class="params">(<span class="keyword">char</span> value[])</span> </span>&#123;</div><div class="line">    <span class="keyword">this</span>.value = Arrays.copyOf(value, value.length);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>null无length属性，到这里就会异常。</p>
+<p>传入（Object）null时候（或者无key得时候map对象返回空对象），实现的是如下重载的方法：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> String <span class="title">valueOf</span><span class="params">(Object obj)</span> </span>&#123;</div><div class="line">    <span class="keyword">return</span> (obj == <span class="keyword">null</span>) ? <span class="string">"null"</span> : obj.toString();</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>即正常返回 null字符串。</p>
+<p>实际上null是关键字，不属于Object对象，至于选择器为什么会优先选择重载函数就得分析null和Object obj=null 中 null和obj的区别了。</p>
+<hr>
+<p><strong>版权声明：本文为博主原创文章，未经允许不得转载。</strong></p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">java</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/语言/" class="article-tag-list-link color3">语言</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/JDK/" class="article-tag-list-link color4">JDK</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2013/09/11/string_null/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+  
+    <article id="post-sington" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+<div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2013/09/07/sington/">单例模式简析</a>
+    </h1>
+  
+
+        
+        <a href="/2013/09/07/sington/" class="archive-article-date">
+  	<time datetime="2013-09-07T08:27:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2013-09-07</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="含义"><a href="#含义" class="headerlink" title="含义"></a>含义</h3><p>什么叫单例模式或单件模式，由名字可知存在一个对象，我们可以重复使用这个对象。那么如何实现整个系统中存在一个对象，如何保证一个对象只被实例化一次。实际上约定一个全局变量可以，通过静态方法或者静态类的变量和一定限定修饰可以实现。实际中我们会遇到很多需要的场景，如果一个对象的初始化比较耗资源时间较长，并且可重复利用，那么就需要单例模式去实现。如：线程池、缓存、日志对象等，只需要一个对象就行了。</p>
+<p>创建对象 new一个实例，那么如何去保证这个对象实例只会存在一个。java对象缺省有无参构造器（构造方法），私有化这个构造方法，来看看几种实现方法。</p>
+<h3 id="常见三种单例的实现方法"><a href="#常见三种单例的实现方法" class="headerlink" title="常见三种单例的实现方法"></a>常见三种单例的实现方法</h3><p>首先想到的私有化构造方法，提供一个静态方法返回同一个对象：</p>
+<p></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SingleTon</span> </span>&#123;</div><div class="line">    </div><div class="line">    <span class="keyword">private</span> <span class="keyword">static</span> SingleTon singleTon=<span class="keyword">null</span>;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">private</span> <span class="title">SingleTon</span><span class="params">()</span></span>&#123;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> SingleTon <span class="title">getInstance</span><span class="params">()</span></span>&#123;</div><div class="line">        <span class="keyword">if</span>(singleTon == <span class="keyword">null</span>)&#123;</div><div class="line">            singleTon = <span class="keyword">new</span> SingleTon();    </div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> singleTon;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>分析：私有化其无参构造器后无法在这个类外去实例化这个对象，内部可以实例化这个对象，那么需要提供一个方法返回这个对象，使用静态方法，确保在类被加载的时候初始化到内存中，一个判断条件去保证这个对象是同一个对象。</p>
+<p>上面这段代码是延迟加载的，在调用getInstance方法的时候对象才被实例化，如果类被加载的时候初始化那么只需要将静态变量赋值：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SingleTon</span> </span>&#123;</div><div class="line"></div><div class="line">    <span class="keyword">private</span> <span class="keyword">static</span> SingleTon singleTon=<span class="keyword">new</span> SingleTon();</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">private</span> <span class="title">SingleTon</span><span class="params">()</span></span>&#123;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> SingleTon <span class="title">getInstance</span><span class="params">()</span></span>&#123;</div><div class="line">        <span class="keyword">return</span> singleTon;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>如果在多线程情况下getInstance方法存在，并不能保证为同一个对象，简单的方法就是修改为同步方法，即：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">public static synchronized SingleTon getInstance()&#123;&#125;</div></pre></td></tr></table></figure>
+<p>简单方便，多线程问题解决，如果没有频繁使用的场景并且接受这种调用带来的资源消耗，那么同步的静态方法应该是一个比较好的方法，但是有一个问题，频繁的调用getInstance方法的时候，就不适合了。</p>
+<p>看看下面这种方法，双重检查加锁，保证只有一次同步方法，在创建的时候：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SingleTon</span> </span>&#123;</div><div class="line"></div><div class="line">    <span class="keyword">private</span> <span class="keyword">volatile</span> <span class="keyword">static</span> SingleTon singleTon;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">private</span> <span class="title">SingleTon</span><span class="params">()</span></span>&#123;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> SingleTon <span class="title">getInstance</span><span class="params">()</span></span>&#123;</div><div class="line">        <span class="keyword">if</span>(singleTon==<span class="keyword">null</span>)&#123;</div><div class="line">            <span class="keyword">synchronized</span> (SingleTon.class)&#123;</div><div class="line">                <span class="keyword">if</span>(singleTon==<span class="keyword">null</span>)&#123;</div><div class="line">                       singleTon = <span class="keyword">new</span> SingleTon();</div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> singleTon;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>分析：</p>
+<p>volatile 关键字修饰singleTon，表示各个线程自己的变量副本集不缓存，确保多线程初始化的时候，多线程正确处理这个变量。如果singleTon对象为空的时候，进入第一个if中的同步块，多线程受同步方法约束，再做一次null对象判断，为空才创建对象。之后的方法调用，进入不了同步块判断，那么就满足了只有一个同步判断的，减少了使用sychronized修饰方法每次调用的资源消耗，提高了执行效率，如果系统代码的性能要求较高，这种方式更为合适。</p>
+<hr>
+<p><strong>版权声明：本文为博主原创文章，未经允许不得转载。</strong></p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">设计模式</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/JDK/" class="article-tag-list-link color4">JDK</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2013/09/07/sington/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+  
+    <article id="post-final-java" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+<div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2013/08/21/final-java/">final修饰符</a>
+    </h1>
+  
+
+        
+        <a href="/2013/08/21/final-java/" class="archive-article-date">
+  	<time datetime="2013-08-21T15:39:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2013-08-21</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>本文主要记载下java中final修饰符的应用场景，final 这个关键字定义修饰的实体不再改变，如何去理解这两个概念：“被修饰的实体”和”不再改变“。</p>
+<p>final可以修饰实体：</p>
+<blockquote>
+<p>类（class）：表示此类不允许被继承；例如 java.lang.String 对象</p>
+<p>方法（method）：表示不能被重载</p>
+<p>变量（variables）：包括基本变量和引用的对象变量（注：final修饰的引用对象只要不被赋值，其属性的修改等是被允许的）。</p>
+</blockquote>
+<p>不再改变：</p>
+<blockquote>
+<p>不再改变不是不变的意思。如果变量final修饰为引用对象，不能为其赋值，而其自身可以变化，因为这个引用没有改变。</p>
+</blockquote>
+<p>定义在上面看怎么去理解了，还是用实例去验证下final的用法：</p>
+<p>一、final class（修饰类）：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">public final class FinalClass &#123;...&#125;// final 类</div><div class="line"></div><div class="line">public class WrongClass extends FinalClass&#123;...&#125; //不被允许的继承</div></pre></td></tr></table></figure>
+<p>分析：不能编写一个final修饰类的子类，这个类所有的方法可以理解为隐含的final。</p>
+<p>二、final method（修饰方法）：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">class A&#123;</div><div class="line">	public void foo1()&#123;&#125;</div><div class="line">	public final void foo2()&#123;&#125;</div><div class="line">&#125;</div><div class="line">class B extends A&#123; // 继承</div><div class="line">	</div><div class="line">	public void foo1() &#123;&#125; // okay</div><div class="line">	</div><div class="line">	@Override</div><div class="line">	public void foo2() &#123; // 重载不合法</div><div class="line">	&#125;</div><div class="line">	</div><div class="line">	public void foo2(int a)&#123;&#125; //合法 重写foo2方法</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>分析：方法 父类A中foo2 被关键字final修饰后，子类B去重载这个方法就是不被允许的，而其他的多态形式如重写是被允许的。通常父类的某方法不被让子类去重载掉，保持此方法的一致性。</p>
+<p>如下（为了方便，直接使用两个内部类作为例子）：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line">public class FinalMethod &#123;</div><div class="line"></div><div class="line">	public static void main(String[] args) &#123;</div><div class="line">		FinalMethod aFinalMethod = new FinalMethod();</div><div class="line">		B b = aFinalMethod.new B();</div><div class="line">		b.foo2(); // 保持了foo2方法的一致性，A的子类使用的是相同的foo2，A不希望此方法被修改。</div><div class="line">	&#125;</div><div class="line">	</div><div class="line">	class A&#123;</div><div class="line">		public void foo1()&#123;&#125;</div><div class="line">		public final void foo2()&#123;&#125;</div><div class="line">	&#125;</div><div class="line">	</div><div class="line">	class B extends A&#123; // 继承</div><div class="line">		public void foo1() &#123;&#125; // okay</div><div class="line">		//public void foo2(int a)&#123;&#125; //合法 重写foo2方法</div><div class="line">	&#125;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>三、final variable（变量）：</p>
+<p>就像本文开头叙述的一样修饰基本型变量和修饰引用型变量，看下面两种变量：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">final int a = 10；</div><div class="line">a = 1;//error 不允许</div><div class="line">final List&lt;String&gt; list = new ArrayList&lt;String&gt;();</div><div class="line">list.add(&quot;str&quot;);//okay</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">list = new ArrayList&lt;String&gt;();// error 不被允许</div></pre></td></tr></table></figure>
+<p>分析： 基本型 a final 修饰赋值后不能被改变。 final修饰list 引用，只要不被赋值，此对象可以变化，而这个引用不允许被修改为另一个引用。</p>
+<p>修饰变量需要提到如下两种：</p>
+<p>3.1、blank final： is a final variable whose declaration lacks an initializer 一个声明缺少初始化的final变量。如下是合法的：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">for(final String str: strList)&#123;</div><div class="line">//do in loop;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>分析：可以这样去理解，变量作用域问题，每次循环是一个新的执行块，那么这样的final声明是合法的。</p>
+<p>3.2、匿名内部类使用外部变量final修饰</p>
+<p>为什么需要final修饰？</p>
+<p>当一个匿名内部类的定义是自身内的一种方法，所有的变量声明为final的范围，方法是从内部类访问。一旦它已经被分配，最后的变量的值不能改变的。这将允许Java编译器来“捕获”的变量值在运行时间和存储一份内部类中作为一个字段。一旦外部方法已经终止和它的堆栈帧已被删除，原来的变量收回了，但自己的内存在类的内部类的私有副本仍然存在。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">public static void main(String[] args) &#123;</div><div class="line">	// String aString  = &quot;haha~&quot;;// 无法被调用 不合法</div><div class="line">	final String aString  = &quot;haha~&quot;; // okay</div><div class="line">	Thread a = new Thread(new Runnable() &#123;</div><div class="line">		@Override</div><div class="line">		public void run() &#123;</div><div class="line">			System.out.println(aString);// 调用外部变量</div><div class="line">		&#125;</div><div class="line">	&#125;);</div><div class="line">	a.start();</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>分析：结合上述原理，aString在内部类实际为outer的副本，那么就必须保证aString不能被改变，内部类调用外部变量的原理为自身存储外部变量的副本，那么保证数据一致性，在设计方面就限定了被调用的外部变量需要final修饰。</p>
+<p>-———————————-</p>
+<p>code文件：<a href="https://github.com/yangl326-Dylan/analysis_and_designer/blob/master/src/blog/FinalInner.java" target="_blank" rel="external">FinalInner.java</a> <a href="https://github.com/yangl326-Dylan/analysis_and_designer/blob/master/src/blog/FinalVariables.java" target="_blank" rel="external">FinalVariables.java</a> <a href="https://github.com/yangl326-Dylan/analysis_and_designer/blob/master/src/blog/FinalMethod.java" target="_blank" rel="external">FinalMethod.java</a></p>
+<hr>
+<p><strong>版权声明：本文为博主原创文章，未经允许不得转载。</strong></p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">java</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">final</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/语言/" class="article-tag-list-link color3">语言</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/JDK/" class="article-tag-list-link color4">JDK</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2013/08/21/final-java/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
   
     <article id="post-classloader" class="article article-type-post  article-index" itemscope itemprop="blogPost">
 <div class="article-inner">
@@ -537,6 +836,14 @@ var _hmt = _hmt || [];
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">心情</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">日记</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">about</a>
               </li>
              
@@ -569,10 +876,6 @@ var _hmt = _hmt || [];
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">译文</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Socket</a>
               </li>
              
@@ -582,6 +885,18 @@ var _hmt = _hmt || [];
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">kernel</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">译文</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">脑子秀逗</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">递归</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -602,14 +917,6 @@ var _hmt = _hmt || [];
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">TCP重传</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">心情</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">日记</a>
               </li>
              
               <li class="article-tag-list-item">
