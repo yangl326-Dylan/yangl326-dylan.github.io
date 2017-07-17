@@ -175,6 +175,84 @@ ga('send', 'pageview');
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-xinqin20170110" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+<div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/01/10/xinqin20170110/">日常</a>
+    </h1>
+  
+
+        
+        <a href="/2017/01/10/xinqin20170110/" class="archive-article-date">
+  	<time datetime="2017-01-10T07:36:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-01-10</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="日常-早上出门"><a href="#日常-早上出门" class="headerlink" title="日常-早上出门"></a>日常-早上出门</h2><p>每天早上出门，lp总说我穿的漂漂亮亮做什么，说！什么意图</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">心情</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">日记</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">日常</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/其他/" class="article-tag-list-link color3">其他</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/01/10/xinqin20170110/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+  
     <article id="post-tcpip_1_kuaisuchongchuan" class="article article-type-post  article-index" itemscope itemprop="blogPost">
 <div class="article-inner">
     
@@ -962,75 +1040,6 @@ ga('send', 'pageview');
 
 
   
-    <article id="post-raft" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-<div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/04/12/raft/">Raft协议算法简介</a>
-    </h1>
-  
-
-        
-        <a href="/2016/04/12/raft/" class="archive-article-date">
-  	<time datetime="2016-04-12T09:36:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-04-12</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="Raft-协议算法简介"><a href="#Raft-协议算法简介" class="headerlink" title="Raft 协议算法简介"></a>Raft 协议算法简介</h1><h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>Raft协议算法产生的结果和Paxos的效果相同，Raft算法设计较Paxos设计易懂，并且有着更好的生产环境的实现方式。</p>
-<h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p>事务操作的四要素ACID：原子性、一致性、隔离性、持久性、 对于一个分布式环境的服务来说，较难满足一个事务的要求。比如对于一致性来说就是一个较难处理的问题，Raft正是为了解决分布式环境中一致性而产生的一种一致性协议算法。</p>
-<h2 id="Raft概念"><a href="#Raft概念" class="headerlink" title="Raft概念"></a>Raft概念</h2><p>  1、Follower(追随者)角色<br>  2、Candidate(候选者)角色<br>  3、Leader(追随者)角色<br>  4、Term(时间阶段)<br>  5、server(或者node 泛指服务节点,算法中指log节点)</p>
-<h2 id="基本背景"><a href="#基本背景" class="headerlink" title="基本背景"></a>基本背景</h2><p>  1、集群包含若干server（或者node），数目5是一个典型的分布式集群数目，对于这样一个系统来说，最多容忍的失败server个数为2（N&gt;=2F+1)，总的服务数N， 容忍失败的个数F。<br>  2、所有的node在同一个时期（term）只会有以上三种角色状态的其中一种。<br>  3、Term是一个不定的时间长度，每个term最多只会有一个leader，可能没有。成功选举后由这个leader领导cluster直到term结束。  </p>
-<h2 id="Leader选举"><a href="#Leader选举" class="headerlink" title="Leader选举"></a>Leader选举</h2><h4 id="选举流程"><a href="#选举流程" class="headerlink" title="选举流程"></a>选举流程</h4><p>  1、初始节点状态都是follower<br>  2、收不到leader 通知或者candidate请求（超时），开始触发选举流程<br>  3、F.增加自己的term num并转换为candidate状态（过程时间随机）<br>  4、F.投票自己并且发送给其他人“投我”的请求<br>  5、F.最终结果有三类：获得大多票数成为leader、其他f成为leader、无结果继续第二轮投票  </p>
-<h4 id="状态转换"><a href="#状态转换" class="headerlink" title="状态转换"></a>状态转换</h4><p>Follower-&gt;Candidate 开始选举<br>Candidate-&gt;Candidate 选举超时<br>Candidate-&gt;Leader 选举成功<br>Candidate-&gt;Follower 发现其他leader 或者新的term时期<br>Leader-&gt;Follower 发现其他leader 或者更好的term时期  </p>
-<h2 id="Log-Replication"><a href="#Log-Replication" class="headerlink" title="Log Replication"></a>Log Replication</h2><h3 id="协议针对log-副本。数据同步流程"><a href="#协议针对log-副本。数据同步流程" class="headerlink" title="协议针对log 副本。数据同步流程"></a>协议针对log 副本。数据同步流程</h3><p>  1、client发送数据请求<br>  2、leader接收数据请求，其他角色接收到请求转给leader<br>  3、L.发出append请求（记录数据）<br>  4、L.收到大多数数据回复，返回client请求状态<br>  5、L.下个心跳把commit给到follower<br>  6、如果传输失败，leader可以不断重试  </p>
-<h3 id="流程约定"><a href="#流程约定" class="headerlink" title="流程约定"></a>流程约定</h3><p>  1、log entry数据特性：log index、term num、commond<br>  2、log 持久化存储<br>  3、entry被大多数存储成功则为commited<br>  4、index和term相同那么之前的数据（entry）都是相同的<br>  5、某个commit之前的数据都是commited的<br>  6、append操作带上上一个的entry信息（index和term）并做检查<br>  7、检查不匹配，leader重试前一条。采用迭代重试方式直到完成   </p>
-<h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><p>Raft协议特性简介<br>参考资料：<br>动画演示 <a href="http://thesecretlivesofdata.com/raft/" target="_blank" rel="external">http://thesecretlivesofdata.com/raft/</a><br>Raft官网 <a href="https://raft.github.io/" target="_blank" rel="external">https://raft.github.io/</a>  </p>
-<hr>
-<p><strong>版权声明：本文为博主原创文章，未经允许不得转载。</strong></p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/分布式系统/" class="article-tag-list-link color1">分布式系统</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2016/04/12/raft/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-  
   
     <nav id="page-nav">
       <a class="extend prev" rel="prev" href="/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/3/">Next &raquo;</a>
@@ -1149,6 +1158,14 @@ var _hmt = _hmt || [];
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">脑子秀逗</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Algorithms</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">设计模式</a>
               </li>
              
@@ -1165,19 +1182,19 @@ var _hmt = _hmt || [];
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">collection</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">JVM</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">final</a>
+                <a href="javascript:void(0)" class="js-tag color1">collection</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">heap memory</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">final</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1194,10 +1211,6 @@ var _hmt = _hmt || [];
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">译文</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">脑子秀逗</a>
               </li>
              
               <li class="article-tag-list-item">
