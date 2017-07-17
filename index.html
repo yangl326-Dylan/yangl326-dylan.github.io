@@ -175,6 +175,80 @@ ga('send', 'pageview');
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-20170717" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+<div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/07/17/20170717/">小记窗台多肉</a>
+    </h1>
+  
+
+        
+        <a href="/2017/07/17/20170717/" class="archive-article-date">
+  	<time datetime="2017-07-17T11:49:51.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-07-17</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="窗台多肉"><a href="#窗台多肉" class="headerlink" title="窗台多肉"></a>窗台多肉</h2><p>就像照顾孩子一样<br><img src="/2017/07/17/20170717/20170716_164909.jpg" alt="多肉"></p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">心情</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">日记</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/其他/" class="article-tag-list-link color3">其他</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/07/17/20170717/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+  
     <article id="post-quanpailie_permutation" class="article article-type-post  article-index" itemscope itemprop="blogPost">
 <div class="article-inner">
     
@@ -295,7 +369,7 @@ ga('send', 'pageview');
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="旧事记录"><a href="#旧事记录" class="headerlink" title="旧事记录"></a>旧事记录</h2><p><img src="/2017/07/06/20170706/1_18_WP_000098.jpg" alt="weixin"></p>
+        <h2 id="旧事记录"><a href="#旧事记录" class="headerlink" title="旧事记录"></a>旧事记录</h2><p><img src="/2017/07/06/20170706/1_18_WP_000098.jpg" alt="小车"></p>
 
       
 
@@ -930,89 +1004,6 @@ ga('send', 'pageview');
 
 
   
-    <article id="post-tcpip_1_kuaisuchongchuan" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-<div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/01/05/tcpip_1_kuaisuchongchuan/">TCP Retransmit,TCP重传</a>
-    </h1>
-  
-
-        
-        <a href="/2017/01/05/tcpip_1_kuaisuchongchuan/" class="archive-article-date">
-  	<time datetime="2017-01-05T11:45:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-01-05</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="TCP重传"><a href="#TCP重传" class="headerlink" title="TCP重传"></a>TCP重传</h1><h3 id="为什么要重传"><a href="#为什么要重传" class="headerlink" title="为什么要重传"></a>为什么要重传</h3><p>TCP需要保证数据包的可靠性送达，必须有重传机制<br>tcp数据传输中syncnum和ack机制的单位是发送的字节数，那么如果1，2，3，4，5份数据发送过去，3出现丢失，收到4，5 那么数据该如何回复确认，ack机制只能确保确认最大的收到字节数，对于存在跳跃数据没法确认。</p>
-<h3 id="超时重传"><a href="#超时重传" class="headerlink" title="超时重传"></a>超时重传</h3><p>tcp有多重定时器，其中重传定时器，处理超时重传,数据3投递存在丢失，等待ack超时后可以重传3数据。  </p>
-<h3 id="快速重传"><a href="#快速重传" class="headerlink" title="快速重传"></a>快速重传</h3><p>鉴于超时重传取决于超时时间，快速重传的，快速相对于超时重传机制，实际可以理解为主动重传。例子同上，3接收丢失，收到4，5 仍旧回复2数据的ack， 那么发送方知道3丢失，重复传送3数据，此时接收方已收到4，5数据，收到3数据后回复5数据ack</p>
-<h3 id="思考问题"><a href="#思考问题" class="headerlink" title="思考问题"></a>思考问题</h3><p>超时重传，tcp如何确认超时时间<br>快速重传，如果去优化连续数据中的若干部分段传输丢失，有何利弊。</p>
-<hr>
-<p><strong>版权声明：本文为博主原创文章，未经允许不得转载。</strong></p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">网络</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">TCP/IP</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">TCP重传</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/网络/" class="article-tag-list-link color3">网络</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/01/05/tcpip_1_kuaisuchongchuan/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-  
   
     <nav id="page-nav">
       <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
@@ -1131,15 +1122,15 @@ var _hmt = _hmt || [];
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">设计模式</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">about</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">contact</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">设计模式</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1152,14 +1143,6 @@ var _hmt = _hmt || [];
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">collection</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">脑子秀逗</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">递归</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1184,6 +1167,14 @@ var _hmt = _hmt || [];
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">译文</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">脑子秀逗</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">递归</a>
               </li>
              
               <li class="article-tag-list-item">
