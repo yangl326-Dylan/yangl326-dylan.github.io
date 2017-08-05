@@ -358,70 +358,51 @@ ga('send', 'pageview');
         <h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p>最近总结下来想写一系列文章的专栏，先从算法导论入手， 巩固下基础知识体系，避免大脑秀逗。计划大概半年多时间抽炼出常见内容的系列大纲笔记，供记录和学习， 如有需要指正地方望邮件交流。</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">print</span> <span class="string">'life and world'</span></div></pre></td></tr></table></figure>
 <h2 id="简明摘要"><a href="#简明摘要" class="headerlink" title="简明摘要"></a>简明摘要</h2><p>一、基础部分</p>
-<ol>
-<li><p>NP完全理论<br>P：所有可以在多项式时间内求解的判定问题构成P类问题<br>NP：所有的非确定性多项式时间可解的判定问题构成NP类问题<br>NPC：NP中的某些问题的复杂性与整个类的复杂性相关联.这些问题中任何一个如果存在多项式时间的算法,那么所有NP问题都是多项式时间可解的.这些问题被称为NP-完全问题(NPC问题)</p>
-</li>
-<li><p>递归式<br>给出了递归式推导的三种方法<br>1、代换法：数学归纳，根据规律推测出递归式<br>2、递归树：分治时间复杂度的尤其适合递归树推算<br>3、主定理公式：定理4.1(主定理)    令a≥1和b&gt;1是常数，f(n)是一个函数，T(n)是定义在非负整数上的递归式 T(n) = aT(n/b) + f(n)</p>
-</li>
-<li><p>概率分析与随机算法<br>随机算法，不依赖输入，输出和输入无关</p>
-</li>
-</ol>
-<p>二、排序算法与顺序统计</p>
-<ol>
-<li>堆排序：<ul>
-<li>堆：完全二叉树<br>大根堆，ASC排序</li>
-</ul>
-</li>
-<li><p>快排序</p>
+<blockquote>
+<p>1.NP完全理论  </p>
 <ul>
-<li>piovit 枢纽元素x，p r对x比较 。回归x到正确位置。对左边的QS；对右边QS</li>
+<li>P：所有可以在多项式时间内求解的判定问题构成P类问题</li>
+<li>NP：所有的非确定性多项式时间可解的判定问题构成NP类问题</li>
+<li>NPC：NP中的某些问题的复杂性与整个类的复杂性相关联.这些问题中任何一个如果存在多项式时间的算法,那么所有NP问题都是多项式时间可解的.这些问题被称为NP-完全问题(NPC问题)<br>2.递归式<br>给出了递归式推导的三种方法  </li>
+<li>代换法：数学归纳，根据规律推测出递归式  </li>
+<li>递归树：分治时间复杂度的尤其适合递归树推算  </li>
+<li>主定理公式：定理4.1(主定理)    令a≥1和b&gt;1是常数，f(n)是一个函数，T(n)是定义在非负整数上的递归式 T(n) = aT(n/b) + f(n)<br>3.概率分析与随机算法  </li>
+<li>随机算法，不依赖输入，输出和输入无关  </li>
 </ul>
-</li>
-<li><p>线性时间排序：</p>
+</blockquote>
+<p>二、排序算法与顺序统计  </p>
+<blockquote>
+<p>1.堆排序</p>
 <ul>
+<li>堆：完全二叉树</li>
+<li>大根堆，ASC排序<br>2.快排序</li>
+<li>piovit 枢纽元素x，p r对x比较 。回归x到正确位置。对左边的QS；对右边QS<br>3.线性时间排序</li>
 <li>计数，确定数x在第几个位置</li>
 <li>基数，0~9依次排序。 稳定</li>
-<li>桶排序，均匀分布的放在排序号的桶，对桶中元素进行排序</li>
+<li>桶排序，均匀分布的放在排序号的桶，对桶中元素进行排序<br>4.中位数与顺序统计学  </li>
 </ul>
-</li>
-<li><p>中位数与顺序统计学</p>
-</li>
-</ol>
-<p>三、数据结构</p>
-<ol>
-<li>栈与队列：<ul>
+</blockquote>
+<p>三、数据结构  </p>
+<blockquote>
+<p>1.栈与队列</p>
+<ul>
 <li>特性</li>
-<li>可以相互转化</li>
-</ul>
-</li>
-<li>链表：<ul>
+<li>可以相互转化<br>2.链表</li>
 <li>单向链表；表头；表尾</li>
-<li>双向链表、带哨兵的环形双向链表（哑dummy对象）</li>
-</ul>
-</li>
-<li>散列表：<ul>
+<li>双向链表、带哨兵的环形双向链表（哑对象dummy）<br>3.散列表</li>
 <li>散列函数：除法、乘法、全域散列</li>
 <li>链表法、开放地址法（双重散列）</li>
-<li>简单一致散列假设</li>
-</ul>
-</li>
-<li>二叉查找树：<ul>
+<li>简单一致散列假设<br>4.二叉查找树</li>
 <li>节点x， x左子树最大不超过x；x右子树最小不小于x</li>
-<li>节点x：value，left、right、parent</li>
-</ul>
-</li>
-<li>红黑树：<ul>
-<li>节点x， x左子树最大不超过x；x右子树最小不小于x</li>
-<li>节点x：value，left、right、parent</li>
+<li>节点x：value，left、right、parent<br>5.红黑树</li>
 <li>二叉查找树、平衡特性</li>
 <li>根节点 黑色；节点或红或黑；叶子节点黑色（nil节点也称哨兵节点）</li>
 <li>红节点的两个儿子都是黑节点</li>
-<li>每个节点开始，到其子孙节点的所有路径上包含的黑节点个数相同</li>
+<li>每个节点开始，到其子孙节点的所有路径上包含的黑节点个数相同  </li>
 </ul>
-</li>
-</ol>
-<p>四、高级设计<br> 1.动态规划：<br> 2.贪心算法：<br> 3.平摊分析：</p>
-<p>五、高级数据结构<br> 1.B树：</p>
+</blockquote>
+<p>四、高级设计<br> 1.动态规划<br> 2.贪心算法<br> 3.平摊分析</p>
+<p>五、高级数据结构<br>1.B树：</p>
 <p>六、图算法<br> 1.图基本算法<br> 2.最短路径、最小生成</p>
 <p>七、算法研究<br> 1.数论相关算法<br> 2.字符串匹配</p>
 <hr>
@@ -1204,11 +1185,11 @@ var _hmt = _hmt || [];
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">递归式子</a>
+                <a href="javascript:void(0)" class="js-tag color1">Algorithms</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Algorithms</a>
+                <a href="javascript:void(0)" class="js-tag color5">递归式子</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1244,10 +1225,6 @@ var _hmt = _hmt || [];
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">译文</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Socket</a>
               </li>
              
@@ -1260,11 +1237,15 @@ var _hmt = _hmt || [];
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">全排列</a>
+                <a href="javascript:void(0)" class="js-tag color3">译文</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">递归</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">全排列</a>
               </li>
              
               <li class="article-tag-list-item">
