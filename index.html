@@ -175,6 +175,103 @@ ga('send', 'pageview');
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-A02_duipaixu" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+<div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/08/06/A02_duipaixu/">A02-堆排序</a>
+    </h1>
+  
+
+        
+        <a href="/2017/08/06/A02_duipaixu/" class="archive-article-date">
+  	<time datetime="2017-08-06T13:36:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-08-06</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="堆"><a href="#堆" class="headerlink" title="堆"></a>堆</h2><p>堆数据结构的特性</p>
+<blockquote>
+<p>数组表示（节点x；左子节点2x；右子节点2x+1）<br>完全二叉树、最后一层左子树开始填写<br>最大堆、最小堆定义：除了根节点最大或者最小，其他子节点不会大过（不会小于）父节点的值<br>利用最小堆、最大堆得性质,逐步移除根节点，那么结果则为已排序数据。<br>举例数据：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&#123;<span class="number">4</span>,<span class="number">1</span>,<span class="number">3</span>,<span class="number">2</span>,<span class="number">16</span>,<span class="number">9</span>,<span class="number">10</span>,<span class="number">14</span>,<span class="number">8</span>,<span class="number">7</span>&#125;</div></pre></td></tr></table></figure></p>
+</blockquote>
+<h3 id="构建堆（大根堆）"><a href="#构建堆（大根堆）" class="headerlink" title="构建堆（大根堆）"></a>构建堆（大根堆）</h3><p>堆排序分为如下几个步骤 a~f<br><img src="/2017/08/06/A02_duipaixu/buildheap.jpg" alt="构建堆"></p>
+<ul>
+<li>a) 数据数据堆表示</li>
+<li>b) 自底向上，数据7的父元素i（i–）维持最大堆特性</li>
+<li>c)~e) 按照对特性，循环保持</li>
+<li>f) 完成后的最大堆</li>
+</ul>
+<h3 id="堆排序"><a href="#堆排序" class="headerlink" title="堆排序"></a>堆排序</h3><ul>
+<li>构建最大堆（对应升序排列）</li>
+<li>从堆长度位置（数组尾部）开始遍历</li>
+<li>交换A[i]与A[1]; 堆长度减一，因为交换前A1为最大元素</li>
+<li>调整堆保持最大堆特性：adjust(A,1)。每次调整的代价为O(lg(n))</li>
+<li>i=2 退出循环，得到升序数组。 那么时间复杂度未n*O(lg(n))<br>上述流程的过程图如下<br><img src="/2017/08/06/A02_duipaixu/heapsort.jpg" alt="堆排序"></li>
+</ul>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><ul>
+<li>初始化堆，即构建</li>
+<li>维持堆特性，主要包含上浮、下沉操作</li>
+</ul>
+<hr>
+<p><strong>版权声明：本文为博主原创文章，未经允许不得转载。</strong></p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">脑子秀逗</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">排序</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/算法/" class="article-tag-list-link color3">算法</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/08/06/A02_duipaixu/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+  
     <article id="post-A01_diguishizi" class="article article-type-post  article-index" itemscope itemprop="blogPost">
 <div class="article-inner">
     
@@ -987,82 +1084,6 @@ ga('send', 'pageview');
 
 
   
-    <article id="post-xinqin20170303" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-<div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/03/03/xinqin20170303/">面试官感想</a>
-    </h1>
-  
-
-        
-        <a href="/2017/03/03/xinqin20170303/" class="archive-article-date">
-  	<time datetime="2017-03-03T11:31:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-03-03</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="最近面试"><a href="#最近面试" class="headerlink" title="最近面试"></a>最近面试</h3><p>今年年后最近面了好多人员，自己有一些准则：<br>基本原则<br>​    优先考察考察基本能力、潜在能力，思考和学习能力。对应届生尤其重要<br>掌握的知识面的宽广和相关知识面的深入程度。不过分的追求掌握的多少<br>简历内容及所述符合实际，不实者慎重或不考虑<br>相关内容由浅入深，专业性或者职位要求较强的，可有相关类型的考察<br>语言表达、对待事情的态度、责任心等相关软素质</p>
-<p>面试注意事项<br>​    提前review候选人简历，做好相关面试准备，先有介绍，主要经历中贡献了什么，解决了什么。若考察风格没有太多的不妥，可按个人的风格考察，如遇到相关迟疑，可提示相关信息，看候选者的理解和分析能力，围绕候选者掌握情况，考察如何分析和处理相关问题</p>
-<p>不是知识，是搜索和学习知识的能力<br>不是答案，是解决问题的思路和方法<br>通过后给到下一面试官，不通过送走。做好相关面试记录</p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">心情</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">日记</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/其他/" class="article-tag-list-link color3">其他</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/03/03/xinqin20170303/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-  
   
     <nav id="page-nav">
       <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
@@ -1185,11 +1206,15 @@ var _hmt = _hmt || [];
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">递归式子</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Algorithms</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">递归式子</a>
+                <a href="javascript:void(0)" class="js-tag color3">排序</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1221,10 +1246,6 @@ var _hmt = _hmt || [];
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">heap memory</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Socket</a>
               </li>
              
@@ -1234,6 +1255,10 @@ var _hmt = _hmt || [];
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">kernel</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">heap memory</a>
               </li>
              
               <li class="article-tag-list-item">

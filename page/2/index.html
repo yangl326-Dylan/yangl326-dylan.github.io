@@ -175,6 +175,82 @@ ga('send', 'pageview');
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-xinqin20170303" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+<div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/03/03/xinqin20170303/">面试官感想</a>
+    </h1>
+  
+
+        
+        <a href="/2017/03/03/xinqin20170303/" class="archive-article-date">
+  	<time datetime="2017-03-03T11:31:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-03-03</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="最近面试"><a href="#最近面试" class="headerlink" title="最近面试"></a>最近面试</h3><p>今年年后最近面了好多人员，自己有一些准则：<br>基本原则<br>​    优先考察考察基本能力、潜在能力，思考和学习能力。对应届生尤其重要<br>掌握的知识面的宽广和相关知识面的深入程度。不过分的追求掌握的多少<br>简历内容及所述符合实际，不实者慎重或不考虑<br>相关内容由浅入深，专业性或者职位要求较强的，可有相关类型的考察<br>语言表达、对待事情的态度、责任心等相关软素质</p>
+<p>面试注意事项<br>​    提前review候选人简历，做好相关面试准备，先有介绍，主要经历中贡献了什么，解决了什么。若考察风格没有太多的不妥，可按个人的风格考察，如遇到相关迟疑，可提示相关信息，看候选者的理解和分析能力，围绕候选者掌握情况，考察如何分析和处理相关问题</p>
+<p>不是知识，是搜索和学习知识的能力<br>不是答案，是解决问题的思路和方法<br>通过后给到下一面试官，不通过送走。做好相关面试记录</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">心情</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">日记</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/其他/" class="article-tag-list-link color3">其他</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/03/03/xinqin20170303/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+  
     <article id="post-xinqin20170207" class="article article-type-post  article-index" itemscope itemprop="blogPost">
 <div class="article-inner">
     
@@ -945,97 +1021,6 @@ ga('send', 'pageview');
 
 
   
-    <article id="post-kernel" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-<div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/06/08/kernel/">用户态和系统态区分</a>
-    </h1>
-  
-
-        
-        <a href="/2016/06/08/kernel/" class="archive-article-date">
-  	<time datetime="2016-06-08T08:01:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-06-08</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h1><p>​    在操作系统中，有着分区域保护特性，也作保护环、或者CPU环，简称Rings。用来处理发生故障时候数据错误处理，及恶意操作处理。内层Ring可以使用外层Ring的任意资源。而外层需要请求权限才能访问内层资源。<br>​    在此基础上就区分了系统态（核心态）和用户态。每一个用户进程运行自己的代码存在在用户运行态，当调用系统函数的时候，运行模式转变为进入系统态。</p>
-<h1 id="系统态"><a href="#系统态" class="headerlink" title="系统态"></a>系统态</h1><p>​    系统态在wiki百科上的解释:在处理器的存储保护中，核心态，或者特权态，又称之为内核态（与之相对应的是用户态），是操作系统内核所运行的模式。运行在该模式的代码，可以无限制地对系统存储、外部设备进行访问。  </p>
-<h1 id="用户态"><a href="#用户态" class="headerlink" title="用户态"></a>用户态</h1><p>​    操作系统执行用户代码空间的运行形态。</p>
-<h1 id="参考信息"><a href="#参考信息" class="headerlink" title="参考信息"></a>参考信息</h1><p>​    当一个进程执行系统调用而陷入内核代码中执行时，我们就称进程处于内核运行态（或简称为系统态）。</p>
-<p>​    此时处理器处于特权级最高的（0级）内核代码中执行。当进程处于内核态时，执行的内核代码会使用当前进程的内核栈。每个进程都有自己的内核栈。当进程在执行用户自己的代码时，则称其处于用户运行态（用户态）。即此时处理器在特权级最低的（3级）用户代码中运行。当正在执行用户程序而突然被中断程序中断时，此时用户程序也可以象征性地称为处于进程的内核态。因为中断处理程序将使用当前进程的内核栈。这与处于内核态的进程的状态有些类似。</p>
-<p>​    内核态与用户态是操作系统的两种运行级别,跟intel cpu没有必然的联系, cpu提供Ring0-Ring3四种级别的运行模式，Ring0级别最高，Ring3最低。Linux使用了Ring3级别运行用户态，Ring0作为内核态，没有使用Ring1和Ring2。Ring3状态不能访问Ring0的地址空间，包括代码和数据。</p>
-<p>​    Linux进程的4GB地址空间，3G-4G部分大家是共享的，是内核态的地址空间，这里存放在整个内核的代码和所有的内核模块，以及内核所维护的数据。用户运行一个程序，该程序所创建的进程开始是运行在用户态的，如果要执行文件操作，网络数据发送等操作，必须通过write，send等系统调用，这些系统调用会调用内核中的代码来完成操作，这时必须切换到Ring0，然后进入3GB-4GB中的内核地址空间去执行这些代码完成操作，完成后，切换回Ring3，回到用户态。这样，用户态的程序就不能随意操作内核地址空间，具有一定的安全保护作用。   </p>
-<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>操作系统运行的不同级别，导致有这两种运行形态的区分。cpu总处于以下状态中的一种：用户态即用户空间，系统态，两者间的切换。</p>
-<hr>
-<p><strong>版权声明：本文为博主原创文章，未经允许不得转载。</strong></p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Socket</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">IO</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">kernel</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/网络/" class="article-tag-list-link color3">网络</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/系统/" class="article-tag-list-link color3">系统</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2016/06/08/kernel/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-  
   
     <nav id="page-nav">
       <a class="extend prev" rel="prev" href="/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/3/">Next &raquo;</a>
@@ -1158,11 +1143,15 @@ var _hmt = _hmt || [];
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">递归式子</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Algorithms</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">递归式子</a>
+                <a href="javascript:void(0)" class="js-tag color3">排序</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1194,10 +1183,6 @@ var _hmt = _hmt || [];
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">heap memory</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Socket</a>
               </li>
              
@@ -1207,6 +1192,10 @@ var _hmt = _hmt || [];
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">kernel</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">heap memory</a>
               </li>
              
               <li class="article-tag-list-item">
