@@ -8,16 +8,16 @@
   <link rel="dns-prefetch" href="http://www.dylan326.com">
   <title>Raft协议算法简介 | Dylan&#39;s ...</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Raft 协议算法简介简介Raft协议算法产生的结果和Paxos的效果相同，Raft算法设计较Paxos设计易懂，并且有着更好的生产环境的实现方式。 背景事务操作的四要素ACID：原子性、一致性、隔离性、持久性、 对于一个分布式环境的服务来说，较难满足一个事务的要求。比如对于一致性来说就是一个较难处理的问题，Raft正是为了解决分布式环境中一致性而产生的一种一致性协议算法。 Raft概念  1、F">
+  <meta name="description" content="Raft 协议算法简介简介Raft协议算法产生的结果和Paxos的效果相同，Raft算法设计较Paxos设计易懂，并且有着更好的生产环境的实现方式。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Raft协议算法简介">
 <meta property="og:url" content="http://www.dylan326.com/2016/04/12/raft/index.html">
 <meta property="og:site_name" content="Dylan&#39;s ...">
-<meta property="og:description" content="Raft 协议算法简介简介Raft协议算法产生的结果和Paxos的效果相同，Raft算法设计较Paxos设计易懂，并且有着更好的生产环境的实现方式。 背景事务操作的四要素ACID：原子性、一致性、隔离性、持久性、 对于一个分布式环境的服务来说，较难满足一个事务的要求。比如对于一致性来说就是一个较难处理的问题，Raft正是为了解决分布式环境中一致性而产生的一种一致性协议算法。 Raft概念  1、F">
-<meta property="og:updated_time" content="2017-06-01T16:18:11.000Z">
+<meta property="og:description" content="Raft 协议算法简介简介Raft协议算法产生的结果和Paxos的效果相同，Raft算法设计较Paxos设计易懂，并且有着更好的生产环境的实现方式。">
+<meta property="og:updated_time" content="2017-08-06T14:59:32.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Raft协议算法简介">
-<meta name="twitter:description" content="Raft 协议算法简介简介Raft协议算法产生的结果和Paxos的效果相同，Raft算法设计较Paxos设计易懂，并且有着更好的生产环境的实现方式。 背景事务操作的四要素ACID：原子性、一致性、隔离性、持久性、 对于一个分布式环境的服务来说，较难满足一个事务的要求。比如对于一致性来说就是一个较难处理的问题，Raft正是为了解决分布式环境中一致性而产生的一种一致性协议算法。 Raft概念  1、F">
+<meta name="twitter:description" content="Raft 协议算法简介简介Raft协议算法产生的结果和Paxos的效果相同，Raft算法设计较Paxos设计易懂，并且有着更好的生产环境的实现方式。">
   
   
     <link rel="icon" href="/favicon.ico">
@@ -195,6 +195,7 @@ ga('send', 'pageview');
     <div class="article-entry" itemprop="articleBody">
       
         <h1 id="Raft-协议算法简介"><a href="#Raft-协议算法简介" class="headerlink" title="Raft 协议算法简介"></a>Raft 协议算法简介</h1><h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>Raft协议算法产生的结果和Paxos的效果相同，Raft算法设计较Paxos设计易懂，并且有着更好的生产环境的实现方式。</p>
+<a id="more"></a>
 <h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p>事务操作的四要素ACID：原子性、一致性、隔离性、持久性、 对于一个分布式环境的服务来说，较难满足一个事务的要求。比如对于一致性来说就是一个较难处理的问题，Raft正是为了解决分布式环境中一致性而产生的一种一致性协议算法。</p>
 <h2 id="Raft概念"><a href="#Raft概念" class="headerlink" title="Raft概念"></a>Raft概念</h2><p>  1、Follower(追随者)角色<br>  2、Candidate(候选者)角色<br>  3、Leader(追随者)角色<br>  4、Term(时间阶段)<br>  5、server(或者node 泛指服务节点,算法中指log节点)</p>
 <h2 id="基本背景"><a href="#基本背景" class="headerlink" title="基本背景"></a>基本背景</h2><p>  1、集群包含若干server（或者node），数目5是一个典型的分布式集群数目，对于这样一个系统来说，最多容忍的失败server个数为2（N&gt;=2F+1)，总的服务数N， 容忍失败的个数F。<br>  2、所有的node在同一个时期（term）只会有以上三种角色状态的其中一种。<br>  3、Term是一个不定的时间长度，每个term最多只会有一个leader，可能没有。成功选举后由这个leader领导cluster直到term结束。  </p>
@@ -437,7 +438,15 @@ var _hmt = _hmt || [];
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">递归式子</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">排序</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">设计模式</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -446,14 +455,6 @@ var _hmt = _hmt || [];
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">contact</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">递归式子</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">设计模式</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -469,11 +470,11 @@ var _hmt = _hmt || [];
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">heap memory</a>
+                <a href="javascript:void(0)" class="js-tag color1">final</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">final</a>
+                <a href="javascript:void(0)" class="js-tag color2">heap memory</a>
               </li>
              
               <li class="article-tag-list-item">

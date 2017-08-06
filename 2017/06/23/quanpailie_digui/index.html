@@ -8,17 +8,17 @@
   <link rel="dns-prefetch" href="http://www.dylan326.com">
   <title>全排列问题-递归 | Dylan&#39;s ...</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="分析全排列是一个常见的算法逻辑题，对于例子{1,2,3}来说它的全排列：A33=6个，枚举结果如下：  1,2,3 1,3,2 2,1,3 2,3,1 3,1,2 3,2,1  每个元素作为首位，剩下元素的全排列：   这句话如何理解挺关键，是整个递归思路的总结，我们按照两个步骤来分析 步骤1“剩下元素的全排列” 实际上就是一个递归的语句，它的结束条件是剩下元素只有一个元素了，那么前面的元素全部固">
+  <meta name="description" content="分析全排列是一个常见的算法逻辑题，对于例子{1,2,3}来说它的全排列：A33=6个，枚举结果如下：  1,2,3 1,3,2 2,1,3 2,3,1 3,1,2 3,2,1  每个元素作为首位，剩下元素的全排列：   这句话如何理解挺关键，是整个递归思路的总结，我们按照两个步骤来分析">
 <meta name="keywords" content="脑子秀逗,递归">
 <meta property="og:type" content="article">
 <meta property="og:title" content="全排列问题-递归">
 <meta property="og:url" content="http://www.dylan326.com/2017/06/23/quanpailie_digui/index.html">
 <meta property="og:site_name" content="Dylan&#39;s ...">
-<meta property="og:description" content="分析全排列是一个常见的算法逻辑题，对于例子{1,2,3}来说它的全排列：A33=6个，枚举结果如下：  1,2,3 1,3,2 2,1,3 2,3,1 3,1,2 3,2,1  每个元素作为首位，剩下元素的全排列：   这句话如何理解挺关键，是整个递归思路的总结，我们按照两个步骤来分析 步骤1“剩下元素的全排列” 实际上就是一个递归的语句，它的结束条件是剩下元素只有一个元素了，那么前面的元素全部固">
-<meta property="og:updated_time" content="2017-07-06T12:42:15.000Z">
+<meta property="og:description" content="分析全排列是一个常见的算法逻辑题，对于例子{1,2,3}来说它的全排列：A33=6个，枚举结果如下：  1,2,3 1,3,2 2,1,3 2,3,1 3,1,2 3,2,1  每个元素作为首位，剩下元素的全排列：   这句话如何理解挺关键，是整个递归思路的总结，我们按照两个步骤来分析">
+<meta property="og:updated_time" content="2017-08-06T14:59:26.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="全排列问题-递归">
-<meta name="twitter:description" content="分析全排列是一个常见的算法逻辑题，对于例子{1,2,3}来说它的全排列：A33=6个，枚举结果如下：  1,2,3 1,3,2 2,1,3 2,3,1 3,1,2 3,2,1  每个元素作为首位，剩下元素的全排列：   这句话如何理解挺关键，是整个递归思路的总结，我们按照两个步骤来分析 步骤1“剩下元素的全排列” 实际上就是一个递归的语句，它的结束条件是剩下元素只有一个元素了，那么前面的元素全部固">
+<meta name="twitter:description" content="分析全排列是一个常见的算法逻辑题，对于例子{1,2,3}来说它的全排列：A33=6个，枚举结果如下：  1,2,3 1,3,2 2,1,3 2,3,1 3,1,2 3,2,1  每个元素作为首位，剩下元素的全排列：   这句话如何理解挺关键，是整个递归思路的总结，我们按照两个步骤来分析">
   
   
     <link rel="icon" href="/favicon.ico">
@@ -208,6 +208,7 @@ ga('send', 'pageview');
 </blockquote>
 </blockquote>
 <p>这句话如何理解挺关键，是整个递归思路的总结，我们按照两个步骤来分析</p>
+<a id="more"></a>
 <h4 id="步骤1"><a href="#步骤1" class="headerlink" title="步骤1"></a>步骤1</h4><p>“剩下元素的全排列” 实际上就是一个递归的语句，它的结束条件是剩下元素只有一个元素了，那么前面的元素全部固定，和剩下的这个最后元素组成的结果就是全排列的一个序列。</p>
 <h4 id="步骤2"><a href="#步骤2" class="headerlink" title="步骤2"></a>步骤2</h4><blockquote>
 <p>每个元素放置到首位</p>
@@ -466,7 +467,15 @@ var _hmt = _hmt || [];
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">递归式子</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">排序</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">设计模式</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -475,14 +484,6 @@ var _hmt = _hmt || [];
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">contact</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">递归式子</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">设计模式</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -498,11 +499,11 @@ var _hmt = _hmt || [];
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">heap memory</a>
+                <a href="javascript:void(0)" class="js-tag color1">final</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">final</a>
+                <a href="javascript:void(0)" class="js-tag color2">heap memory</a>
               </li>
              
               <li class="article-tag-list-item">

@@ -8,17 +8,17 @@
   <link rel="dns-prefetch" href="http://www.dylan326.com">
   <title>用户态和系统态区分 | Dylan&#39;s ...</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="介绍​    在操作系统中，有着分区域保护特性，也作保护环、或者CPU环，简称Rings。用来处理发生故障时候数据错误处理，及恶意操作处理。内层Ring可以使用外层Ring的任意资源。而外层需要请求权限才能访问内层资源。​    在此基础上就区分了系统态（核心态）和用户态。每一个用户进程运行自己的代码存在在用户运行态，当调用系统函数的时候，运行模式转变为进入系统态。 系统态​    系统态在wik">
+  <meta name="description" content="介绍​    在操作系统中，有着分区域保护特性，也作保护环、或者CPU环，简称Rings。用来处理发生故障时候数据错误处理，及恶意操作处理。内层Ring可以使用外层Ring的任意资源。而外层需要请求权限才能访问内层资源。​    在此基础上就区分了系统态（核心态）和用户态。每一个用户进程运行自己的代码存在在用户运行态，当调用系统函数的时候，运行模式转变为进入系统态。">
 <meta name="keywords" content="Socket,IO,kernel">
 <meta property="og:type" content="article">
 <meta property="og:title" content="用户态和系统态区分">
 <meta property="og:url" content="http://www.dylan326.com/2016/06/08/kernel/index.html">
 <meta property="og:site_name" content="Dylan&#39;s ...">
-<meta property="og:description" content="介绍​    在操作系统中，有着分区域保护特性，也作保护环、或者CPU环，简称Rings。用来处理发生故障时候数据错误处理，及恶意操作处理。内层Ring可以使用外层Ring的任意资源。而外层需要请求权限才能访问内层资源。​    在此基础上就区分了系统态（核心态）和用户态。每一个用户进程运行自己的代码存在在用户运行态，当调用系统函数的时候，运行模式转变为进入系统态。 系统态​    系统态在wik">
-<meta property="og:updated_time" content="2017-06-01T16:14:47.000Z">
+<meta property="og:description" content="介绍​    在操作系统中，有着分区域保护特性，也作保护环、或者CPU环，简称Rings。用来处理发生故障时候数据错误处理，及恶意操作处理。内层Ring可以使用外层Ring的任意资源。而外层需要请求权限才能访问内层资源。​    在此基础上就区分了系统态（核心态）和用户态。每一个用户进程运行自己的代码存在在用户运行态，当调用系统函数的时候，运行模式转变为进入系统态。">
+<meta property="og:updated_time" content="2017-08-06T14:59:28.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="用户态和系统态区分">
-<meta name="twitter:description" content="介绍​    在操作系统中，有着分区域保护特性，也作保护环、或者CPU环，简称Rings。用来处理发生故障时候数据错误处理，及恶意操作处理。内层Ring可以使用外层Ring的任意资源。而外层需要请求权限才能访问内层资源。​    在此基础上就区分了系统态（核心态）和用户态。每一个用户进程运行自己的代码存在在用户运行态，当调用系统函数的时候，运行模式转变为进入系统态。 系统态​    系统态在wik">
+<meta name="twitter:description" content="介绍​    在操作系统中，有着分区域保护特性，也作保护环、或者CPU环，简称Rings。用来处理发生故障时候数据错误处理，及恶意操作处理。内层Ring可以使用外层Ring的任意资源。而外层需要请求权限才能访问内层资源。​    在此基础上就区分了系统态（核心态）和用户态。每一个用户进程运行自己的代码存在在用户运行态，当调用系统函数的时候，运行模式转变为进入系统态。">
   
   
     <link rel="icon" href="/favicon.ico">
@@ -196,6 +196,7 @@ ga('send', 'pageview');
     <div class="article-entry" itemprop="articleBody">
       
         <h1 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h1><p>​    在操作系统中，有着分区域保护特性，也作保护环、或者CPU环，简称Rings。用来处理发生故障时候数据错误处理，及恶意操作处理。内层Ring可以使用外层Ring的任意资源。而外层需要请求权限才能访问内层资源。<br>​    在此基础上就区分了系统态（核心态）和用户态。每一个用户进程运行自己的代码存在在用户运行态，当调用系统函数的时候，运行模式转变为进入系统态。</p>
+<a id="more"></a>
 <h1 id="系统态"><a href="#系统态" class="headerlink" title="系统态"></a>系统态</h1><p>​    系统态在wiki百科上的解释:在处理器的存储保护中，核心态，或者特权态，又称之为内核态（与之相对应的是用户态），是操作系统内核所运行的模式。运行在该模式的代码，可以无限制地对系统存储、外部设备进行访问。  </p>
 <h1 id="用户态"><a href="#用户态" class="headerlink" title="用户态"></a>用户态</h1><p>​    操作系统执行用户代码空间的运行形态。</p>
 <h1 id="参考信息"><a href="#参考信息" class="headerlink" title="参考信息"></a>参考信息</h1><p>​    当一个进程执行系统调用而陷入内核代码中执行时，我们就称进程处于内核运行态（或简称为系统态）。</p>
@@ -460,7 +461,15 @@ var _hmt = _hmt || [];
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">递归式子</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">排序</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">设计模式</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -469,14 +478,6 @@ var _hmt = _hmt || [];
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">contact</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">递归式子</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">设计模式</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -492,11 +493,11 @@ var _hmt = _hmt || [];
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">heap memory</a>
+                <a href="javascript:void(0)" class="js-tag color1">final</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">final</a>
+                <a href="javascript:void(0)" class="js-tag color2">heap memory</a>
               </li>
              
               <li class="article-tag-list-item">

@@ -196,16 +196,9 @@ ga('send', 'pageview');
     <div class="article-entry" itemprop="articleBody">
       
         <h1 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h1><p>​    在操作系统中，有着分区域保护特性，也作保护环、或者CPU环，简称Rings。用来处理发生故障时候数据错误处理，及恶意操作处理。内层Ring可以使用外层Ring的任意资源。而外层需要请求权限才能访问内层资源。<br>​    在此基础上就区分了系统态（核心态）和用户态。每一个用户进程运行自己的代码存在在用户运行态，当调用系统函数的时候，运行模式转变为进入系统态。</p>
-<h1 id="系统态"><a href="#系统态" class="headerlink" title="系统态"></a>系统态</h1><p>​    系统态在wiki百科上的解释:在处理器的存储保护中，核心态，或者特权态，又称之为内核态（与之相对应的是用户态），是操作系统内核所运行的模式。运行在该模式的代码，可以无限制地对系统存储、外部设备进行访问。  </p>
-<h1 id="用户态"><a href="#用户态" class="headerlink" title="用户态"></a>用户态</h1><p>​    操作系统执行用户代码空间的运行形态。</p>
-<h1 id="参考信息"><a href="#参考信息" class="headerlink" title="参考信息"></a>参考信息</h1><p>​    当一个进程执行系统调用而陷入内核代码中执行时，我们就称进程处于内核运行态（或简称为系统态）。</p>
-<p>​    此时处理器处于特权级最高的（0级）内核代码中执行。当进程处于内核态时，执行的内核代码会使用当前进程的内核栈。每个进程都有自己的内核栈。当进程在执行用户自己的代码时，则称其处于用户运行态（用户态）。即此时处理器在特权级最低的（3级）用户代码中运行。当正在执行用户程序而突然被中断程序中断时，此时用户程序也可以象征性地称为处于进程的内核态。因为中断处理程序将使用当前进程的内核栈。这与处于内核态的进程的状态有些类似。</p>
-<p>​    内核态与用户态是操作系统的两种运行级别,跟intel cpu没有必然的联系, cpu提供Ring0-Ring3四种级别的运行模式，Ring0级别最高，Ring3最低。Linux使用了Ring3级别运行用户态，Ring0作为内核态，没有使用Ring1和Ring2。Ring3状态不能访问Ring0的地址空间，包括代码和数据。</p>
-<p>​    Linux进程的4GB地址空间，3G-4G部分大家是共享的，是内核态的地址空间，这里存放在整个内核的代码和所有的内核模块，以及内核所维护的数据。用户运行一个程序，该程序所创建的进程开始是运行在用户态的，如果要执行文件操作，网络数据发送等操作，必须通过write，send等系统调用，这些系统调用会调用内核中的代码来完成操作，这时必须切换到Ring0，然后进入3GB-4GB中的内核地址空间去执行这些代码完成操作，完成后，切换回Ring3，回到用户态。这样，用户态的程序就不能随意操作内核地址空间，具有一定的安全保护作用。   </p>
-<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>操作系统运行的不同级别，导致有这两种运行形态的区分。cpu总处于以下状态中的一种：用户态即用户空间，系统态，两者间的切换。</p>
-<hr>
-<p><strong>版权声明：本文为博主原创文章，未经允许不得转载。</strong></p>
-
+        
+          <a class="article-more-a" href="/2016/06/08/kernel/#more">more >></a>
+        
       
 
       
@@ -288,10 +281,9 @@ ga('send', 'pageview');
       
         <h1 id="IO分类"><a href="#IO分类" class="headerlink" title="IO分类"></a>IO分类</h1><p>按照《Unix网络编程》划分，IO模型可以分为：阻塞IO、非阻塞IO、IO复用、信号驱动IO和异步IO，</p>
 <p>按照POSIX标准来划分只分为两类：同步IO和异步IO。区分是一个麻烦事情，有相关的背景条件。<br>BIO（OIO）：同步阻塞IO<br>NIO：同步非阻塞IO，基于事件驱动模型的设计<br>AIO：异步非阻塞IO，也是基于事件驱动的设计，和NIO不一样的是在读写交互方式，采用异步或者回调的方式返回相关结果  </p>
-<h1 id="名词解释"><a href="#名词解释" class="headerlink" title="名词解释"></a>名词解释</h1><p>同步VS异步：同步和异步概念的角度是对于叙说对象来定义的，描述的是用户态和系统态的关系， socket的读写操作，是直接同步返回结果还是异步返回结果。<br>阻塞VS非阻塞：这个较好理解，阻塞住等待事情处理完毕还是处理其他事情。</p>
-<hr>
-<p><strong>版权声明：本文为博主原创文章，未经允许不得转载。</strong></p>
-
+        
+          <a class="article-more-a" href="/2016/05/05/socket_io/#more">more >></a>
+        
       
 
       
@@ -365,17 +357,9 @@ ga('send', 'pageview');
     <div class="article-entry" itemprop="articleBody">
       
         <h1 id="Raft-协议算法简介"><a href="#Raft-协议算法简介" class="headerlink" title="Raft 协议算法简介"></a>Raft 协议算法简介</h1><h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>Raft协议算法产生的结果和Paxos的效果相同，Raft算法设计较Paxos设计易懂，并且有着更好的生产环境的实现方式。</p>
-<h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p>事务操作的四要素ACID：原子性、一致性、隔离性、持久性、 对于一个分布式环境的服务来说，较难满足一个事务的要求。比如对于一致性来说就是一个较难处理的问题，Raft正是为了解决分布式环境中一致性而产生的一种一致性协议算法。</p>
-<h2 id="Raft概念"><a href="#Raft概念" class="headerlink" title="Raft概念"></a>Raft概念</h2><p>  1、Follower(追随者)角色<br>  2、Candidate(候选者)角色<br>  3、Leader(追随者)角色<br>  4、Term(时间阶段)<br>  5、server(或者node 泛指服务节点,算法中指log节点)</p>
-<h2 id="基本背景"><a href="#基本背景" class="headerlink" title="基本背景"></a>基本背景</h2><p>  1、集群包含若干server（或者node），数目5是一个典型的分布式集群数目，对于这样一个系统来说，最多容忍的失败server个数为2（N&gt;=2F+1)，总的服务数N， 容忍失败的个数F。<br>  2、所有的node在同一个时期（term）只会有以上三种角色状态的其中一种。<br>  3、Term是一个不定的时间长度，每个term最多只会有一个leader，可能没有。成功选举后由这个leader领导cluster直到term结束。  </p>
-<h2 id="Leader选举"><a href="#Leader选举" class="headerlink" title="Leader选举"></a>Leader选举</h2><h4 id="选举流程"><a href="#选举流程" class="headerlink" title="选举流程"></a>选举流程</h4><p>  1、初始节点状态都是follower<br>  2、收不到leader 通知或者candidate请求（超时），开始触发选举流程<br>  3、F.增加自己的term num并转换为candidate状态（过程时间随机）<br>  4、F.投票自己并且发送给其他人“投我”的请求<br>  5、F.最终结果有三类：获得大多票数成为leader、其他f成为leader、无结果继续第二轮投票  </p>
-<h4 id="状态转换"><a href="#状态转换" class="headerlink" title="状态转换"></a>状态转换</h4><p>Follower-&gt;Candidate 开始选举<br>Candidate-&gt;Candidate 选举超时<br>Candidate-&gt;Leader 选举成功<br>Candidate-&gt;Follower 发现其他leader 或者新的term时期<br>Leader-&gt;Follower 发现其他leader 或者更好的term时期  </p>
-<h2 id="Log-Replication"><a href="#Log-Replication" class="headerlink" title="Log Replication"></a>Log Replication</h2><h3 id="协议针对log-副本。数据同步流程"><a href="#协议针对log-副本。数据同步流程" class="headerlink" title="协议针对log 副本。数据同步流程"></a>协议针对log 副本。数据同步流程</h3><p>  1、client发送数据请求<br>  2、leader接收数据请求，其他角色接收到请求转给leader<br>  3、L.发出append请求（记录数据）<br>  4、L.收到大多数数据回复，返回client请求状态<br>  5、L.下个心跳把commit给到follower<br>  6、如果传输失败，leader可以不断重试  </p>
-<h3 id="流程约定"><a href="#流程约定" class="headerlink" title="流程约定"></a>流程约定</h3><p>  1、log entry数据特性：log index、term num、commond<br>  2、log 持久化存储<br>  3、entry被大多数存储成功则为commited<br>  4、index和term相同那么之前的数据（entry）都是相同的<br>  5、某个commit之前的数据都是commited的<br>  6、append操作带上上一个的entry信息（index和term）并做检查<br>  7、检查不匹配，leader重试前一条。采用迭代重试方式直到完成   </p>
-<h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><p>Raft协议特性简介<br>参考资料：<br>动画演示 <a href="http://thesecretlivesofdata.com/raft/" target="_blank" rel="external">http://thesecretlivesofdata.com/raft/</a><br>Raft官网 <a href="https://raft.github.io/" target="_blank" rel="external">https://raft.github.io/</a>  </p>
-<hr>
-<p><strong>版权声明：本文为博主原创文章，未经允许不得转载。</strong></p>
-
+        
+          <a class="article-more-a" href="/2016/04/12/raft/#more">more >></a>
+        
       
 
       
@@ -434,16 +418,9 @@ ga('send', 'pageview');
     <div class="article-entry" itemprop="articleBody">
       
         <h1 id="Quorum一致性算法简介"><a href="#Quorum一致性算法简介" class="headerlink" title="Quorum一致性算法简介"></a>Quorum一致性算法简介</h1><h3 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h3><p>一个组包含若干副本集合，个数为N。每个副本集合存储着items的集合，这个集合可以是文件或者内容，每个item有着唯一的标示和一个状态，我们称之为NWR问题。</p>
-<h3 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h3><p>R：定义R为读的最小票数，W：定义为写的最小票数。N为副本个数。<br>每个副本集存储着同一个item的不同的版本号码，越大的版本号标示这个数据是最近的。<br>读的个数是对写的个数感兴趣的，因为读到的数据应该是大多数写成功的结果。  </p>
-<h3 id="公式"><a href="#公式" class="headerlink" title="公式"></a>公式</h3><p>R+W&gt;N;读写的票数和应该大于总的副本集数（节点数）<br>W&gt;N/2;写的票数应该大于一般的副本集数（节点数）  </p>
-<h3 id="举例"><a href="#举例" class="headerlink" title="举例"></a>举例</h3><p>对于一个三个副本集组，有着如下的可能：<br>R=3,W=1:这个有着高效的写性能，但是昂贵的读数据开销，对于读较多的场景，这种尤其较为糟糕。并且在一个副本节点异常或者失败的情况下，写不成功。一般来说我们需要保证W&gt;1。<br>R=1,W=3:这种分配对于读较多的场景较为友好，但是对于一个节点写失败的情况会导致等待此节点恢复写才能完成写的操作。<br>R=2,W=2:对比上面是一种较为优化的分配方案,虽然增加了读消耗的花费。  </p>
-<h3 id="分段描述"><a href="#分段描述" class="headerlink" title="分段描述"></a>分段描述</h3><h4 id="写操作"><a href="#写操作" class="headerlink" title="写操作"></a>写操作</h4><p>写操作分为一段或者两段<br>  1、发出一个读请求给所有的副本集合，等待一个读提议的回复，获取一个最大的版本号<br>  2、发出一个包含状态和最新版本的写请求给所有的副本集，等待一个写提议的返回，如果返回表示操作完成并返回状态码给client。<br>如果存在并发的写，需要使用方保持写的安全性。第一步的读请求可以避免，如果客户端知道正确的版本数据。</p>
-<h4 id="读操作"><a href="#读操作" class="headerlink" title="读操作"></a>读操作</h4><p>读操作也可以分为一段或者两段请求<br>  1、发起一个读请求给所有的副本集合，等待一个读提议的返回，如果所有的版本返回一致的状态，那么返回结果给客户端。<br>  2、否则发起一个大版本数据的写请求给所有副本集合，等待写提议的返回，如果返回成功，则返回结果给客户端。<br>第二步称之为”回写”段，通常情况下，第二段是没必要的，因为在写请求的操作中所有可用的写返回是一致的数据，那么在读返回中，都是同样的返回数据。  </p>
-<h3 id="特性"><a href="#特性" class="headerlink" title="特性"></a>特性</h3><p>协议需要提供原子性（线性性）  </p>
-<h3 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h3><p>维基百科 <a href="https://en.wikipedia.org/wiki/Quorum" title="Quorum" target="_blank" rel="external">Quorum</a></p>
-<hr>
-<p><strong>版权声明：本文为博主原创文章，未经允许不得转载。</strong></p>
-
+        
+          <a class="article-more-a" href="/2016/04/11/quorum_consensus_algorithm/#more">more >></a>
+        
       
 
       
@@ -1175,7 +1152,15 @@ var _hmt = _hmt || [];
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">递归式子</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">排序</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">设计模式</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1184,14 +1169,6 @@ var _hmt = _hmt || [];
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">contact</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">递归式子</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">设计模式</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1207,11 +1184,11 @@ var _hmt = _hmt || [];
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">heap memory</a>
+                <a href="javascript:void(0)" class="js-tag color1">final</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">final</a>
+                <a href="javascript:void(0)" class="js-tag color2">heap memory</a>
               </li>
              
               <li class="article-tag-list-item">

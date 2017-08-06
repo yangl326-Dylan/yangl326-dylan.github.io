@@ -8,17 +8,17 @@
   <link rel="dns-prefetch" href="http://www.dylan326.com">
   <title>Swallow size和Retained size区别（+ deep size） | Dylan&#39;s ...</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="JVM heap中对象大小有着如下大小表示 如果对象存在其他引用，那么我们来描述对象大小有如下几种类型： a)Swallow Size: 存储对象自身所包含的内存占用量 1.仅表示对象自身   2.集合等，对象自己和对象中元素或者域（fields)的“引用”的大小。只包含引用数据的大小    3.可以使用instrumentation.getObjectSize(obj)获取到大小 b)Retai">
+  <meta name="description" content="JVM heap中对象大小有着如下大小表示如果对象存在其他引用，那么我们来描述对象大小有如下几种类型： a)Swallow Size: 存储对象自身所包含的内存占用量 1.仅表示对象自身">
 <meta name="keywords" content="java,JVM,heap memory">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Swallow size和Retained size区别（+ deep size）">
 <meta property="og:url" content="http://www.dylan326.com/2016/08/10/java_mem_size/index.html">
 <meta property="og:site_name" content="Dylan&#39;s ...">
-<meta property="og:description" content="JVM heap中对象大小有着如下大小表示 如果对象存在其他引用，那么我们来描述对象大小有如下几种类型： a)Swallow Size: 存储对象自身所包含的内存占用量 1.仅表示对象自身   2.集合等，对象自己和对象中元素或者域（fields)的“引用”的大小。只包含引用数据的大小    3.可以使用instrumentation.getObjectSize(obj)获取到大小 b)Retai">
-<meta property="og:updated_time" content="2017-06-01T16:11:41.000Z">
+<meta property="og:description" content="JVM heap中对象大小有着如下大小表示如果对象存在其他引用，那么我们来描述对象大小有如下几种类型： a)Swallow Size: 存储对象自身所包含的内存占用量 1.仅表示对象自身">
+<meta property="og:updated_time" content="2017-08-06T14:59:29.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Swallow size和Retained size区别（+ deep size）">
-<meta name="twitter:description" content="JVM heap中对象大小有着如下大小表示 如果对象存在其他引用，那么我们来描述对象大小有如下几种类型： a)Swallow Size: 存储对象自身所包含的内存占用量 1.仅表示对象自身   2.集合等，对象自己和对象中元素或者域（fields)的“引用”的大小。只包含引用数据的大小    3.可以使用instrumentation.getObjectSize(obj)获取到大小 b)Retai">
+<meta name="twitter:description" content="JVM heap中对象大小有着如下大小表示如果对象存在其他引用，那么我们来描述对象大小有如下几种类型： a)Swallow Size: 存储对象自身所包含的内存占用量 1.仅表示对象自身">
   
   
     <link rel="icon" href="/favicon.ico">
@@ -195,9 +195,10 @@ ga('send', 'pageview');
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="JVM-heap中对象大小有着如下大小表示"><a href="#JVM-heap中对象大小有着如下大小表示" class="headerlink" title="JVM heap中对象大小有着如下大小表示 "></a>JVM heap中对象大小有着如下大小表示 </h2><p>如果对象存在其他引用，那么我们来描述对象大小有如下几种类型：</p>
+        <h2 id="JVM-heap中对象大小有着如下大小表示"><a href="#JVM-heap中对象大小有着如下大小表示" class="headerlink" title="JVM heap中对象大小有着如下大小表示"></a>JVM heap中对象大小有着如下大小表示</h2><p>如果对象存在其他引用，那么我们来描述对象大小有如下几种类型：</p>
 <p>a)Swallow Size: 存储对象自身所包含的内存占用量</p>
 <p>1.仅表示对象自身  </p>
+<a id="more"></a>
 <p>2.集合等，对象自己和对象中元素或者域（fields)的“引用”的大小。只包含引用数据的大小   </p>
 <p>3.可以使用instrumentation.getObjectSize(obj)获取到大小</p>
 <p>b)Retained Size: 对象自身的swallow size加上此对象可达的所有对象的swallow size</p>
@@ -464,7 +465,15 @@ var _hmt = _hmt || [];
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">递归式子</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">排序</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">设计模式</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -473,14 +482,6 @@ var _hmt = _hmt || [];
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">contact</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">递归式子</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">设计模式</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -496,11 +497,11 @@ var _hmt = _hmt || [];
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">heap memory</a>
+                <a href="javascript:void(0)" class="js-tag color1">final</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">final</a>
+                <a href="javascript:void(0)" class="js-tag color2">heap memory</a>
               </li>
              
               <li class="article-tag-list-item">

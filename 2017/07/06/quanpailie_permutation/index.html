@@ -8,17 +8,17 @@
   <link rel="dns-prefetch" href="http://www.dylan326.com">
   <title>全排列问题-字典序 | Dylan&#39;s ...</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="分析上一篇是全排列的递归解法，现在按照字典序的解法处理：  1,2,3 1,3,2  给出一个数字排列的最小字典序，找到他的下一个字典序， 直到到达最大字典序值   1,2,3-&amp;gt;3,2,1 中间的过程即为全排列的过程 字典序含义从左到右按照位置比较，按照依次增大的顺序排列，例如123，12，21，1，2。的字典序排序后是1，12，123，2，21。 下一个序列 1、从右到左，找到第一个邻位">
+  <meta name="description" content="分析上一篇是全排列的递归解法，现在按照字典序的解法处理：  1,2,3 1,3,2  给出一个数字排列的最小字典序，找到他的下一个字典序， 直到到达最大字典序值   1,2,3-&amp;gt;3,2,1 中间的过程即为全排列的过程">
 <meta name="keywords" content="脑子秀逗,全排列">
 <meta property="og:type" content="article">
 <meta property="og:title" content="全排列问题-字典序">
 <meta property="og:url" content="http://www.dylan326.com/2017/07/06/quanpailie_permutation/index.html">
 <meta property="og:site_name" content="Dylan&#39;s ...">
-<meta property="og:description" content="分析上一篇是全排列的递归解法，现在按照字典序的解法处理：  1,2,3 1,3,2  给出一个数字排列的最小字典序，找到他的下一个字典序， 直到到达最大字典序值   1,2,3-&amp;gt;3,2,1 中间的过程即为全排列的过程 字典序含义从左到右按照位置比较，按照依次增大的顺序排列，例如123，12，21，1，2。的字典序排序后是1，12，123，2，21。 下一个序列 1、从右到左，找到第一个邻位">
-<meta property="og:updated_time" content="2017-07-06T12:38:27.000Z">
+<meta property="og:description" content="分析上一篇是全排列的递归解法，现在按照字典序的解法处理：  1,2,3 1,3,2  给出一个数字排列的最小字典序，找到他的下一个字典序， 直到到达最大字典序值   1,2,3-&amp;gt;3,2,1 中间的过程即为全排列的过程">
+<meta property="og:updated_time" content="2017-08-06T14:59:30.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="全排列问题-字典序">
-<meta name="twitter:description" content="分析上一篇是全排列的递归解法，现在按照字典序的解法处理：  1,2,3 1,3,2  给出一个数字排列的最小字典序，找到他的下一个字典序， 直到到达最大字典序值   1,2,3-&amp;gt;3,2,1 中间的过程即为全排列的过程 字典序含义从左到右按照位置比较，按照依次增大的顺序排列，例如123，12，21，1，2。的字典序排序后是1，12，123，2，21。 下一个序列 1、从右到左，找到第一个邻位">
+<meta name="twitter:description" content="分析上一篇是全排列的递归解法，现在按照字典序的解法处理：  1,2,3 1,3,2  给出一个数字排列的最小字典序，找到他的下一个字典序， 直到到达最大字典序值   1,2,3-&amp;gt;3,2,1 中间的过程即为全排列的过程">
   
   
     <link rel="icon" href="/favicon.ico">
@@ -204,6 +204,7 @@ ga('send', 'pageview');
 </blockquote>
 </blockquote>
 <p>1,2,3-&gt;3,2,1 中间的过程即为全排列的过程</p>
+<a id="more"></a>
 <h4 id="字典序含义"><a href="#字典序含义" class="headerlink" title="字典序含义"></a>字典序含义</h4><p>从左到右按照位置比较，按照依次增大的顺序排列，例如123，12，21，1，2。的字典序排序后是1，12，123，2，21。</p>
 <h4 id="下一个序列"><a href="#下一个序列" class="headerlink" title="下一个序列"></a>下一个序列</h4><blockquote>
 <p>1、从右到左，找到第一个邻位递减的数a</p>
@@ -469,7 +470,15 @@ var _hmt = _hmt || [];
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">递归式子</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">排序</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">设计模式</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -478,14 +487,6 @@ var _hmt = _hmt || [];
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">contact</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">递归式子</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">设计模式</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -501,11 +502,11 @@ var _hmt = _hmt || [];
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">heap memory</a>
+                <a href="javascript:void(0)" class="js-tag color1">final</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">final</a>
+                <a href="javascript:void(0)" class="js-tag color2">heap memory</a>
               </li>
              
               <li class="article-tag-list-item">
