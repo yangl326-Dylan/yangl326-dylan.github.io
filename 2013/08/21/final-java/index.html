@@ -8,17 +8,17 @@
   <link rel="dns-prefetch" href="http://www.dylan326.com">
   <title>final修饰符 | Dylan&#39;s ...</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="本文主要记载下java中final修饰符的应用场景，final 这个关键字定义修饰的实体不再改变，如何去理解这两个概念：“被修饰的实体”和”不再改变“。 final可以修饰实体：  类（class）：表示此类不允许被继承；例如 java.lang.String 对象 方法（method）：表示不能被重载 变量（variables）：包括基本变量和引用的对象变量（注：final修饰的引用对象只要不被">
+  <meta name="description" content="本文主要记载下java中final修饰符的应用场景，final 这个关键字定义修饰的实体不再改变，如何去理解这两个概念：“被修饰的实体”和”不再改变“。 final可以修饰实体：">
 <meta name="keywords" content="java,final">
 <meta property="og:type" content="article">
 <meta property="og:title" content="final修饰符">
 <meta property="og:url" content="http://www.dylan326.com/2013/08/21/final-java/index.html">
 <meta property="og:site_name" content="Dylan&#39;s ...">
-<meta property="og:description" content="本文主要记载下java中final修饰符的应用场景，final 这个关键字定义修饰的实体不再改变，如何去理解这两个概念：“被修饰的实体”和”不再改变“。 final可以修饰实体：  类（class）：表示此类不允许被继承；例如 java.lang.String 对象 方法（method）：表示不能被重载 变量（variables）：包括基本变量和引用的对象变量（注：final修饰的引用对象只要不被">
-<meta property="og:updated_time" content="2017-06-01T16:29:31.000Z">
+<meta property="og:description" content="本文主要记载下java中final修饰符的应用场景，final 这个关键字定义修饰的实体不再改变，如何去理解这两个概念：“被修饰的实体”和”不再改变“。 final可以修饰实体：">
+<meta property="og:updated_time" content="2017-08-06T15:02:53.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="final修饰符">
-<meta name="twitter:description" content="本文主要记载下java中final修饰符的应用场景，final 这个关键字定义修饰的实体不再改变，如何去理解这两个概念：“被修饰的实体”和”不再改变“。 final可以修饰实体：  类（class）：表示此类不允许被继承；例如 java.lang.String 对象 方法（method）：表示不能被重载 变量（variables）：包括基本变量和引用的对象变量（注：final修饰的引用对象只要不被">
+<meta name="twitter:description" content="本文主要记载下java中final修饰符的应用场景，final 这个关键字定义修饰的实体不再改变，如何去理解这两个概念：“被修饰的实体”和”不再改变“。 final可以修饰实体：">
   
   
     <link rel="icon" href="/favicon.ico">
@@ -196,7 +196,7 @@ ga('send', 'pageview');
     <div class="article-entry" itemprop="articleBody">
       
         <p>本文主要记载下java中final修饰符的应用场景，final 这个关键字定义修饰的实体不再改变，如何去理解这两个概念：“被修饰的实体”和”不再改变“。</p>
-<p>final可以修饰实体：</p>
+<p>final可以修饰实体：<br><a id="more"></a></p>
 <blockquote>
 <p>类（class）：表示此类不允许被继承；例如 java.lang.String 对象</p>
 <p>方法（method）：表示不能被重载</p>
@@ -211,10 +211,10 @@ ga('send', 'pageview');
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">public final class FinalClass &#123;...&#125;// final 类</div><div class="line"></div><div class="line">public class WrongClass extends FinalClass&#123;...&#125; //不被允许的继承</div></pre></td></tr></table></figure>
 <p>分析：不能编写一个final修饰类的子类，这个类所有的方法可以理解为隐含的final。</p>
 <p>二、final method（修饰方法）：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">class A&#123;</div><div class="line">	public void foo1()&#123;&#125;</div><div class="line">	public final void foo2()&#123;&#125;</div><div class="line">&#125;</div><div class="line">class B extends A&#123; // 继承</div><div class="line">	</div><div class="line">	public void foo1() &#123;&#125; // okay</div><div class="line">	</div><div class="line">	@Override</div><div class="line">	public void foo2() &#123; // 重载不合法</div><div class="line">	&#125;</div><div class="line">	</div><div class="line">	public void foo2(int a)&#123;&#125; //合法 重写foo2方法</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">class A&#123;</div><div class="line">	public void foo1()&#123;&#125;</div><div class="line">	public final void foo2()&#123;&#125;</div><div class="line">&#125;</div><div class="line">class B extends A&#123; // 继承</div><div class="line"></div><div class="line">	public void foo1() &#123;&#125; // okay</div><div class="line"></div><div class="line">	@Override</div><div class="line">	public void foo2() &#123; // 重载不合法</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	public void foo2(int a)&#123;&#125; //合法 重写foo2方法</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <p>分析：方法 父类A中foo2 被关键字final修饰后，子类B去重载这个方法就是不被允许的，而其他的多态形式如重写是被允许的。通常父类的某方法不被让子类去重载掉，保持此方法的一致性。</p>
 <p>如下（为了方便，直接使用两个内部类作为例子）：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line">public class FinalMethod &#123;</div><div class="line"></div><div class="line">	public static void main(String[] args) &#123;</div><div class="line">		FinalMethod aFinalMethod = new FinalMethod();</div><div class="line">		B b = aFinalMethod.new B();</div><div class="line">		b.foo2(); // 保持了foo2方法的一致性，A的子类使用的是相同的foo2，A不希望此方法被修改。</div><div class="line">	&#125;</div><div class="line">	</div><div class="line">	class A&#123;</div><div class="line">		public void foo1()&#123;&#125;</div><div class="line">		public final void foo2()&#123;&#125;</div><div class="line">	&#125;</div><div class="line">	</div><div class="line">	class B extends A&#123; // 继承</div><div class="line">		public void foo1() &#123;&#125; // okay</div><div class="line">		//public void foo2(int a)&#123;&#125; //合法 重写foo2方法</div><div class="line">	&#125;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line">public class FinalMethod &#123;</div><div class="line"></div><div class="line">	public static void main(String[] args) &#123;</div><div class="line">		FinalMethod aFinalMethod = new FinalMethod();</div><div class="line">		B b = aFinalMethod.new B();</div><div class="line">		b.foo2(); // 保持了foo2方法的一致性，A的子类使用的是相同的foo2，A不希望此方法被修改。</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	class A&#123;</div><div class="line">		public void foo1()&#123;&#125;</div><div class="line">		public final void foo2()&#123;&#125;</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	class B extends A&#123; // 继承</div><div class="line">		public void foo1() &#123;&#125; // okay</div><div class="line">		//public void foo2(int a)&#123;&#125; //合法 重写foo2方法</div><div class="line">	&#125;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <p>三、final variable（变量）：</p>
 <p>就像本文开头叙述的一样修饰基本型变量和修饰引用型变量，看下面两种变量：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">final int a = 10；</div><div class="line">a = 1;//error 不允许</div><div class="line">final List&lt;String&gt; list = new ArrayList&lt;String&gt;();</div><div class="line">list.add(&quot;str&quot;);//okay</div></pre></td></tr></table></figure>
@@ -492,10 +492,6 @@ var _hmt = _hmt || [];
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">设计模式</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">about</a>
               </li>
              
@@ -504,15 +500,19 @@ var _hmt = _hmt || [];
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">设计模式</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">java</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">JVM</a>
+                <a href="javascript:void(0)" class="js-tag color1">collection</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">collection</a>
+                <a href="javascript:void(0)" class="js-tag color4">JVM</a>
               </li>
              
               <li class="article-tag-list-item">

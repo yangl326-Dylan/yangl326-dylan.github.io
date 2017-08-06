@@ -494,22 +494,10 @@ ga('send', 'pageview');
     <div class="article-entry" itemprop="articleBody">
       
         <p>JAVA 内部锁与同步[Intrinsic Locks and Synchronization]</p>
-<p>同步是建立在被称之为内部锁或监控锁的内部实体（按照API标准指的这个实体称之为监控）。内在锁在同步的两个方面发挥作用：一个对象状态的专属使用权和建立可见性所需要的happens-before关系。</p>
-<p>​      每个对象有一个与之相关联的内部锁。一般来说，一个线程需要持久的专有的访问一个对象的字段那么它必须先获取该对象的内部锁，当使用结束的时候释放这个锁。此时这个线程在获取内部锁后和释放这个内部锁之前都称之为拥有这个对象的内部锁。一旦这个线程拥有这个内部锁，其他的线程就不能获取同样的锁，获取的时候被阻塞住。</p>
-<p>​      当这个线程释放了这个内部锁，一个happens-before关系将建立在该动作和后续获取相同锁的操作之间。</p>
-<p>同步方法中的锁</p>
-<p>​    当一个线程调用一个同步方法事后，它会自动的获取这个方法对象的内部锁，直到方法返回才释放，即使未捕获的异常引起的返回也会触发这个锁的释放。</p>
-<p>如果一个静态的同步方法方法被调用，由于静态方法是关联到这个类而不是实例对象。这样的话，线程获取的是内部锁是与这个类相关的类对象。这个类的静态对象被锁住了。这个锁有区别于和此类的其他实例对象的锁</p>
-<p>同步块</p>
-<p>另外一种创建同步代码的的是使用同步块，和同步方法不相同，同步块需要具体的对象来提供内部锁。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">addName</span><span class="params">(String name)</span> </span>&#123;</div><div class="line">    <span class="keyword">synchronized</span>(<span class="keyword">this</span>) &#123;</div><div class="line">        lastName = name;</div><div class="line">        nameCount++;</div><div class="line">    &#125;</div><div class="line">    nameList.add(name);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>这个例子中，addName方法需要同步改变lastName和nameCount，但是同时也要避免去同步对其他对象方法的调用。如nameList.add方法在同步块外面，避免了同步这个方法。</p>
-<p>细粒度的同步块对于提供并发性能有着很好的改善，假设这样一个例子 MsLunch类有两个对象字段 c1和c2 ，它们不会交错使用。所有的这两个字段更新需要同步，但是没有必要c1的更新影响或者阻止c2的更新。减少并发通过创建不必要的阻塞而不是用同步方法或者this对象的同步块。我们可以创建两个对象提供锁。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MsLunch</span> </span>&#123;</div><div class="line">    <span class="keyword">private</span> <span class="keyword">long</span> c1 = <span class="number">0</span>;</div><div class="line">    <span class="keyword">private</span> <span class="keyword">long</span> c2 = <span class="number">0</span>;</div><div class="line">    <span class="keyword">private</span> Object lock1 = <span class="keyword">new</span> Object(); <span class="comment">// 注：推荐是用占用内存小的对象，如byte对象</span></div><div class="line">    <span class="keyword">private</span> Object lock2 = <span class="keyword">new</span> Object();</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">inc1</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">synchronized</span>(lock1) &#123;</div><div class="line">            c1++;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">inc2</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">synchronized</span>(lock2) &#123;</div><div class="line">            c2++;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>这种风格的话，你必然能够保证相互影响的字段间交错访问的绝对安全。</p>
-<hr>
-<p><strong>版权声明：本文为博主原创文章，未经允许不得转载。</strong></p>
-
+<p>同步是建立在被称之为内部锁或监控锁的内部实体（按照API标准指的这个实体称之为监控）。内在锁在同步的两个方面发挥作用：一个对象状态的专属使用权和建立可见性所需要的happens-before关系。<br></p>
+        
+          <a class="article-more-a" href="/2014/03/12/lockAndSync/#more">more >></a>
+        
       
 
       
@@ -587,17 +575,10 @@ ga('send', 'pageview');
     <div class="article-entry" itemprop="articleBody">
       
         <p>适配器模式的定义：将一个接口转化为另一个需要的接口。注接口为广义接口。</p>
-<p>例如： 我们有一个书籍的接口，其包含两个方法：获取作者，获取目录。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">Book</span> </span>&#123;</div><div class="line">    <span class="comment">/**</span></div><div class="line">     * 书籍目录</div><div class="line">     */</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">getContents</span><span class="params">()</span></span>;</div><div class="line"></div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">getAuthor</span><span class="params">()</span></span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>还有一个字典接口，也包含两个方法，获取作者，获取单词索引列表。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">Dictionary</span> </span>&#123;</div><div class="line">    <span class="comment">/**</span></div><div class="line">     * 字典没有目录 只有列表</div><div class="line">     */</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">getItems</span><span class="params">()</span></span>;</div><div class="line"></div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">getAuthor</span><span class="params">()</span></span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>如何将字典接口转化为书籍接口，字典接口的实现类和书籍接口的实现类为同一种类型的类，那么就需要使用适配器模式。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">DictAdapter</span> <span class="keyword">implements</span> <span class="title">Book</span> </span>&#123;</div><div class="line">    Dictionary dictionary;</div><div class="line"></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">getContents</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="comment">//字典 单词列表 转化为书籍目录</span></div><div class="line">        dictionary.getItems();</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">getAuthor</span><span class="params">()</span> </span>&#123;</div><div class="line">        dictionary.getAuthor();</div><div class="line">    &#125;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>分析：实现book接口的类，和字典对象作为组合方式联系起来。使用字典类的方法覆盖book接口的方法，从而达到目的。</p>
-<p>代码见：<a href="https://github.com/yangl326-Dylan/analysis_and_designer/blob/master/src/blog/DictAdapter.java" target="_blank" rel="external">DictAdapter.java</a></p>
-<hr>
-<p><strong>版权声明：本文为博主原创文章，未经允许不得转载。</strong></p>
-
+<p>例如： 我们有一个书籍的接口，其包含两个方法：获取作者，获取目录。<br></p>
+        
+          <a class="article-more-a" href="/2013/10/06/adaptor/#more">more >></a>
+        
       
 
       
@@ -669,19 +650,9 @@ ga('send', 'pageview');
         <p>最近发现一个有意思的问题，可以看看这两个的输出结果</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">String.valueOf(map.get(&quot;key&quot;)) //①</div></pre></td></tr></table></figure>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">String.valueOf(null)          //②</div></pre></td></tr></table></figure>
-<p>会发现map中①返回正常 ”null“字符串，而②抛出NLP异常</p>
-<p>跳转到String类的valueOf发现使用的是这个重载的方法：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> String <span class="title">valueOf</span><span class="params">(<span class="keyword">char</span> data[])</span> </span>&#123;</div><div class="line">    <span class="keyword">return</span> <span class="keyword">new</span> String(data);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>再看看char[] string的构造方法：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> <span class="title">String</span><span class="params">(<span class="keyword">char</span> value[])</span> </span>&#123;</div><div class="line">    <span class="keyword">this</span>.value = Arrays.copyOf(value, value.length);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>null无length属性，到这里就会异常。</p>
-<p>传入（Object）null时候（或者无key得时候map对象返回空对象），实现的是如下重载的方法：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> String <span class="title">valueOf</span><span class="params">(Object obj)</span> </span>&#123;</div><div class="line">    <span class="keyword">return</span> (obj == <span class="keyword">null</span>) ? <span class="string">"null"</span> : obj.toString();</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>即正常返回 null字符串。</p>
-<p>实际上null是关键字，不属于Object对象，至于选择器为什么会优先选择重载函数就得分析null和Object obj=null 中 null和obj的区别了。</p>
-<hr>
-<p><strong>版权声明：本文为博主原创文章，未经允许不得转载。</strong></p>
-
+        
+          <a class="article-more-a" href="/2013/09/11/string_null/#more">more >></a>
+        
       
 
       
@@ -756,22 +727,10 @@ ga('send', 'pageview');
       
         <h3 id="含义"><a href="#含义" class="headerlink" title="含义"></a>含义</h3><p>什么叫单例模式或单件模式，由名字可知存在一个对象，我们可以重复使用这个对象。那么如何实现整个系统中存在一个对象，如何保证一个对象只被实例化一次。实际上约定一个全局变量可以，通过静态方法或者静态类的变量和一定限定修饰可以实现。实际中我们会遇到很多需要的场景，如果一个对象的初始化比较耗资源时间较长，并且可重复利用，那么就需要单例模式去实现。如：线程池、缓存、日志对象等，只需要一个对象就行了。</p>
 <p>创建对象 new一个实例，那么如何去保证这个对象实例只会存在一个。java对象缺省有无参构造器（构造方法），私有化这个构造方法，来看看几种实现方法。</p>
-<h3 id="常见三种单例的实现方法"><a href="#常见三种单例的实现方法" class="headerlink" title="常见三种单例的实现方法"></a>常见三种单例的实现方法</h3><p>首先想到的私有化构造方法，提供一个静态方法返回同一个对象：</p>
-<p></p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SingleTon</span> </span>&#123;</div><div class="line">    </div><div class="line">    <span class="keyword">private</span> <span class="keyword">static</span> SingleTon singleTon=<span class="keyword">null</span>;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">private</span> <span class="title">SingleTon</span><span class="params">()</span></span>&#123;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> SingleTon <span class="title">getInstance</span><span class="params">()</span></span>&#123;</div><div class="line">        <span class="keyword">if</span>(singleTon == <span class="keyword">null</span>)&#123;</div><div class="line">            singleTon = <span class="keyword">new</span> SingleTon();    </div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> singleTon;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>分析：私有化其无参构造器后无法在这个类外去实例化这个对象，内部可以实例化这个对象，那么需要提供一个方法返回这个对象，使用静态方法，确保在类被加载的时候初始化到内存中，一个判断条件去保证这个对象是同一个对象。</p>
-<p>上面这段代码是延迟加载的，在调用getInstance方法的时候对象才被实例化，如果类被加载的时候初始化那么只需要将静态变量赋值：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SingleTon</span> </span>&#123;</div><div class="line"></div><div class="line">    <span class="keyword">private</span> <span class="keyword">static</span> SingleTon singleTon=<span class="keyword">new</span> SingleTon();</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">private</span> <span class="title">SingleTon</span><span class="params">()</span></span>&#123;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> SingleTon <span class="title">getInstance</span><span class="params">()</span></span>&#123;</div><div class="line">        <span class="keyword">return</span> singleTon;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>如果在多线程情况下getInstance方法存在，并不能保证为同一个对象，简单的方法就是修改为同步方法，即：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">public static synchronized SingleTon getInstance()&#123;&#125;</div></pre></td></tr></table></figure>
-<p>简单方便，多线程问题解决，如果没有频繁使用的场景并且接受这种调用带来的资源消耗，那么同步的静态方法应该是一个比较好的方法，但是有一个问题，频繁的调用getInstance方法的时候，就不适合了。</p>
-<p>看看下面这种方法，双重检查加锁，保证只有一次同步方法，在创建的时候：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SingleTon</span> </span>&#123;</div><div class="line"></div><div class="line">    <span class="keyword">private</span> <span class="keyword">volatile</span> <span class="keyword">static</span> SingleTon singleTon;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">private</span> <span class="title">SingleTon</span><span class="params">()</span></span>&#123;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> SingleTon <span class="title">getInstance</span><span class="params">()</span></span>&#123;</div><div class="line">        <span class="keyword">if</span>(singleTon==<span class="keyword">null</span>)&#123;</div><div class="line">            <span class="keyword">synchronized</span> (SingleTon.class)&#123;</div><div class="line">                <span class="keyword">if</span>(singleTon==<span class="keyword">null</span>)&#123;</div><div class="line">                       singleTon = <span class="keyword">new</span> SingleTon();</div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> singleTon;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>分析：</p>
-<p>volatile 关键字修饰singleTon，表示各个线程自己的变量副本集不缓存，确保多线程初始化的时候，多线程正确处理这个变量。如果singleTon对象为空的时候，进入第一个if中的同步块，多线程受同步方法约束，再做一次null对象判断，为空才创建对象。之后的方法调用，进入不了同步块判断，那么就满足了只有一个同步判断的，减少了使用sychronized修饰方法每次调用的资源消耗，提高了执行效率，如果系统代码的性能要求较高，这种方式更为合适。</p>
-<hr>
-<p><strong>版权声明：本文为博主原创文章，未经允许不得转载。</strong></p>
-
+<h3 id="常见三种单例的实现方法"><a href="#常见三种单例的实现方法" class="headerlink" title="常见三种单例的实现方法"></a>常见三种单例的实现方法</h3><p>首先想到的私有化构造方法，提供一个静态方法返回同一个对象：<br></p>
+        
+          <a class="article-more-a" href="/2013/09/07/sington/#more">more >></a>
+        
       
 
       
@@ -841,44 +800,10 @@ ga('send', 'pageview');
     <div class="article-entry" itemprop="articleBody">
       
         <p>本文主要记载下java中final修饰符的应用场景，final 这个关键字定义修饰的实体不再改变，如何去理解这两个概念：“被修饰的实体”和”不再改变“。</p>
-<p>final可以修饰实体：</p>
-<blockquote>
-<p>类（class）：表示此类不允许被继承；例如 java.lang.String 对象</p>
-<p>方法（method）：表示不能被重载</p>
-<p>变量（variables）：包括基本变量和引用的对象变量（注：final修饰的引用对象只要不被赋值，其属性的修改等是被允许的）。</p>
-</blockquote>
-<p>不再改变：</p>
-<blockquote>
-<p>不再改变不是不变的意思。如果变量final修饰为引用对象，不能为其赋值，而其自身可以变化，因为这个引用没有改变。</p>
-</blockquote>
-<p>定义在上面看怎么去理解了，还是用实例去验证下final的用法：</p>
-<p>一、final class（修饰类）：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">public final class FinalClass &#123;...&#125;// final 类</div><div class="line"></div><div class="line">public class WrongClass extends FinalClass&#123;...&#125; //不被允许的继承</div></pre></td></tr></table></figure>
-<p>分析：不能编写一个final修饰类的子类，这个类所有的方法可以理解为隐含的final。</p>
-<p>二、final method（修饰方法）：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">class A&#123;</div><div class="line">	public void foo1()&#123;&#125;</div><div class="line">	public final void foo2()&#123;&#125;</div><div class="line">&#125;</div><div class="line">class B extends A&#123; // 继承</div><div class="line">	</div><div class="line">	public void foo1() &#123;&#125; // okay</div><div class="line">	</div><div class="line">	@Override</div><div class="line">	public void foo2() &#123; // 重载不合法</div><div class="line">	&#125;</div><div class="line">	</div><div class="line">	public void foo2(int a)&#123;&#125; //合法 重写foo2方法</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>分析：方法 父类A中foo2 被关键字final修饰后，子类B去重载这个方法就是不被允许的，而其他的多态形式如重写是被允许的。通常父类的某方法不被让子类去重载掉，保持此方法的一致性。</p>
-<p>如下（为了方便，直接使用两个内部类作为例子）：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line">public class FinalMethod &#123;</div><div class="line"></div><div class="line">	public static void main(String[] args) &#123;</div><div class="line">		FinalMethod aFinalMethod = new FinalMethod();</div><div class="line">		B b = aFinalMethod.new B();</div><div class="line">		b.foo2(); // 保持了foo2方法的一致性，A的子类使用的是相同的foo2，A不希望此方法被修改。</div><div class="line">	&#125;</div><div class="line">	</div><div class="line">	class A&#123;</div><div class="line">		public void foo1()&#123;&#125;</div><div class="line">		public final void foo2()&#123;&#125;</div><div class="line">	&#125;</div><div class="line">	</div><div class="line">	class B extends A&#123; // 继承</div><div class="line">		public void foo1() &#123;&#125; // okay</div><div class="line">		//public void foo2(int a)&#123;&#125; //合法 重写foo2方法</div><div class="line">	&#125;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>三、final variable（变量）：</p>
-<p>就像本文开头叙述的一样修饰基本型变量和修饰引用型变量，看下面两种变量：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">final int a = 10；</div><div class="line">a = 1;//error 不允许</div><div class="line">final List&lt;String&gt; list = new ArrayList&lt;String&gt;();</div><div class="line">list.add(&quot;str&quot;);//okay</div></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">list = new ArrayList&lt;String&gt;();// error 不被允许</div></pre></td></tr></table></figure>
-<p>分析： 基本型 a final 修饰赋值后不能被改变。 final修饰list 引用，只要不被赋值，此对象可以变化，而这个引用不允许被修改为另一个引用。</p>
-<p>修饰变量需要提到如下两种：</p>
-<p>3.1、blank final： is a final variable whose declaration lacks an initializer 一个声明缺少初始化的final变量。如下是合法的：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">for(final String str: strList)&#123;</div><div class="line">//do in loop;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>分析：可以这样去理解，变量作用域问题，每次循环是一个新的执行块，那么这样的final声明是合法的。</p>
-<p>3.2、匿名内部类使用外部变量final修饰</p>
-<p>为什么需要final修饰？</p>
-<p>当一个匿名内部类的定义是自身内的一种方法，所有的变量声明为final的范围，方法是从内部类访问。一旦它已经被分配，最后的变量的值不能改变的。这将允许Java编译器来“捕获”的变量值在运行时间和存储一份内部类中作为一个字段。一旦外部方法已经终止和它的堆栈帧已被删除，原来的变量收回了，但自己的内存在类的内部类的私有副本仍然存在。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">public static void main(String[] args) &#123;</div><div class="line">	// String aString  = &quot;haha~&quot;;// 无法被调用 不合法</div><div class="line">	final String aString  = &quot;haha~&quot;; // okay</div><div class="line">	Thread a = new Thread(new Runnable() &#123;</div><div class="line">		@Override</div><div class="line">		public void run() &#123;</div><div class="line">			System.out.println(aString);// 调用外部变量</div><div class="line">		&#125;</div><div class="line">	&#125;);</div><div class="line">	a.start();</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>分析：结合上述原理，aString在内部类实际为outer的副本，那么就必须保证aString不能被改变，内部类调用外部变量的原理为自身存储外部变量的副本，那么保证数据一致性，在设计方面就限定了被调用的外部变量需要final修饰。</p>
-<p>-———————————-</p>
-<p>code文件：<a href="https://github.com/yangl326-Dylan/analysis_and_designer/blob/master/src/blog/FinalInner.java" target="_blank" rel="external">FinalInner.java</a> <a href="https://github.com/yangl326-Dylan/analysis_and_designer/blob/master/src/blog/FinalVariables.java" target="_blank" rel="external">FinalVariables.java</a> <a href="https://github.com/yangl326-Dylan/analysis_and_designer/blob/master/src/blog/FinalMethod.java" target="_blank" rel="external">FinalMethod.java</a></p>
-<hr>
-<p><strong>版权声明：本文为博主原创文章，未经允许不得转载。</strong></p>
-
+<p>final可以修饰实体：<br></p>
+        
+          <a class="article-more-a" href="/2013/08/21/final-java/#more">more >></a>
+        
       
 
       
@@ -956,24 +881,10 @@ ga('send', 'pageview');
     <div class="article-entry" itemprop="articleBody">
       
         <p>JVM (Java Virtual Machine) 即java虚拟机。一个java文件对应一个类，JVM会把需要的类装载到内存，那么class loader的作用就出来了。</p>
-<p>先抛出个常见的问题 ClassNotFoundException 常见于缺少的加载类文件或相关库文件或者重复加载等。</p>
-<p>JVM的类加载机制为委托加载（双亲委派模型）我们看一下classloader的流程图（引自参考）</p>
-<p><img src="http://img.blog.csdn.net/20130820132524921?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQveWFuZ2wzMjY=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="img"></p>
-<p>一、classloader之间的父子关系(非继承关系)和范围。<br>(1)BootStrap 是最顶层的类加载器，由C++编写,也称之为启动类加载器,主要用来读取Java的核心类库%java_home%/jre/lib/rt.jar 或指定能被JVM识别的文件<br>(2)Extension ClassLoader,  java 编写，用来读取Java的扩展类库，读取%java_home%/jre/lib/ext/*.jar 或者指定路径的文件<br>(3)App ClassLoader， java编写，是用来读取CLASSPATH指定的所有jar包或目录的类文件：引入的文件<br>(4)Custom ClassLoader是用户自定义编写classloader子类的用来加载指定类文件。</p>
-<p>二、双亲委派模型的过程：</p>
-<p>需要加载A类，先自底向上查看此类是否被加载，如果未被加载，那么依次从启动加载器开始尝试加载此类，未找到抛出异常。（详细可参见classloader源代码），java中常规的加载流程如上。</p>
-<p>我们来看一个简单的例子：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">JVMClassLoader</span> </span>&#123;</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</div><div class="line">		<span class="comment">// TODO Auto-generated method stub</span></div><div class="line">		JVMClassLoader hello = <span class="keyword">new</span> JVMClassLoader();</div><div class="line">		Class helloClass = hello.getClass();</div><div class="line">		System.out.println(<span class="string">"ClassLoader str: "</span> + <span class="string">""</span>.getClass().getClassLoader());</div><div class="line">		System.out.println(<span class="string">"ClassLoader a  : "</span> + helloClass.getClassLoader());</div><div class="line">		System.out.println(<span class="string">"ClassLoader-ap : "</span> + helloClass.getClassLoader().getParent());</div><div class="line">		System.out.println(<span class="string">"ClassLoader-app: "</span> + helloClass.getClassLoader().getParent().getParent());</div><div class="line">	&#125;</div><div class="line">	<span class="comment">/*</span></div><div class="line">	 * result: </div><div class="line">	 * ClassLoader str: null </div><div class="line">	 * ClassLoader a  : sun.misc.Launcher$AppClassLoader@62f72617 </div><div class="line">	 * ClassLoader-ap : sun.misc.Launcher$ExtClassLoader@4fe5e2c3 </div><div class="line">	 * ClassLoader-app: null</div><div class="line">	 */</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>首先string对象类的加载器为null（即启动加载bootstrap加载器,无法去使用）str类应该属于rt.jar库中对象</p>
-<p>自定义类JVMClassLoader 类它是由AppClassLoader加载，而AppClassLoader是由ExtClassLoader加载，ExtclassLoader由bootstrap加载器加载。</p>
-<p>可以做个这样的测试把编译好的文件打包成jar放置到lib/ext/目录下 那么输出其加载器应该是ExtClassLoader</p>
-<p>推荐：</p>
-<p><code>java -verbose:class 完整类名</code>    类加载器跟踪,尽可能多的输出加载信息</p>
-<h3 id="引申问题"><a href="#引申问题" class="headerlink" title="引申问题"></a>引申问题</h3><p>tomcat的web app项目的类加载顺序，常用的库放置路径，关键路径：tomcat/lib  和WEB-INF/lib 。想一想 一个tomcat实例下面可以多个app，不同app使用不同版本的jar库，那么怎样的加载优先级可以保证。</p>
-<h3 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h3><p><a href="http://www.cnblogs.com/ChrisWang/archive/2009/11/17/Inside-JVM-4-ClassLoader-Knowledge-Sharing.html" target="_blank" rel="external">http://www.cnblogs.com/ChrisWang/archive/2009/11/17/Inside-JVM-4-ClassLoader-Knowledge-Sharing.html</a></p>
-<hr>
-<p><strong>版权声明：本文为博主原创文章，未经允许不得转载。</strong></p>
-
+<p>先抛出个常见的问题 ClassNotFoundException 常见于缺少的加载类文件或相关库文件或者重复加载等。<br></p>
+        
+          <a class="article-more-a" href="/2013/08/20/classloader/#more">more >></a>
+        
       
 
       
@@ -1160,10 +1071,6 @@ var _hmt = _hmt || [];
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">设计模式</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">about</a>
               </li>
              
@@ -1172,15 +1079,19 @@ var _hmt = _hmt || [];
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">设计模式</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">java</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">JVM</a>
+                <a href="javascript:void(0)" class="js-tag color1">collection</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">collection</a>
+                <a href="javascript:void(0)" class="js-tag color4">JVM</a>
               </li>
              
               <li class="article-tag-list-item">

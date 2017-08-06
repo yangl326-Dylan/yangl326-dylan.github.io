@@ -8,17 +8,17 @@
   <link rel="dns-prefetch" href="http://www.dylan326.com">
   <title>适配器模式概念简析 | Dylan&#39;s ...</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="适配器模式的定义：将一个接口转化为另一个需要的接口。注接口为广义接口。 例如： 我们有一个书籍的接口，其包含两个方法：获取作者，获取目录。 123456789public interface Book &amp;#123;    /**     * 书籍目录     */    public void getContents();    public void getAuthor();&amp;#125; 还有一">
+  <meta name="description" content="适配器模式的定义：将一个接口转化为另一个需要的接口。注接口为广义接口。 例如： 我们有一个书籍的接口，其包含两个方法：获取作者，获取目录。">
 <meta name="keywords" content="设计模式">
 <meta property="og:type" content="article">
 <meta property="og:title" content="适配器模式概念简析">
 <meta property="og:url" content="http://www.dylan326.com/2013/10/06/adaptor/index.html">
 <meta property="og:site_name" content="Dylan&#39;s ...">
-<meta property="og:description" content="适配器模式的定义：将一个接口转化为另一个需要的接口。注接口为广义接口。 例如： 我们有一个书籍的接口，其包含两个方法：获取作者，获取目录。 123456789public interface Book &amp;#123;    /**     * 书籍目录     */    public void getContents();    public void getAuthor();&amp;#125; 还有一">
-<meta property="og:updated_time" content="2017-06-01T16:38:12.000Z">
+<meta property="og:description" content="适配器模式的定义：将一个接口转化为另一个需要的接口。注接口为广义接口。 例如： 我们有一个书籍的接口，其包含两个方法：获取作者，获取目录。">
+<meta property="og:updated_time" content="2017-08-06T15:02:56.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="适配器模式概念简析">
-<meta name="twitter:description" content="适配器模式的定义：将一个接口转化为另一个需要的接口。注接口为广义接口。 例如： 我们有一个书籍的接口，其包含两个方法：获取作者，获取目录。 123456789public interface Book &amp;#123;    /**     * 书籍目录     */    public void getContents();    public void getAuthor();&amp;#125; 还有一">
+<meta name="twitter:description" content="适配器模式的定义：将一个接口转化为另一个需要的接口。注接口为广义接口。 例如： 我们有一个书籍的接口，其包含两个方法：获取作者，获取目录。">
   
   
     <link rel="icon" href="/favicon.ico">
@@ -196,7 +196,7 @@ ga('send', 'pageview');
     <div class="article-entry" itemprop="articleBody">
       
         <p>适配器模式的定义：将一个接口转化为另一个需要的接口。注接口为广义接口。</p>
-<p>例如： 我们有一个书籍的接口，其包含两个方法：获取作者，获取目录。</p>
+<p>例如： 我们有一个书籍的接口，其包含两个方法：获取作者，获取目录。<br><a id="more"></a></p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">Book</span> </span>&#123;</div><div class="line">    <span class="comment">/**</span></div><div class="line">     * 书籍目录</div><div class="line">     */</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">getContents</span><span class="params">()</span></span>;</div><div class="line"></div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">getAuthor</span><span class="params">()</span></span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <p>还有一个字典接口，也包含两个方法，获取作者，获取单词索引列表。</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">Dictionary</span> </span>&#123;</div><div class="line">    <span class="comment">/**</span></div><div class="line">     * 字典没有目录 只有列表</div><div class="line">     */</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">getItems</span><span class="params">()</span></span>;</div><div class="line"></div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">getAuthor</span><span class="params">()</span></span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
@@ -457,10 +457,6 @@ var _hmt = _hmt || [];
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">设计模式</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">about</a>
               </li>
              
@@ -469,15 +465,19 @@ var _hmt = _hmt || [];
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">设计模式</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">java</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">JVM</a>
+                <a href="javascript:void(0)" class="js-tag color1">collection</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">collection</a>
+                <a href="javascript:void(0)" class="js-tag color4">JVM</a>
               </li>
              
               <li class="article-tag-list-item">

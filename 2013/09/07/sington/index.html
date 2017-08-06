@@ -15,7 +15,7 @@
 <meta property="og:url" content="http://www.dylan326.com/2013/09/07/sington/index.html">
 <meta property="og:site_name" content="Dylan&#39;s ...">
 <meta property="og:description" content="含义什么叫单例模式或单件模式，由名字可知存在一个对象，我们可以重复使用这个对象。那么如何实现整个系统中存在一个对象，如何保证一个对象只被实例化一次。实际上约定一个全局变量可以，通过静态方法或者静态类的变量和一定限定修饰可以实现。实际中我们会遇到很多需要的场景，如果一个对象的初始化比较耗资源时间较长，并且可重复利用，那么就需要单例模式去实现。如：线程池、缓存、日志对象等，只需要一个对象就行了。 创建">
-<meta property="og:updated_time" content="2017-06-01T16:38:16.000Z">
+<meta property="og:updated_time" content="2017-08-06T15:03:55.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="单例模式简析">
 <meta name="twitter:description" content="含义什么叫单例模式或单件模式，由名字可知存在一个对象，我们可以重复使用这个对象。那么如何实现整个系统中存在一个对象，如何保证一个对象只被实例化一次。实际上约定一个全局变量可以，通过静态方法或者静态类的变量和一定限定修饰可以实现。实际中我们会遇到很多需要的场景，如果一个对象的初始化比较耗资源时间较长，并且可重复利用，那么就需要单例模式去实现。如：线程池、缓存、日志对象等，只需要一个对象就行了。 创建">
@@ -197,9 +197,8 @@ ga('send', 'pageview');
       
         <h3 id="含义"><a href="#含义" class="headerlink" title="含义"></a>含义</h3><p>什么叫单例模式或单件模式，由名字可知存在一个对象，我们可以重复使用这个对象。那么如何实现整个系统中存在一个对象，如何保证一个对象只被实例化一次。实际上约定一个全局变量可以，通过静态方法或者静态类的变量和一定限定修饰可以实现。实际中我们会遇到很多需要的场景，如果一个对象的初始化比较耗资源时间较长，并且可重复利用，那么就需要单例模式去实现。如：线程池、缓存、日志对象等，只需要一个对象就行了。</p>
 <p>创建对象 new一个实例，那么如何去保证这个对象实例只会存在一个。java对象缺省有无参构造器（构造方法），私有化这个构造方法，来看看几种实现方法。</p>
-<h3 id="常见三种单例的实现方法"><a href="#常见三种单例的实现方法" class="headerlink" title="常见三种单例的实现方法"></a>常见三种单例的实现方法</h3><p>首先想到的私有化构造方法，提供一个静态方法返回同一个对象：</p>
-<p></p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SingleTon</span> </span>&#123;</div><div class="line">    </div><div class="line">    <span class="keyword">private</span> <span class="keyword">static</span> SingleTon singleTon=<span class="keyword">null</span>;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">private</span> <span class="title">SingleTon</span><span class="params">()</span></span>&#123;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> SingleTon <span class="title">getInstance</span><span class="params">()</span></span>&#123;</div><div class="line">        <span class="keyword">if</span>(singleTon == <span class="keyword">null</span>)&#123;</div><div class="line">            singleTon = <span class="keyword">new</span> SingleTon();    </div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> singleTon;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="常见三种单例的实现方法"><a href="#常见三种单例的实现方法" class="headerlink" title="常见三种单例的实现方法"></a>常见三种单例的实现方法</h3><p>首先想到的私有化构造方法，提供一个静态方法返回同一个对象：<br><a id="more"></a><br></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SingleTon</span> </span>&#123;</div><div class="line"></div><div class="line">    <span class="keyword">private</span> <span class="keyword">static</span> SingleTon singleTon=<span class="keyword">null</span>;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">private</span> <span class="title">SingleTon</span><span class="params">()</span></span>&#123;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> SingleTon <span class="title">getInstance</span><span class="params">()</span></span>&#123;</div><div class="line">        <span class="keyword">if</span>(singleTon == <span class="keyword">null</span>)&#123;</div><div class="line">            singleTon = <span class="keyword">new</span> SingleTon();    </div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> singleTon;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <p>分析：私有化其无参构造器后无法在这个类外去实例化这个对象，内部可以实例化这个对象，那么需要提供一个方法返回这个对象，使用静态方法，确保在类被加载的时候初始化到内存中，一个判断条件去保证这个对象是同一个对象。</p>
 <p>上面这段代码是延迟加载的，在调用getInstance方法的时候对象才被实例化，如果类被加载的时候初始化那么只需要将静态变量赋值：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SingleTon</span> </span>&#123;</div><div class="line"></div><div class="line">    <span class="keyword">private</span> <span class="keyword">static</span> SingleTon singleTon=<span class="keyword">new</span> SingleTon();</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">private</span> <span class="title">SingleTon</span><span class="params">()</span></span>&#123;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> SingleTon <span class="title">getInstance</span><span class="params">()</span></span>&#123;</div><div class="line">        <span class="keyword">return</span> singleTon;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
@@ -463,10 +462,6 @@ var _hmt = _hmt || [];
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">设计模式</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">about</a>
               </li>
              
@@ -475,15 +470,19 @@ var _hmt = _hmt || [];
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">设计模式</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">java</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">JVM</a>
+                <a href="javascript:void(0)" class="js-tag color1">collection</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">collection</a>
+                <a href="javascript:void(0)" class="js-tag color4">JVM</a>
               </li>
              
               <li class="article-tag-list-item">

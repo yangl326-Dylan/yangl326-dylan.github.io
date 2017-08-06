@@ -8,18 +8,18 @@
   <link rel="dns-prefetch" href="http://www.dylan326.com">
   <title>JVM工作原理理解和分析--类加载 | Dylan&#39;s ...</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="JVM (Java Virtual Machine) 即java虚拟机。一个java文件对应一个类，JVM会把需要的类装载到内存，那么class loader的作用就出来了。 先抛出个常见的问题 ClassNotFoundException 常见于缺少的加载类文件或相关库文件或者重复加载等。 JVM的类加载机制为委托加载（双亲委派模型）我们看一下classloader的流程图（引自参考）  一、c">
+  <meta name="description" content="JVM (Java Virtual Machine) 即java虚拟机。一个java文件对应一个类，JVM会把需要的类装载到内存，那么class loader的作用就出来了。 先抛出个常见的问题 ClassNotFoundException 常见于缺少的加载类文件或相关库文件或者重复加载等。">
 <meta name="keywords" content="java">
 <meta property="og:type" content="article">
 <meta property="og:title" content="JVM工作原理理解和分析--类加载">
 <meta property="og:url" content="http://www.dylan326.com/2013/08/20/classloader/index.html">
 <meta property="og:site_name" content="Dylan&#39;s ...">
-<meta property="og:description" content="JVM (Java Virtual Machine) 即java虚拟机。一个java文件对应一个类，JVM会把需要的类装载到内存，那么class loader的作用就出来了。 先抛出个常见的问题 ClassNotFoundException 常见于缺少的加载类文件或相关库文件或者重复加载等。 JVM的类加载机制为委托加载（双亲委派模型）我们看一下classloader的流程图（引自参考）  一、c">
+<meta property="og:description" content="JVM (Java Virtual Machine) 即java虚拟机。一个java文件对应一个类，JVM会把需要的类装载到内存，那么class loader的作用就出来了。 先抛出个常见的问题 ClassNotFoundException 常见于缺少的加载类文件或相关库文件或者重复加载等。">
 <meta property="og:image" content="http://img.blog.csdn.net/20130820132524921?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQveWFuZ2wzMjY=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
-<meta property="og:updated_time" content="2017-06-01T16:29:32.000Z">
+<meta property="og:updated_time" content="2017-08-06T15:02:52.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="JVM工作原理理解和分析--类加载">
-<meta name="twitter:description" content="JVM (Java Virtual Machine) 即java虚拟机。一个java文件对应一个类，JVM会把需要的类装载到内存，那么class loader的作用就出来了。 先抛出个常见的问题 ClassNotFoundException 常见于缺少的加载类文件或相关库文件或者重复加载等。 JVM的类加载机制为委托加载（双亲委派模型）我们看一下classloader的流程图（引自参考）  一、c">
+<meta name="twitter:description" content="JVM (Java Virtual Machine) 即java虚拟机。一个java文件对应一个类，JVM会把需要的类装载到内存，那么class loader的作用就出来了。 先抛出个常见的问题 ClassNotFoundException 常见于缺少的加载类文件或相关库文件或者重复加载等。">
 <meta name="twitter:image" content="http://img.blog.csdn.net/20130820132524921?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQveWFuZ2wzMjY=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
   
   
@@ -198,14 +198,13 @@ ga('send', 'pageview');
     <div class="article-entry" itemprop="articleBody">
       
         <p>JVM (Java Virtual Machine) 即java虚拟机。一个java文件对应一个类，JVM会把需要的类装载到内存，那么class loader的作用就出来了。</p>
-<p>先抛出个常见的问题 ClassNotFoundException 常见于缺少的加载类文件或相关库文件或者重复加载等。</p>
-<p>JVM的类加载机制为委托加载（双亲委派模型）我们看一下classloader的流程图（引自参考）</p>
+<p>先抛出个常见的问题 ClassNotFoundException 常见于缺少的加载类文件或相关库文件或者重复加载等。<br><a id="more"></a><br>JVM的类加载机制为委托加载（双亲委派模型）我们看一下classloader的流程图（引自参考）</p>
 <p><img src="http://img.blog.csdn.net/20130820132524921?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQveWFuZ2wzMjY=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="img"></p>
 <p>一、classloader之间的父子关系(非继承关系)和范围。<br>(1)BootStrap 是最顶层的类加载器，由C++编写,也称之为启动类加载器,主要用来读取Java的核心类库%java_home%/jre/lib/rt.jar 或指定能被JVM识别的文件<br>(2)Extension ClassLoader,  java 编写，用来读取Java的扩展类库，读取%java_home%/jre/lib/ext/*.jar 或者指定路径的文件<br>(3)App ClassLoader， java编写，是用来读取CLASSPATH指定的所有jar包或目录的类文件：引入的文件<br>(4)Custom ClassLoader是用户自定义编写classloader子类的用来加载指定类文件。</p>
 <p>二、双亲委派模型的过程：</p>
 <p>需要加载A类，先自底向上查看此类是否被加载，如果未被加载，那么依次从启动加载器开始尝试加载此类，未找到抛出异常。（详细可参见classloader源代码），java中常规的加载流程如上。</p>
 <p>我们来看一个简单的例子：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">JVMClassLoader</span> </span>&#123;</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</div><div class="line">		<span class="comment">// TODO Auto-generated method stub</span></div><div class="line">		JVMClassLoader hello = <span class="keyword">new</span> JVMClassLoader();</div><div class="line">		Class helloClass = hello.getClass();</div><div class="line">		System.out.println(<span class="string">"ClassLoader str: "</span> + <span class="string">""</span>.getClass().getClassLoader());</div><div class="line">		System.out.println(<span class="string">"ClassLoader a  : "</span> + helloClass.getClassLoader());</div><div class="line">		System.out.println(<span class="string">"ClassLoader-ap : "</span> + helloClass.getClassLoader().getParent());</div><div class="line">		System.out.println(<span class="string">"ClassLoader-app: "</span> + helloClass.getClassLoader().getParent().getParent());</div><div class="line">	&#125;</div><div class="line">	<span class="comment">/*</span></div><div class="line">	 * result: </div><div class="line">	 * ClassLoader str: null </div><div class="line">	 * ClassLoader a  : sun.misc.Launcher$AppClassLoader@62f72617 </div><div class="line">	 * ClassLoader-ap : sun.misc.Launcher$ExtClassLoader@4fe5e2c3 </div><div class="line">	 * ClassLoader-app: null</div><div class="line">	 */</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">JVMClassLoader</span> </span>&#123;</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</div><div class="line">		<span class="comment">// TODO Auto-generated method stub</span></div><div class="line">		JVMClassLoader hello = <span class="keyword">new</span> JVMClassLoader();</div><div class="line">		Class helloClass = hello.getClass();</div><div class="line">		System.out.println(<span class="string">"ClassLoader str: "</span> + <span class="string">""</span>.getClass().getClassLoader());</div><div class="line">		System.out.println(<span class="string">"ClassLoader a  : "</span> + helloClass.getClassLoader());</div><div class="line">		System.out.println(<span class="string">"ClassLoader-ap : "</span> + helloClass.getClassLoader().getParent());</div><div class="line">		System.out.println(<span class="string">"ClassLoader-app: "</span> + helloClass.getClassLoader().getParent().getParent());</div><div class="line">	&#125;</div><div class="line">	<span class="comment">/*</span></div><div class="line">	 * result:</div><div class="line">	 * ClassLoader str: null</div><div class="line">	 * ClassLoader a  : sun.misc.Launcher$AppClassLoader@62f72617</div><div class="line">	 * ClassLoader-ap : sun.misc.Launcher$ExtClassLoader@4fe5e2c3</div><div class="line">	 * ClassLoader-app: null</div><div class="line">	 */</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <p>首先string对象类的加载器为null（即启动加载bootstrap加载器,无法去使用）str类应该属于rt.jar库中对象</p>
 <p>自定义类JVMClassLoader 类它是由AppClassLoader加载，而AppClassLoader是由ExtClassLoader加载，ExtclassLoader由bootstrap加载器加载。</p>
 <p>可以做个这样的测试把编译好的文件打包成jar放置到lib/ext/目录下 那么输出其加载器应该是ExtClassLoader</p>
@@ -470,10 +469,6 @@ var _hmt = _hmt || [];
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">设计模式</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">about</a>
               </li>
              
@@ -482,15 +477,19 @@ var _hmt = _hmt || [];
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">设计模式</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">java</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">JVM</a>
+                <a href="javascript:void(0)" class="js-tag color1">collection</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">collection</a>
+                <a href="javascript:void(0)" class="js-tag color4">JVM</a>
               </li>
              
               <li class="article-tag-list-item">

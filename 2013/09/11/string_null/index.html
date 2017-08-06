@@ -8,17 +8,17 @@
   <link rel="dns-prefetch" href="http://www.dylan326.com">
   <title>String.valueOf()能否传入null | Dylan&#39;s ...</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="最近发现一个有意思的问题，可以看看这两个的输出结果 1String.valueOf(map.get(&amp;quot;key&amp;quot;)) //① 1String.valueOf(null)          //② 会发现map中①返回正常 ”null“字符串，而②抛出NLP异常 跳转到String类的valueOf发现使用的是这个重载的方法： 123public static String val">
+  <meta name="description" content="最近发现一个有意思的问题，可以看看这两个的输出结果 1String.valueOf(map.get(&amp;quot;key&amp;quot;)) //① 1String.valueOf(null)          //②">
 <meta name="keywords" content="java">
 <meta property="og:type" content="article">
 <meta property="og:title" content="String.valueOf()能否传入null">
 <meta property="og:url" content="http://www.dylan326.com/2013/09/11/string_null/index.html">
 <meta property="og:site_name" content="Dylan&#39;s ...">
-<meta property="og:description" content="最近发现一个有意思的问题，可以看看这两个的输出结果 1String.valueOf(map.get(&amp;quot;key&amp;quot;)) //① 1String.valueOf(null)          //② 会发现map中①返回正常 ”null“字符串，而②抛出NLP异常 跳转到String类的valueOf发现使用的是这个重载的方法： 123public static String val">
-<meta property="og:updated_time" content="2017-06-01T16:37:59.000Z">
+<meta property="og:description" content="最近发现一个有意思的问题，可以看看这两个的输出结果 1String.valueOf(map.get(&amp;quot;key&amp;quot;)) //① 1String.valueOf(null)          //②">
+<meta property="og:updated_time" content="2017-08-06T15:03:54.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="String.valueOf()能否传入null">
-<meta name="twitter:description" content="最近发现一个有意思的问题，可以看看这两个的输出结果 1String.valueOf(map.get(&amp;quot;key&amp;quot;)) //① 1String.valueOf(null)          //② 会发现map中①返回正常 ”null“字符串，而②抛出NLP异常 跳转到String类的valueOf发现使用的是这个重载的方法： 123public static String val">
+<meta name="twitter:description" content="最近发现一个有意思的问题，可以看看这两个的输出结果 1String.valueOf(map.get(&amp;quot;key&amp;quot;)) //① 1String.valueOf(null)          //②">
   
   
     <link rel="icon" href="/favicon.ico">
@@ -198,6 +198,7 @@ ga('send', 'pageview');
         <p>最近发现一个有意思的问题，可以看看这两个的输出结果</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">String.valueOf(map.get(&quot;key&quot;)) //①</div></pre></td></tr></table></figure>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">String.valueOf(null)          //②</div></pre></td></tr></table></figure>
+<a id="more"></a>
 <p>会发现map中①返回正常 ”null“字符串，而②抛出NLP异常</p>
 <p>跳转到String类的valueOf发现使用的是这个重载的方法：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> String <span class="title">valueOf</span><span class="params">(<span class="keyword">char</span> data[])</span> </span>&#123;</div><div class="line">    <span class="keyword">return</span> <span class="keyword">new</span> String(data);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
@@ -465,10 +466,6 @@ var _hmt = _hmt || [];
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">设计模式</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">about</a>
               </li>
              
@@ -477,15 +474,19 @@ var _hmt = _hmt || [];
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">设计模式</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">java</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">JVM</a>
+                <a href="javascript:void(0)" class="js-tag color1">collection</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">collection</a>
+                <a href="javascript:void(0)" class="js-tag color4">JVM</a>
               </li>
              
               <li class="article-tag-list-item">

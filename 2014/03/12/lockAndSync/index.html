@@ -8,17 +8,17 @@
   <link rel="dns-prefetch" href="http://www.dylan326.com">
   <title>JAVA 内部锁与同步[Intrinsic Locks and Synchronization] | Dylan&#39;s ...</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="JAVA 内部锁与同步[Intrinsic Locks and Synchronization] 同步是建立在被称之为内部锁或监控锁的内部实体（按照API标准指的这个实体称之为监控）。内在锁在同步的两个方面发挥作用：一个对象状态的专属使用权和建立可见性所需要的happens-before关系。 ​      每个对象有一个与之相关联的内部锁。一般来说，一个线程需要持久的专有的访问一个对象的字段那么">
+  <meta name="description" content="JAVA 内部锁与同步[Intrinsic Locks and Synchronization] 同步是建立在被称之为内部锁或监控锁的内部实体（按照API标准指的这个实体称之为监控）。内在锁在同步的两个方面发挥作用：一个对象状态的专属使用权和建立可见性所需要的happens-before关系。">
 <meta name="keywords" content="java,译文">
 <meta property="og:type" content="article">
 <meta property="og:title" content="JAVA 内部锁与同步[Intrinsic Locks and Synchronization]">
 <meta property="og:url" content="http://www.dylan326.com/2014/03/12/lockAndSync/index.html">
 <meta property="og:site_name" content="Dylan&#39;s ...">
-<meta property="og:description" content="JAVA 内部锁与同步[Intrinsic Locks and Synchronization] 同步是建立在被称之为内部锁或监控锁的内部实体（按照API标准指的这个实体称之为监控）。内在锁在同步的两个方面发挥作用：一个对象状态的专属使用权和建立可见性所需要的happens-before关系。 ​      每个对象有一个与之相关联的内部锁。一般来说，一个线程需要持久的专有的访问一个对象的字段那么">
-<meta property="og:updated_time" content="2017-06-01T16:29:31.000Z">
+<meta property="og:description" content="JAVA 内部锁与同步[Intrinsic Locks and Synchronization] 同步是建立在被称之为内部锁或监控锁的内部实体（按照API标准指的这个实体称之为监控）。内在锁在同步的两个方面发挥作用：一个对象状态的专属使用权和建立可见性所需要的happens-before关系。">
+<meta property="og:updated_time" content="2017-08-06T15:03:23.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="JAVA 内部锁与同步[Intrinsic Locks and Synchronization]">
-<meta name="twitter:description" content="JAVA 内部锁与同步[Intrinsic Locks and Synchronization] 同步是建立在被称之为内部锁或监控锁的内部实体（按照API标准指的这个实体称之为监控）。内在锁在同步的两个方面发挥作用：一个对象状态的专属使用权和建立可见性所需要的happens-before关系。 ​      每个对象有一个与之相关联的内部锁。一般来说，一个线程需要持久的专有的访问一个对象的字段那么">
+<meta name="twitter:description" content="JAVA 内部锁与同步[Intrinsic Locks and Synchronization] 同步是建立在被称之为内部锁或监控锁的内部实体（按照API标准指的这个实体称之为监控）。内在锁在同步的两个方面发挥作用：一个对象状态的专属使用权和建立可见性所需要的happens-before关系。">
   
   
     <link rel="icon" href="/favicon.ico">
@@ -196,8 +196,7 @@ ga('send', 'pageview');
     <div class="article-entry" itemprop="articleBody">
       
         <p>JAVA 内部锁与同步[Intrinsic Locks and Synchronization]</p>
-<p>同步是建立在被称之为内部锁或监控锁的内部实体（按照API标准指的这个实体称之为监控）。内在锁在同步的两个方面发挥作用：一个对象状态的专属使用权和建立可见性所需要的happens-before关系。</p>
-<p>​      每个对象有一个与之相关联的内部锁。一般来说，一个线程需要持久的专有的访问一个对象的字段那么它必须先获取该对象的内部锁，当使用结束的时候释放这个锁。此时这个线程在获取内部锁后和释放这个内部锁之前都称之为拥有这个对象的内部锁。一旦这个线程拥有这个内部锁，其他的线程就不能获取同样的锁，获取的时候被阻塞住。</p>
+<p>同步是建立在被称之为内部锁或监控锁的内部实体（按照API标准指的这个实体称之为监控）。内在锁在同步的两个方面发挥作用：一个对象状态的专属使用权和建立可见性所需要的happens-before关系。<br><a id="more"></a><br>​      每个对象有一个与之相关联的内部锁。一般来说，一个线程需要持久的专有的访问一个对象的字段那么它必须先获取该对象的内部锁，当使用结束的时候释放这个锁。此时这个线程在获取内部锁后和释放这个内部锁之前都称之为拥有这个对象的内部锁。一旦这个线程拥有这个内部锁，其他的线程就不能获取同样的锁，获取的时候被阻塞住。</p>
 <p>​      当这个线程释放了这个内部锁，一个happens-before关系将建立在该动作和后续获取相同锁的操作之间。</p>
 <p>同步方法中的锁</p>
 <p>​    当一个线程调用一个同步方法事后，它会自动的获取这个方法对象的内部锁，直到方法返回才释放，即使未捕获的异常引起的返回也会触发这个锁的释放。</p>
@@ -470,10 +469,6 @@ var _hmt = _hmt || [];
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">设计模式</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">about</a>
               </li>
              
@@ -482,15 +477,19 @@ var _hmt = _hmt || [];
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">设计模式</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">java</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">JVM</a>
+                <a href="javascript:void(0)" class="js-tag color1">collection</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">collection</a>
+                <a href="javascript:void(0)" class="js-tag color4">JVM</a>
               </li>
              
               <li class="article-tag-list-item">
