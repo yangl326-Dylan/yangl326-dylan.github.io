@@ -6,17 +6,19 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://www.dylan326.com">
-  <title>Archives: 2014/3 | Dylan&#39;s ...</title>
+  <title>A02-快速排序 | Dylan&#39;s ...</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="be honest to yourself and then the world.">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Dylan&#39;s ...">
-<meta property="og:url" content="http://www.dylan326.com/archives/2014/03/index.html">
+  <meta name="description" content="特性快速排序特点  非稳定排序 分治模式：那么就存在拆分和组合">
+<meta name="keywords" content="脑子秀逗,排序">
+<meta property="og:type" content="article">
+<meta property="og:title" content="A02-快速排序">
+<meta property="og:url" content="http://www.dylan326.com/2017/08/12/A02_kuaisupaixu/index.html">
 <meta property="og:site_name" content="Dylan&#39;s ...">
-<meta property="og:description" content="be honest to yourself and then the world.">
+<meta property="og:description" content="特性快速排序特点  非稳定排序 分治模式：那么就存在拆分和组合">
+<meta property="og:updated_time" content="2017-08-13T08:39:06.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Dylan&#39;s ...">
-<meta name="twitter:description" content="be honest to yourself and then the world.">
+<meta name="twitter:title" content="A02-快速排序">
+<meta name="twitter:description" content="特性快速排序特点  非稳定排序 分治模式：那么就存在拆分和组合">
   
   
     <link rel="icon" href="/favicon.ico">
@@ -173,79 +175,165 @@ ga('send', 'pageview');
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-A02_kuaisupaixu" class="article article-type-post " itemscope itemprop="blogPost">
+<div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2014" class="archive-year">2014</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2014/03/12/lockAndSync/" class="archive-article-date">
-  	<time datetime="2014-03-12T13:19:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2014-03-12</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2014/03/12/lockAndSync/">JAVA 内部锁与同步[Intrinsic Locks and Synchronization]</a>
+    <h1 class="article-title" itemprop="name">
+      A02-快速排序
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
+        
+        <a href="/2017/08/12/A02_kuaisupaixu/" class="archive-article-date">
+  	<time datetime="2017-08-12T13:22:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-08-12</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="特性"><a href="#特性" class="headerlink" title="特性"></a>特性</h2><p>快速排序特点</p>
+<ul>
+<li>非稳定排序</li>
+<li>分治模式：那么就存在拆分和组合</li>
+</ul>
+<a id="more"></a>
+<h2 id="快速排序步骤"><a href="#快速排序步骤" class="headerlink" title="快速排序步骤"></a>快速排序步骤</h2><ul>
+<li>分治思想，那么源数组每层递归逻辑为：一分为二、对子问题同样方式处理</li>
+<li>选取枢纽元素（枢纽元素的选取决定有多重快速排序的实现方式）</li>
+<li>找到枢纽元素在数组中的位置</li>
+<li>对枢纽元素左边，右边做类似处理</li>
+<li>递归退出纪委已排好序的数据</li>
+</ul>
+<p>代码演示：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line"> * 快速排序， 举例为升序</div><div class="line"> *</div><div class="line"> * <span class="doctag">@param</span> a</div><div class="line"> * <span class="doctag">@param</span> m</div><div class="line"> * <span class="doctag">@param</span> n</div><div class="line"> */</div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">quickSort</span><span class="params">(<span class="keyword">int</span>[] a, <span class="keyword">int</span> m, <span class="keyword">int</span> n)</span> </span>&#123;</div><div class="line">    <span class="keyword">if</span> (m &lt; n) &#123;</div><div class="line">        <span class="keyword">int</span> i = m;</div><div class="line">        <span class="keyword">int</span> j = n;</div><div class="line">        <span class="keyword">int</span> pivot = a[m];  <span class="comment">// 枢纽元素为当前层级的数据第一个元素</span></div><div class="line">        <span class="keyword">while</span> (i &lt; j) &#123;</div><div class="line">            <span class="keyword">while</span> (i &lt; j &amp;&amp; a[j] &gt; pivot) &#123; <span class="comment">// 找到右边第一个小于等于（取决升序还是降序）pivot的位置j，或者i=j</span></div><div class="line">                j--;</div><div class="line">            &#125;</div><div class="line">            <span class="keyword">while</span> (i &lt; j &amp;&amp; a[i] &lt;= pivot) &#123;<span class="comment">// 找到左边第一个大于pivot的位置j，或者i=j。此处=由于选取的m作为枢纽，从m之后开始处理</span></div><div class="line">                i++;</div><div class="line">            &#125;</div><div class="line">            <span class="keyword">if</span> (i &lt; j) &#123; <span class="comment">// i&lt;j 交换ij位置的值，继续按此方法循环找ij位置</span></div><div class="line">                swap(a, i, j);</div><div class="line">            &#125;<span class="keyword">else</span> <span class="keyword">if</span>(i==j)&#123; <span class="comment">// i=j找到了pivot的位置， 此位置的元素不会大于pivot</span></div><div class="line">                swap(a, m, i);</div><div class="line">            &#125;</div><div class="line">        &#125; <span class="comment">// 以上定位到枢纽元素pivot的索引位置i。找到后固定改位置，对i左边和右边的同样方法处理</span></div><div class="line">        quickSort(a, m, i - <span class="number">1</span>);</div><div class="line">        quickSort(a, i + <span class="number">1</span>, n);</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">/**</span></div><div class="line"> * 交换函数</div><div class="line"> *</div><div class="line"> * <span class="doctag">@param</span> a</div><div class="line"> * <span class="doctag">@param</span> i</div><div class="line"> * <span class="doctag">@param</span> j</div><div class="line"> */</div><div class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">swap</span><span class="params">(<span class="keyword">int</span>[] a, <span class="keyword">int</span> i, <span class="keyword">int</span> j)</span> </span>&#123;</div><div class="line">    <span class="keyword">int</span> tmp = a[i];</div><div class="line">    a[i] = a[j];</div><div class="line">    a[j] = tmp;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>代码文件：<a href="https://github.com/yangl326-Dylan/apus/blob/master/src/main/java/com/dylan326/justcode/C7QuickSort.java" target="_blank" rel="external">C7QuickSort.java</a></p>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><ul>
+<li>初始条件</li>
+<li>选取枢纽元素，找到枢纽元素安置的位置</li>
+<li>对枢纽元素的前面部分，后面部分分别进行快速排序</li>
+</ul>
+<hr>
+<p><strong>版权声明：本文为博主原创文章，未经允许不得转载。</strong></p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">java</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">脑子秀逗</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">译文</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">排序</a>
         		</li>
       		
 		</ul>
 	</div>
 
-          
+      
 	<div class="article-category tagcloud">
 		<i class="icon-book icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="/categories/语言/" class="article-tag-list-link color3">语言</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/JDK/" class="article-tag-list-link color4">JDK</a>
+        			<a href="/categories/算法/" class="article-tag-list-link color3">算法</a>
         		</li>
       		
 		</ul>
 	</div>
 
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="http://s.jiathis.com/qrcode.php?url=http://www.dylan326.com/2017/08/12/A02_kuaisupaixu/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
+  
+<nav id="article-nav">
   
   
-    </div></section>
+    <a href="/2017/08/08/20170808/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">花儿一枚</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+
+
+
+  
+  
   
 
-    
+  
+
+  
 
 
           </div>
@@ -271,8 +359,8 @@ ga('send', 'pageview');
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,
