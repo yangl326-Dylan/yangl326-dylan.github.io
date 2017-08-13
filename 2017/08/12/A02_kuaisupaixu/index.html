@@ -15,7 +15,7 @@
 <meta property="og:url" content="http://www.dylan326.com/2017/08/12/A02_kuaisupaixu/index.html">
 <meta property="og:site_name" content="Dylan&#39;s ...">
 <meta property="og:description" content="特性快速排序特点  非稳定排序 分治模式：那么就存在拆分和组合">
-<meta property="og:updated_time" content="2017-08-13T08:39:06.000Z">
+<meta property="og:updated_time" content="2017-08-13T08:45:16.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="A02-快速排序">
 <meta name="twitter:description" content="特性快速排序特点  非稳定排序 分治模式：那么就存在拆分和组合">
@@ -203,10 +203,10 @@ ga('send', 'pageview');
 <a id="more"></a>
 <h2 id="快速排序步骤"><a href="#快速排序步骤" class="headerlink" title="快速排序步骤"></a>快速排序步骤</h2><ul>
 <li>分治思想，那么源数组每层递归逻辑为：一分为二、对子问题同样方式处理</li>
-<li>选取枢纽元素（枢纽元素的选取决定有多重快速排序的实现方式）</li>
-<li>找到枢纽元素在数组中的位置</li>
+<li>选取枢纽元素（枢纽元素的选取决定有多种快速排序的实现方式）</li>
+<li>找到枢纽元素在数组中的位置（此处找位置的方法可以多种）</li>
 <li>对枢纽元素左边，右边做类似处理</li>
-<li>递归退出纪委已排好序的数据</li>
+<li>递归退出，数据已排好序</li>
 </ul>
 <p>代码演示：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line"> * 快速排序， 举例为升序</div><div class="line"> *</div><div class="line"> * <span class="doctag">@param</span> a</div><div class="line"> * <span class="doctag">@param</span> m</div><div class="line"> * <span class="doctag">@param</span> n</div><div class="line"> */</div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">quickSort</span><span class="params">(<span class="keyword">int</span>[] a, <span class="keyword">int</span> m, <span class="keyword">int</span> n)</span> </span>&#123;</div><div class="line">    <span class="keyword">if</span> (m &lt; n) &#123;</div><div class="line">        <span class="keyword">int</span> i = m;</div><div class="line">        <span class="keyword">int</span> j = n;</div><div class="line">        <span class="keyword">int</span> pivot = a[m];  <span class="comment">// 枢纽元素为当前层级的数据第一个元素</span></div><div class="line">        <span class="keyword">while</span> (i &lt; j) &#123;</div><div class="line">            <span class="keyword">while</span> (i &lt; j &amp;&amp; a[j] &gt; pivot) &#123; <span class="comment">// 找到右边第一个小于等于（取决升序还是降序）pivot的位置j，或者i=j</span></div><div class="line">                j--;</div><div class="line">            &#125;</div><div class="line">            <span class="keyword">while</span> (i &lt; j &amp;&amp; a[i] &lt;= pivot) &#123;<span class="comment">// 找到左边第一个大于pivot的位置j，或者i=j。此处=由于选取的m作为枢纽，从m之后开始处理</span></div><div class="line">                i++;</div><div class="line">            &#125;</div><div class="line">            <span class="keyword">if</span> (i &lt; j) &#123; <span class="comment">// i&lt;j 交换ij位置的值，继续按此方法循环找ij位置</span></div><div class="line">                swap(a, i, j);</div><div class="line">            &#125;<span class="keyword">else</span> <span class="keyword">if</span>(i==j)&#123; <span class="comment">// i=j找到了pivot的位置， 此位置的元素不会大于pivot</span></div><div class="line">                swap(a, m, i);</div><div class="line">            &#125;</div><div class="line">        &#125; <span class="comment">// 以上定位到枢纽元素pivot的索引位置i。找到后固定改位置，对i左边和右边的同样方法处理</span></div><div class="line">        quickSort(a, m, i - <span class="number">1</span>);</div><div class="line">        quickSort(a, i + <span class="number">1</span>, n);</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">/**</span></div><div class="line"> * 交换函数</div><div class="line"> *</div><div class="line"> * <span class="doctag">@param</span> a</div><div class="line"> * <span class="doctag">@param</span> i</div><div class="line"> * <span class="doctag">@param</span> j</div><div class="line"> */</div><div class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">swap</span><span class="params">(<span class="keyword">int</span>[] a, <span class="keyword">int</span> i, <span class="keyword">int</span> j)</span> </span>&#123;</div><div class="line">    <span class="keyword">int</span> tmp = a[i];</div><div class="line">    a[i] = a[j];</div><div class="line">    a[j] = tmp;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
 <p>代码文件：<a href="https://github.com/yangl326-Dylan/apus/blob/master/src/main/java/com/dylan326/justcode/C7QuickSort.java" target="_blank" rel="external">C7QuickSort.java</a></p>
@@ -471,18 +471,6 @@ var _hmt = _hmt || [];
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">java</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">JVM</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">collection</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">about</a>
               </li>
              
@@ -495,15 +483,23 @@ var _hmt = _hmt || [];
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">java</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">JVM</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">collection</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">heap memory</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">final</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">全排列</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -519,15 +515,19 @@ var _hmt = _hmt || [];
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">译文</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">全排列</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">分布式</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">一致性</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">译文</a>
               </li>
              
               <li class="article-tag-list-item">
