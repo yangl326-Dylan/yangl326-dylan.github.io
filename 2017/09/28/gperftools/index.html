@@ -15,7 +15,7 @@
 <meta property="og:url" content="http://www.dylan326.com/2017/09/28/gperftools/index.html">
 <meta property="og:site_name" content="Dylan&#39;s ...">
 <meta property="og:description" content="google-perftoolsperftools wiki地址 ：https://github.com/gperftools/gperftools/wiki安装perftools…工具主要作用分析程序：heap、cpu等，常用于c/c++程序分析使用文档如下：https://gperftools.github.io/gperftools/heapprofile.htmlhttps://gperf">
-<meta property="og:updated_time" content="2017-09-28T12:47:49.000Z">
+<meta property="og:updated_time" content="2017-09-28T13:42:48.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="gperftools做堆外内存分析（案例JVM Inflater 内存泄漏分析）">
 <meta name="twitter:description" content="google-perftoolsperftools wiki地址 ：https://github.com/gperftools/gperftools/wiki安装perftools…工具主要作用分析程序：heap、cpu等，常用于c/c++程序分析使用文档如下：https://gperftools.github.io/gperftools/heapprofile.htmlhttps://gperf">
@@ -208,9 +208,8 @@ ga('send', 'pageview');
 <h2 id="JVM-进程使用perftools-做分析"><a href="#JVM-进程使用perftools-做分析" class="headerlink" title="JVM 进程使用perftools 做分析"></a>JVM 进程使用perftools 做分析</h2><p>案例中发现的问题jetty 服务在某版本的JDK（jdk7u80~jdk8u045等 应该7u80后的版本在本文章编写时候都有）出现的内存泄漏问题分析和查找</p>
 <p>1、安装perftools 注意配置安装目录， 找到对应的文件路径<br>2、启动java程序时候携带环境变量（可以参照 perftools wiki帮助 写的较为明确， 文档主要针对正对c/c++程序， Hotspot主要是c++写的）<br>export LD_PRELOAD=/opt/perftools/lib/libtcmalloc.so  # 安装后的库文件路径<br>export HEAPPROFILE=/opt/mybin.hprof  #heap分析文件路径和文件<br>特别注意目录和文件权限是否是进程用户可使用的<br>3、运行后启动程序后<br>4、pprof执行程序（注意路径），分析这些heap文件 pprof –help查看使用方式<br>./perftools/bin/pprof –text *.heap   以文本方式分析heap文件， 结果说明见wiki文档</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">Total: 55838.9 MB</div><div class="line"> 41320.8  74.0%  74.0%  41320.8  74.0% updatewindow</div><div class="line">  9018.8  16.2%  90.2%   9018.8  16.2% inflateInit2_</div><div class="line">  1559.4   2.8%  92.9%   1559.4   2.8% os::malloc@907260</div><div class="line">  1556.4   2.8%  95.7%   1556.4   2.8% init</div><div class="line">   587.5   1.1%  96.8%    587.5   1.1% 00007fb480508a66</div><div class="line">   551.4   1.0%  97.8%    551.4   1.0% 00007f2b1d6f4a66</div><div class="line">   451.5   0.8%  98.6%    451.5   0.8% 00007fb48177e8e9</div><div class="line">   183.1   0.3%  98.9%    183.1   0.3% 00007fb46c1b6c91</div><div class="line">   128.2   0.2%  99.1%    128.2   0.2% 00007fb480508245</div><div class="line">   120.4   0.2%  99.4%    120.4   0.2% 00007f2b1d6f4245</div><div class="line">   111.0   0.2%  99.6%   9129.7  16.4% Java_java_util_zip_Inflater_init</div><div class="line">   102.8   0.2%  99.7%    102.8   0.2% 00007f2b1e96a8e9</div><div class="line">    74.2   0.1%  99.9%     74.2   0.1% readCEN</div><div class="line">    45.8   0.1% 100.0%     45.8   0.1% 00007f2b09392c91</div><div class="line">     7.5   0.0% 100.0%      7.5   0.0% 00007fb4805025b6</div><div class="line">     4.5   0.0% 100.0%      4.5   0.0% 00007fb48192162d</div></pre></td></tr></table></figure>
-<p>分析主要在updatewindow Java_java_util_zip_Inflater_init。 用过pmap分析过 主要都是64m内存块较多<br>对于上述问题表现的jdk1.7.0_76不会出现<br>jdk1.7.0_80,jdk1.8.0_45以上明显出现。</p>
+<p>对于上述问题表现的jdk1.7.0_76不会出现<br>jdk1.7.0_80,jdk1.8.0_45以上明显出现。<br>用过pmap分析过 主要都是64m内存块较多， 查看过数据都是jar load相关的数据当时没引起注意<br>分析主要在updatewindow，Java_java_util_zip_Inflater_init ， 这个是gzip相关， 于是搜索相关资料<br>结论如下：<br>‘’’The problem exists regardless of undeploy/redeploy.<br>And the Inflater memory leak exists with straight Inflater usage as well (doesn’t have to be part of the Jar file process)<br>The number of bugs we have filed against the JVM Inflater continues to grow (See #293, #295, and #300)’’’</p>
 <p>网上查找相关资料<br>jdk 问题  <a href="http://bugs.java.com/bugdatabase/view_bug.do?bug_id=8156014" target="_blank" rel="external">http://bugs.java.com/bugdatabase/view_bug.do?bug_id=8156014</a><br>jetty issue <a href="https://github.com/eclipse/jetty.project/issues/231" target="_blank" rel="external">https://github.com/eclipse/jetty.project/issues/231</a></p>
-<p>‘’’The problem exists regardless of undeploy/redeploy.<br>And the Inflater memory leak exists with straight Inflater usage as well (doesn’t have to be part of the Jar file process)<br>The number of bugs we have filed against the JVM Inflater continues to grow (See #293, #295, and #300)’’’</p>
 <p>处理方法,以下其一</p>
 <ul>
 <li>JDK降级到jdk7u76</li>
@@ -318,8 +317,8 @@ ga('send', 'pageview');
 <nav id="article-nav">
   
   
-    <a href="/2017/09/22/A_leecode_sum2/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">A-leecode-两数和[Two Sum]</div>
+    <a href="/2017/09/22/A03_shujujiegou/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">A03-常见数据结构</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -457,10 +456,6 @@ var _hmt = _hmt || [];
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Algorithms</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">递归式子</a>
               </li>
              
@@ -469,11 +464,11 @@ var _hmt = _hmt || [];
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">排序</a>
+                <a href="javascript:void(0)" class="js-tag color1">Algorithms</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">数据结构</a>
+                <a href="javascript:void(0)" class="js-tag color3">排序</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -501,11 +496,7 @@ var _hmt = _hmt || [];
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">collection</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">final</a>
+                <a href="javascript:void(0)" class="js-tag color5">数据结构</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -513,11 +504,15 @@ var _hmt = _hmt || [];
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">collection</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">heap memory</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">译文</a>
+                <a href="javascript:void(0)" class="js-tag color1">final</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -530,6 +525,10 @@ var _hmt = _hmt || [];
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">kernel</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">译文</a>
               </li>
              
               <li class="article-tag-list-item">
