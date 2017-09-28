@@ -175,31 +175,51 @@ ga('send', 'pageview');
           <div id="js-content" class="content-ll">
             
   
-    <article id="post-A03_shujujiegou" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-gperftools" class="article article-type-post  article-index" itemscope itemprop="blogPost">
 <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2017/09/22/A03_shujujiegou/">A03-常见数据结构</a>
+      <a class="article-title" href="/2017/09/28/gperftools/">gperftools做堆外内存分析（JVM Inflater 内存泄漏分析）</a>
     </h1>
   
 
         
-        <a href="/2017/09/22/A03_shujujiegou/" class="archive-article-date">
-  	<time datetime="2017-09-22T12:39:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-09-22</time>
+        <a href="/2017/09/28/gperftools/" class="archive-article-date">
+  	<time datetime="2017-09-28T05:31:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-09-28</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>TODO。。。</p>
-<h2 id="常见数据结构分类"><a href="#常见数据结构分类" class="headerlink" title="常见数据结构分类"></a>常见数据结构分类</h2><p>特点<br>-<br>-<br></p>
-        
-          <a class="article-more-a" href="/2017/09/22/A03_shujujiegou/#more">more >></a>
-        
+        <h2 id="google-perftools"><a href="#google-perftools" class="headerlink" title="google-perftools"></a>google-perftools</h2><p>perftools wiki地址 ：<a href="https://github.com/gperftools/gperftools/wiki" target="_blank" rel="external">https://github.com/gperftools/gperftools/wiki</a><br>安装perftools<br>…<br>工具主要作用分析程序：heap、cpu等，常用语c/c++程序<br>使用文档如下：<br><a href="https://gperftools.github.io/gperftools/heapprofile.html" target="_blank" rel="external">https://gperftools.github.io/gperftools/heapprofile.html</a><br><a href="https://gperftools.github.io/gperftools/heap_checker.html" target="_blank" rel="external">https://gperftools.github.io/gperftools/heap_checker.html</a><br><a href="https://gperftools.github.io/gperftools/cpuprofile.html" target="_blank" rel="external">https://gperftools.github.io/gperftools/cpuprofile.html</a></p>
+<h2 id="JVM堆外内存分析"><a href="#JVM堆外内存分析" class="headerlink" title="JVM堆外内存分析"></a>JVM堆外内存分析</h2><p>本文针对于 Oracle Hotspot jvm 虚拟机<br>JVM 进程占用大小一般约等于： heap + perm + thread stack + nio directbuffer<br>当然还有其他占用，一般情况来看native memory跟踪可以使用NMT参数 -XX:NativeMemoryTracking<br>详情wiki ： <a href="https://docs.oracle.com/javase/8/docs/technotes/guides/vm/nmt-8.html" target="_blank" rel="external">https://docs.oracle.com/javase/8/docs/technotes/guides/vm/nmt-8.html</a></p>
+<p>除此之外<br>进程内存在用在linux 面下top,pmap 等工具是较好确定进程内存的手段， 在/proc/${pid}/ 目录下smaps文件等查看RSS，虚拟内存，swap占用等。<br>pmap 找到内存申请的地址块， 可以使用gdb attach 后 dump 某一段的内存地址 ，后查看内存的数据。 注意gdb attach 进程会暂停， 线上谨慎操作。</p>
+<p>如果发现进程内存过高，可能需要注意下程序是否存在堆外内存泄漏问题，java进程出现的堆外内存泄漏常见有如下几个方面：</p>
+<ul>
+<li>JNI</li>
+<li>NIO directbuffer 泄漏</li>
+<li>gzip 操作未end()</li>
+</ul>
+<p>网络编程中程序中，nio directbuffer 有监控工具可以查看， directbuffer使用量、并且可以设置最大直接内存buffer。</p>
+<h2 id="JVM-进程使用perftools-做分析"><a href="#JVM-进程使用perftools-做分析" class="headerlink" title="JVM 进程使用perftools 做分析"></a>JVM 进程使用perftools 做分析</h2><p>案例中发现的问题jetty 服务在某版本的JDK（jdk7u80~jdk8u045等 应该7u80后的版本在本文章编写时候都有）出现的内存泄漏问题分析和查找</p>
+<p>1、安装perftools 注意配置安装目录， 找到对应的文件路径<br>2、启动java程序时候携带环境变量（可以参照 perftools wiki帮助 写的较为明确， 文档主要针对正对c/c++程序， Hotspot主要是c++写的）<br>export LD_PRELOAD=/opt/perftools/lib/libtcmalloc.so  # 安装后的库文件路径<br>export HEAPPROFILE=/opt/mybin.hprof  #heap分析文件路径和文件<br>特别注意目录和文件权限是否是进程用户可使用的<br>3、运行后启动程序后<br>4、pprof执行程序（注意路径），分析这些heap文件 pprof –help查看使用方式<br>./perftools/bin/pprof –text *.heap   以文本方式分析heap文件， 结果说明见wiki文档</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">Total: 55838.9 MB</div><div class="line"> 41320.8  74.0%  74.0%  41320.8  74.0% updatewindow</div><div class="line">  9018.8  16.2%  90.2%   9018.8  16.2% inflateInit2_</div><div class="line">  1559.4   2.8%  92.9%   1559.4   2.8% os::malloc@907260</div><div class="line">  1556.4   2.8%  95.7%   1556.4   2.8% init</div><div class="line">   587.5   1.1%  96.8%    587.5   1.1% 00007fb480508a66</div><div class="line">   551.4   1.0%  97.8%    551.4   1.0% 00007f2b1d6f4a66</div><div class="line">   451.5   0.8%  98.6%    451.5   0.8% 00007fb48177e8e9</div><div class="line">   183.1   0.3%  98.9%    183.1   0.3% 00007fb46c1b6c91</div><div class="line">   128.2   0.2%  99.1%    128.2   0.2% 00007fb480508245</div><div class="line">   120.4   0.2%  99.4%    120.4   0.2% 00007f2b1d6f4245</div><div class="line">   111.0   0.2%  99.6%   9129.7  16.4% Java_java_util_zip_Inflater_init</div><div class="line">   102.8   0.2%  99.7%    102.8   0.2% 00007f2b1e96a8e9</div><div class="line">    74.2   0.1%  99.9%     74.2   0.1% readCEN</div><div class="line">    45.8   0.1% 100.0%     45.8   0.1% 00007f2b09392c91</div><div class="line">     7.5   0.0% 100.0%      7.5   0.0% 00007fb4805025b6</div><div class="line">     4.5   0.0% 100.0%      4.5   0.0% 00007fb48192162d</div></pre></td></tr></table></figure>
+<p>分析主要在updatewindow Java_java_util_zip_Inflater_init。 用过pmap分析过 主要都是64m内存块较多<br>对于上述问题表现的jdk1.7.0_76不会出现<br>jdk1.7.0_80,jdk1.8.0_45以上明显出现。</p>
+<p>网上查找相关资料<br>jdk 问题  <a href="http://bugs.java.com/bugdatabase/view_bug.do?bug_id=8156014" target="_blank" rel="external">http://bugs.java.com/bugdatabase/view_bug.do?bug_id=8156014</a><br>jetty issue <a href="https://github.com/eclipse/jetty.project/issues/231" target="_blank" rel="external">https://github.com/eclipse/jetty.project/issues/231</a></p>
+<p>‘’’The problem exists regardless of undeploy/redeploy.<br>And the Inflater memory leak exists with straight Inflater usage as well (doesn’t have to be part of the Jar file process)<br>The number of bugs we have filed against the JVM Inflater continues to grow (See #293, #295, and #300)’’’</p>
+<p>处理方法,以下其一</p>
+<ul>
+<li>JDK降级到jdk7u76</li>
+<li>等新版本jdk bug修复</li>
+<li>jetty contributer 给出的方案 disable url caching  wiki <a href="https://github.com/eclipse/jetty.project/issues/575" target="_blank" rel="external">https://github.com/eclipse/jetty.project/issues/575</a></li>
+</ul>
+<hr>
+<p><strong>版权声明：本文为博主原创文章，未经允许不得转载。</strong></p>
+
       
 
       
@@ -212,11 +232,11 @@ ga('send', 'pageview');
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">脑子秀逗</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">java</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">数据结构</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">memory</a>
         		</li>
       		
 		</ul>
@@ -228,7 +248,7 @@ ga('send', 'pageview');
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="/categories/算法/" class="article-tag-list-link color3">算法</a>
+        			<a href="/categories/JDK/" class="article-tag-list-link color4">JDK</a>
         		</li>
       		
 		</ul>
@@ -237,7 +257,7 @@ ga('send', 'pageview');
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2017/09/22/A03_shujujiegou/">展开全文 >></a>
+          <a class="article-more-a" href="/2017/09/28/gperftools/">展开全文 >></a>
         </p>
       
 
@@ -315,6 +335,83 @@ ga('send', 'pageview');
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2017/09/22/A_leecode_sum2/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+  
+    <article id="post-A03_shujujiegou" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+<div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/09/22/A03_shujujiegou/">A03-常见数据结构</a>
+    </h1>
+  
+
+        
+        <a href="/2017/09/22/A03_shujujiegou/" class="archive-article-date">
+  	<time datetime="2017-09-22T12:39:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-09-22</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>TODO。。。</p>
+<h2 id="常见数据结构分类"><a href="#常见数据结构分类" class="headerlink" title="常见数据结构分类"></a>常见数据结构分类</h2><p>特点<br>-<br>-<br></p>
+        
+          <a class="article-more-a" href="/2017/09/22/A03_shujujiegou/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">脑子秀逗</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">数据结构</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/算法/" class="article-tag-list-link color3">算法</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/09/22/A03_shujujiegou/">展开全文 >></a>
         </p>
       
 
@@ -879,82 +976,6 @@ ga('send', 'pageview');
 
 
   
-    <article id="post-A01_quanpaileidigui" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-<div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/07/22/A01_quanpaileidigui/">A01-递归式-全排列</a>
-    </h1>
-  
-
-        
-        <a href="/2017/07/22/A01_quanpaileidigui/" class="archive-article-date">
-  	<time datetime="2017-07-22T13:28:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-07-22</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>全排列递归：<a href="http://www.dylan326.com/2017/06/23/quanpailie_digui/">链接页面</a></p>
-<hr>
-<p><strong>版权声明：本文为博主原创文章，未经允许不得转载。</strong></p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">脑子秀逗</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">递归</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/算法/" class="article-tag-list-link color3">算法</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/07/22/A01_quanpaileidigui/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-  
   
     <nav id="page-nav">
       <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
@@ -1125,6 +1146,10 @@ var _hmt = _hmt || [];
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">memory</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">collection</a>
               </li>
              
@@ -1134,6 +1159,10 @@ var _hmt = _hmt || [];
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">heap memory</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">译文</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1149,19 +1178,7 @@ var _hmt = _hmt || [];
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">译文</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">全排列</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">分布式</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">一致性</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1170,6 +1187,14 @@ var _hmt = _hmt || [];
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">slide</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">分布式</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">一致性</a>
               </li>
              
               <li class="article-tag-list-item">

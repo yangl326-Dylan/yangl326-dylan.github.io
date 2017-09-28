@@ -6,19 +6,19 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://www.dylan326.com">
-  <title>String.valueOf()能否传入null | Dylan&#39;s ...</title>
+  <title>gperftools做堆外内存分析（JVM Inflater 内存泄漏分析） | Dylan&#39;s ...</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="最近发现一个有意思的问题，可以看看这两个的输出结果 1String.valueOf(map.get(&amp;quot;key&amp;quot;)) //① 1String.valueOf(null)          //②">
-<meta name="keywords" content="java">
+  <meta name="description" content="google-perftoolsperftools wiki地址 ：https://github.com/gperftools/gperftools/wiki安装perftools…工具主要作用分析程序：heap、cpu等，常用语c/c++程序使用文档如下：https://gperftools.github.io/gperftools/heapprofile.htmlhttps://gperfto">
+<meta name="keywords" content="java,memory">
 <meta property="og:type" content="article">
-<meta property="og:title" content="String.valueOf()能否传入null">
-<meta property="og:url" content="http://www.dylan326.com/2013/09/11/string_null/index.html">
+<meta property="og:title" content="gperftools做堆外内存分析（JVM Inflater 内存泄漏分析）">
+<meta property="og:url" content="http://www.dylan326.com/2017/09/28/gperftools/index.html">
 <meta property="og:site_name" content="Dylan&#39;s ...">
-<meta property="og:description" content="最近发现一个有意思的问题，可以看看这两个的输出结果 1String.valueOf(map.get(&amp;quot;key&amp;quot;)) //① 1String.valueOf(null)          //②">
-<meta property="og:updated_time" content="2017-08-06T15:03:54.000Z">
+<meta property="og:description" content="google-perftoolsperftools wiki地址 ：https://github.com/gperftools/gperftools/wiki安装perftools…工具主要作用分析程序：heap、cpu等，常用语c/c++程序使用文档如下：https://gperftools.github.io/gperftools/heapprofile.htmlhttps://gperfto">
+<meta property="og:updated_time" content="2017-09-28T12:41:38.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="String.valueOf()能否传入null">
-<meta name="twitter:description" content="最近发现一个有意思的问题，可以看看这两个的输出结果 1String.valueOf(map.get(&amp;quot;key&amp;quot;)) //① 1String.valueOf(null)          //②">
+<meta name="twitter:title" content="gperftools做堆外内存分析（JVM Inflater 内存泄漏分析）">
+<meta name="twitter:description" content="google-perftoolsperftools wiki地址 ：https://github.com/gperftools/gperftools/wiki安装perftools…工具主要作用分析程序：heap、cpu等，常用语c/c++程序使用文档如下：https://gperftools.github.io/gperftools/heapprofile.htmlhttps://gperfto">
   
   
     <link rel="icon" href="/favicon.ico">
@@ -175,40 +175,48 @@ ga('send', 'pageview');
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-string_null" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-gperftools" class="article article-type-post " itemscope itemprop="blogPost">
 <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      String.valueOf()能否传入null
+      gperftools做堆外内存分析（JVM Inflater 内存泄漏分析）
     </h1>
   
 
         
-        <a href="/2013/09/11/string_null/" class="archive-article-date">
-  	<time datetime="2013-09-11T03:23:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2013-09-11</time>
+        <a href="/2017/09/28/gperftools/" class="archive-article-date">
+  	<time datetime="2017-09-28T05:31:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-09-28</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>最近发现一个有意思的问题，可以看看这两个的输出结果</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">String.valueOf(map.get(&quot;key&quot;)) //①</div></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">String.valueOf(null)          //②</div></pre></td></tr></table></figure>
-<a id="more"></a>
-<p>会发现map中①返回正常 ”null“字符串，而②抛出NLP异常</p>
-<p>跳转到String类的valueOf发现使用的是这个重载的方法：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> String <span class="title">valueOf</span><span class="params">(<span class="keyword">char</span> data[])</span> </span>&#123;</div><div class="line">    <span class="keyword">return</span> <span class="keyword">new</span> String(data);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>再看看char[] string的构造方法：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> <span class="title">String</span><span class="params">(<span class="keyword">char</span> value[])</span> </span>&#123;</div><div class="line">    <span class="keyword">this</span>.value = Arrays.copyOf(value, value.length);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>null无length属性，到这里就会异常。</p>
-<p>传入（Object）null时候（或者无key得时候map对象返回空对象），实现的是如下重载的方法：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> String <span class="title">valueOf</span><span class="params">(Object obj)</span> </span>&#123;</div><div class="line">    <span class="keyword">return</span> (obj == <span class="keyword">null</span>) ? <span class="string">"null"</span> : obj.toString();</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>即正常返回 null字符串。</p>
-<p>实际上null是关键字，不属于Object对象，至于选择器为什么会优先选择重载函数就得分析null和Object obj=null 中 null和obj的区别了。</p>
+        <h2 id="google-perftools"><a href="#google-perftools" class="headerlink" title="google-perftools"></a>google-perftools</h2><p>perftools wiki地址 ：<a href="https://github.com/gperftools/gperftools/wiki" target="_blank" rel="external">https://github.com/gperftools/gperftools/wiki</a><br>安装perftools<br>…<br>工具主要作用分析程序：heap、cpu等，常用语c/c++程序<br>使用文档如下：<br><a href="https://gperftools.github.io/gperftools/heapprofile.html" target="_blank" rel="external">https://gperftools.github.io/gperftools/heapprofile.html</a><br><a href="https://gperftools.github.io/gperftools/heap_checker.html" target="_blank" rel="external">https://gperftools.github.io/gperftools/heap_checker.html</a><br><a href="https://gperftools.github.io/gperftools/cpuprofile.html" target="_blank" rel="external">https://gperftools.github.io/gperftools/cpuprofile.html</a></p>
+<h2 id="JVM堆外内存分析"><a href="#JVM堆外内存分析" class="headerlink" title="JVM堆外内存分析"></a>JVM堆外内存分析</h2><p>本文针对于 Oracle Hotspot jvm 虚拟机<br>JVM 进程占用大小一般约等于： heap + perm + thread stack + nio directbuffer<br>当然还有其他占用，一般情况来看native memory跟踪可以使用NMT参数 -XX:NativeMemoryTracking<br>详情wiki ： <a href="https://docs.oracle.com/javase/8/docs/technotes/guides/vm/nmt-8.html" target="_blank" rel="external">https://docs.oracle.com/javase/8/docs/technotes/guides/vm/nmt-8.html</a></p>
+<p>除此之外<br>进程内存在用在linux 面下top,pmap 等工具是较好确定进程内存的手段， 在/proc/${pid}/ 目录下smaps文件等查看RSS，虚拟内存，swap占用等。<br>pmap 找到内存申请的地址块， 可以使用gdb attach 后 dump 某一段的内存地址 ，后查看内存的数据。 注意gdb attach 进程会暂停， 线上谨慎操作。</p>
+<p>如果发现进程内存过高，可能需要注意下程序是否存在堆外内存泄漏问题，java进程出现的堆外内存泄漏常见有如下几个方面：</p>
+<ul>
+<li>JNI</li>
+<li>NIO directbuffer 泄漏</li>
+<li>gzip 操作未end()</li>
+</ul>
+<p>网络编程中程序中，nio directbuffer 有监控工具可以查看， directbuffer使用量、并且可以设置最大直接内存buffer。</p>
+<h2 id="JVM-进程使用perftools-做分析"><a href="#JVM-进程使用perftools-做分析" class="headerlink" title="JVM 进程使用perftools 做分析"></a>JVM 进程使用perftools 做分析</h2><p>案例中发现的问题jetty 服务在某版本的JDK（jdk7u80~jdk8u045等 应该7u80后的版本在本文章编写时候都有）出现的内存泄漏问题分析和查找</p>
+<p>1、安装perftools 注意配置安装目录， 找到对应的文件路径<br>2、启动java程序时候携带环境变量（可以参照 perftools wiki帮助 写的较为明确， 文档主要针对正对c/c++程序， Hotspot主要是c++写的）<br>export LD_PRELOAD=/opt/perftools/lib/libtcmalloc.so  # 安装后的库文件路径<br>export HEAPPROFILE=/opt/mybin.hprof  #heap分析文件路径和文件<br>特别注意目录和文件权限是否是进程用户可使用的<br>3、运行后启动程序后<br>4、pprof执行程序（注意路径），分析这些heap文件 pprof –help查看使用方式<br>./perftools/bin/pprof –text *.heap   以文本方式分析heap文件， 结果说明见wiki文档</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">Total: 55838.9 MB</div><div class="line"> 41320.8  74.0%  74.0%  41320.8  74.0% updatewindow</div><div class="line">  9018.8  16.2%  90.2%   9018.8  16.2% inflateInit2_</div><div class="line">  1559.4   2.8%  92.9%   1559.4   2.8% os::malloc@907260</div><div class="line">  1556.4   2.8%  95.7%   1556.4   2.8% init</div><div class="line">   587.5   1.1%  96.8%    587.5   1.1% 00007fb480508a66</div><div class="line">   551.4   1.0%  97.8%    551.4   1.0% 00007f2b1d6f4a66</div><div class="line">   451.5   0.8%  98.6%    451.5   0.8% 00007fb48177e8e9</div><div class="line">   183.1   0.3%  98.9%    183.1   0.3% 00007fb46c1b6c91</div><div class="line">   128.2   0.2%  99.1%    128.2   0.2% 00007fb480508245</div><div class="line">   120.4   0.2%  99.4%    120.4   0.2% 00007f2b1d6f4245</div><div class="line">   111.0   0.2%  99.6%   9129.7  16.4% Java_java_util_zip_Inflater_init</div><div class="line">   102.8   0.2%  99.7%    102.8   0.2% 00007f2b1e96a8e9</div><div class="line">    74.2   0.1%  99.9%     74.2   0.1% readCEN</div><div class="line">    45.8   0.1% 100.0%     45.8   0.1% 00007f2b09392c91</div><div class="line">     7.5   0.0% 100.0%      7.5   0.0% 00007fb4805025b6</div><div class="line">     4.5   0.0% 100.0%      4.5   0.0% 00007fb48192162d</div></pre></td></tr></table></figure>
+<p>分析主要在updatewindow Java_java_util_zip_Inflater_init。 用过pmap分析过 主要都是64m内存块较多<br>对于上述问题表现的jdk1.7.0_76不会出现<br>jdk1.7.0_80,jdk1.8.0_45以上明显出现。</p>
+<p>网上查找相关资料<br>jdk 问题  <a href="http://bugs.java.com/bugdatabase/view_bug.do?bug_id=8156014" target="_blank" rel="external">http://bugs.java.com/bugdatabase/view_bug.do?bug_id=8156014</a><br>jetty issue <a href="https://github.com/eclipse/jetty.project/issues/231" target="_blank" rel="external">https://github.com/eclipse/jetty.project/issues/231</a></p>
+<p>‘’’The problem exists regardless of undeploy/redeploy.<br>And the Inflater memory leak exists with straight Inflater usage as well (doesn’t have to be part of the Jar file process)<br>The number of bugs we have filed against the JVM Inflater continues to grow (See #293, #295, and #300)’’’</p>
+<p>处理方法,以下其一</p>
+<ul>
+<li>JDK降级到jdk7u76</li>
+<li>等新版本jdk bug修复</li>
+<li>jetty contributer 给出的方案 disable url caching  wiki <a href="https://github.com/eclipse/jetty.project/issues/575" target="_blank" rel="external">https://github.com/eclipse/jetty.project/issues/575</a></li>
+</ul>
 <hr>
 <p><strong>版权声明：本文为博主原创文章，未经允许不得转载。</strong></p>
 
@@ -226,6 +234,10 @@ ga('send', 'pageview');
         		<li class="article-tag-list-item">
         			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">java</a>
         		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">memory</a>
+        		</li>
       		
 		</ul>
 	</div>
@@ -235,10 +247,6 @@ ga('send', 'pageview');
 		<i class="icon-book icon"></i>
 		<ul class="article-tag-list">
 			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/语言/" class="article-tag-list-link color3">语言</a>
-        		</li>
-      		 
         		<li class="article-tag-list-item">
         			<a href="/categories/JDK/" class="article-tag-list-link color4">JDK</a>
         		</li>
@@ -295,7 +303,7 @@ ga('send', 'pageview');
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="http://s.jiathis.com/qrcode.php?url=http://www.dylan326.com/2013/09/11/string_null/" alt="微信分享二维码">
+      <img src="http://s.jiathis.com/qrcode.php?url=http://www.dylan326.com/2017/09/28/gperftools/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -309,18 +317,9 @@ ga('send', 'pageview');
   
 <nav id="article-nav">
   
-    <a href="/2013/10/06/adaptor/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          适配器模式概念简析
-        
-      </div>
-    </a>
   
-  
-    <a href="/2013/09/07/sington/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">单例模式简析</div>
+    <a href="/2017/09/22/A_leecode_sum2/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">A-leecode-两数和[Two Sum]</div>
       <i class="icon-circle-right"></i>
     </a>
   
