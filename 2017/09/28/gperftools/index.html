@@ -6,19 +6,19 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://www.dylan326.com">
-  <title>gperftools做堆外内存分析（JVM Inflater 内存泄漏分析） | Dylan&#39;s ...</title>
+  <title>gperftools做堆外内存分析（案例JVM Inflater 内存泄漏分析） | Dylan&#39;s ...</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="google-perftoolsperftools wiki地址 ：https://github.com/gperftools/gperftools/wiki安装perftools…工具主要作用分析程序：heap、cpu等，常用语c/c++程序使用文档如下：https://gperftools.github.io/gperftools/heapprofile.htmlhttps://gperfto">
+  <meta name="description" content="google-perftoolsperftools wiki地址 ：https://github.com/gperftools/gperftools/wiki安装perftools…工具主要作用分析程序：heap、cpu等，常用于c/c++程序分析使用文档如下：https://gperftools.github.io/gperftools/heapprofile.htmlhttps://gperf">
 <meta name="keywords" content="java,memory">
 <meta property="og:type" content="article">
-<meta property="og:title" content="gperftools做堆外内存分析（JVM Inflater 内存泄漏分析）">
+<meta property="og:title" content="gperftools做堆外内存分析（案例JVM Inflater 内存泄漏分析）">
 <meta property="og:url" content="http://www.dylan326.com/2017/09/28/gperftools/index.html">
 <meta property="og:site_name" content="Dylan&#39;s ...">
-<meta property="og:description" content="google-perftoolsperftools wiki地址 ：https://github.com/gperftools/gperftools/wiki安装perftools…工具主要作用分析程序：heap、cpu等，常用语c/c++程序使用文档如下：https://gperftools.github.io/gperftools/heapprofile.htmlhttps://gperfto">
-<meta property="og:updated_time" content="2017-09-28T12:41:38.000Z">
+<meta property="og:description" content="google-perftoolsperftools wiki地址 ：https://github.com/gperftools/gperftools/wiki安装perftools…工具主要作用分析程序：heap、cpu等，常用于c/c++程序分析使用文档如下：https://gperftools.github.io/gperftools/heapprofile.htmlhttps://gperf">
+<meta property="og:updated_time" content="2017-09-28T12:47:49.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="gperftools做堆外内存分析（JVM Inflater 内存泄漏分析）">
-<meta name="twitter:description" content="google-perftoolsperftools wiki地址 ：https://github.com/gperftools/gperftools/wiki安装perftools…工具主要作用分析程序：heap、cpu等，常用语c/c++程序使用文档如下：https://gperftools.github.io/gperftools/heapprofile.htmlhttps://gperfto">
+<meta name="twitter:title" content="gperftools做堆外内存分析（案例JVM Inflater 内存泄漏分析）">
+<meta name="twitter:description" content="google-perftoolsperftools wiki地址 ：https://github.com/gperftools/gperftools/wiki安装perftools…工具主要作用分析程序：heap、cpu等，常用于c/c++程序分析使用文档如下：https://gperftools.github.io/gperftools/heapprofile.htmlhttps://gperf">
   
   
     <link rel="icon" href="/favicon.ico">
@@ -182,7 +182,7 @@ ga('send', 'pageview');
         
   
     <h1 class="article-title" itemprop="name">
-      gperftools做堆外内存分析（JVM Inflater 内存泄漏分析）
+      gperftools做堆外内存分析（案例JVM Inflater 内存泄漏分析）
     </h1>
   
 
@@ -195,14 +195,14 @@ ga('send', 'pageview');
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="google-perftools"><a href="#google-perftools" class="headerlink" title="google-perftools"></a>google-perftools</h2><p>perftools wiki地址 ：<a href="https://github.com/gperftools/gperftools/wiki" target="_blank" rel="external">https://github.com/gperftools/gperftools/wiki</a><br>安装perftools<br>…<br>工具主要作用分析程序：heap、cpu等，常用语c/c++程序<br>使用文档如下：<br><a href="https://gperftools.github.io/gperftools/heapprofile.html" target="_blank" rel="external">https://gperftools.github.io/gperftools/heapprofile.html</a><br><a href="https://gperftools.github.io/gperftools/heap_checker.html" target="_blank" rel="external">https://gperftools.github.io/gperftools/heap_checker.html</a><br><a href="https://gperftools.github.io/gperftools/cpuprofile.html" target="_blank" rel="external">https://gperftools.github.io/gperftools/cpuprofile.html</a></p>
+        <h2 id="google-perftools"><a href="#google-perftools" class="headerlink" title="google-perftools"></a>google-perftools</h2><p>perftools wiki地址 ：<a href="https://github.com/gperftools/gperftools/wiki" target="_blank" rel="external">https://github.com/gperftools/gperftools/wiki</a><br>安装perftools<br>…<br>工具主要作用分析程序：heap、cpu等，常用于c/c++程序分析<br>使用文档如下：<br><a href="https://gperftools.github.io/gperftools/heapprofile.html" target="_blank" rel="external">https://gperftools.github.io/gperftools/heapprofile.html</a><br><a href="https://gperftools.github.io/gperftools/heap_checker.html" target="_blank" rel="external">https://gperftools.github.io/gperftools/heap_checker.html</a><br><a href="https://gperftools.github.io/gperftools/cpuprofile.html" target="_blank" rel="external">https://gperftools.github.io/gperftools/cpuprofile.html</a></p>
 <h2 id="JVM堆外内存分析"><a href="#JVM堆外内存分析" class="headerlink" title="JVM堆外内存分析"></a>JVM堆外内存分析</h2><p>本文针对于 Oracle Hotspot jvm 虚拟机<br>JVM 进程占用大小一般约等于： heap + perm + thread stack + nio directbuffer<br>当然还有其他占用，一般情况来看native memory跟踪可以使用NMT参数 -XX:NativeMemoryTracking<br>详情wiki ： <a href="https://docs.oracle.com/javase/8/docs/technotes/guides/vm/nmt-8.html" target="_blank" rel="external">https://docs.oracle.com/javase/8/docs/technotes/guides/vm/nmt-8.html</a></p>
 <p>除此之外<br>进程内存在用在linux 面下top,pmap 等工具是较好确定进程内存的手段， 在/proc/${pid}/ 目录下smaps文件等查看RSS，虚拟内存，swap占用等。<br>pmap 找到内存申请的地址块， 可以使用gdb attach 后 dump 某一段的内存地址 ，后查看内存的数据。 注意gdb attach 进程会暂停， 线上谨慎操作。</p>
 <p>如果发现进程内存过高，可能需要注意下程序是否存在堆外内存泄漏问题，java进程出现的堆外内存泄漏常见有如下几个方面：</p>
 <ul>
 <li>JNI</li>
 <li>NIO directbuffer 泄漏</li>
-<li>gzip 操作未end()</li>
+<li>gzip  （本文案例就是此类）</li>
 </ul>
 <p>网络编程中程序中，nio directbuffer 有监控工具可以查看， directbuffer使用量、并且可以设置最大直接内存buffer。</p>
 <h2 id="JVM-进程使用perftools-做分析"><a href="#JVM-进程使用perftools-做分析" class="headerlink" title="JVM 进程使用perftools 做分析"></a>JVM 进程使用perftools 做分析</h2><p>案例中发现的问题jetty 服务在某版本的JDK（jdk7u80~jdk8u045等 应该7u80后的版本在本文章编写时候都有）出现的内存泄漏问题分析和查找</p>
@@ -501,15 +501,15 @@ var _hmt = _hmt || [];
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">memory</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">collection</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">final</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">memory</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -537,19 +537,19 @@ var _hmt = _hmt || [];
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">raft</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">slide</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">分布式</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">一致性</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">raft</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">slide</a>
               </li>
              
               <li class="article-tag-list-item">
