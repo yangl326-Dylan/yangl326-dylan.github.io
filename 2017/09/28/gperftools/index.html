@@ -15,7 +15,7 @@
 <meta property="og:url" content="http://www.dylan326.com/2017/09/28/gperftools/index.html">
 <meta property="og:site_name" content="Dylan&#39;s ...">
 <meta property="og:description" content="google-perftoolsperftools wiki地址 ：https://github.com/gperftools/gperftools/wiki安装perftools…工具主要作用分析程序：heap、cpu等，常用于c/c++程序分析使用文档如下：https://gperftools.github.io/gperftools/heapprofile.htmlhttps://gperf">
-<meta property="og:updated_time" content="2017-09-29T02:30:12.000Z">
+<meta property="og:updated_time" content="2017-09-29T08:49:50.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="gperftools做堆外内存分析（案例JVM Inflater 内存泄漏分析）">
 <meta name="twitter:description" content="google-perftoolsperftools wiki地址 ：https://github.com/gperftools/gperftools/wiki安装perftools…工具主要作用分析程序：heap、cpu等，常用于c/c++程序分析使用文档如下：https://gperftools.github.io/gperftools/heapprofile.htmlhttps://gperf">
@@ -195,8 +195,8 @@ ga('send', 'pageview');
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="google-perftools"><a href="#google-perftools" class="headerlink" title="google-perftools"></a>google-perftools</h2><p>perftools wiki地址 ：<a href="https://github.com/gperftools/gperftools/wiki" target="_blank" rel="external">https://github.com/gperftools/gperftools/wiki</a><br>安装perftools<br>…<br>工具主要作用分析程序：heap、cpu等，常用于c/c++程序分析<br>使用文档如下：<br><a href="https://gperftools.github.io/gperftools/heapprofile.html" target="_blank" rel="external">https://gperftools.github.io/gperftools/heapprofile.html</a><br><a href="https://gperftools.github.io/gperftools/heap_checker.html" target="_blank" rel="external">https://gperftools.github.io/gperftools/heap_checker.html</a><br><a href="https://gperftools.github.io/gperftools/cpuprofile.html" target="_blank" rel="external">https://gperftools.github.io/gperftools/cpuprofile.html</a></p>
-<h2 id="JVM堆外内存分析"><a href="#JVM堆外内存分析" class="headerlink" title="JVM堆外内存分析"></a>JVM堆外内存分析</h2><p>本文针对于 Oracle Hotspot jvm 虚拟机<br>JVM 进程占用大小一般约等于： heap + perm + thread stack + nio directbuffer<br>当然还有其他占用，一般情况来看native memory跟踪可以使用NMT参数 -XX:NativeMemoryTracking<br>详情wiki ： <a href="https://docs.oracle.com/javase/8/docs/technotes/guides/vm/nmt-8.html" target="_blank" rel="external">https://docs.oracle.com/javase/8/docs/technotes/guides/vm/nmt-8.html</a><br>JVM常见内存泄漏检查方式可以按照 oracle提供的文档： <a href="http://www.oracle.com/technetwork/java/javase/memleaks-137499.html" target="_blank" rel="external">http://www.oracle.com/technetwork/java/javase/memleaks-137499.html</a><br>其中dbx等和perftools类似工具。</p>
+        <h2 id="google-perftools"><a href="#google-perftools" class="headerlink" title="google-perftools"></a>google-perftools</h2><p>perftools wiki地址 ：<a href="https://github.com/gperftools/gperftools/wiki" target="_blank" rel="external">https://github.com/gperftools/gperftools/wiki</a><br>安装perftools<br>…<br>工具主要作用分析程序：heap、cpu等，常用于c/c++程序分析<br>使用文档如下：<br><a href="https://gperftools.github.io/gperftools/heapprofile.html" target="_blank" rel="external">https://gperftools.github.io/gperftools/heapprofile.html</a><br><a href="https://gperftools.github.io/gperftools/heap_checker.html" target="_blank" rel="external">https://gperftools.github.io/gperftools/heap_checker.html</a><br><a href="https://gperftools.github.io/gperftools/cpuprofile.html" target="_blank" rel="external">https://gperftools.github.io/gperftools/cpuprofile.html</a><br><a id="more"></a></p>
+<h2 id="JVM堆外内存分析"><a href="#JVM堆外内存分析" class="headerlink" title="JVM堆外内存分析"></a>JVM堆外内存分析</h2><p>本文针对于 Oracle Hotspot jvm 虚拟机<br>JVM 进程占用大小一般约等于： heap + perm + thread stack + nio directbuffer<br>当然还有其他占用，一般情况来看native memory跟踪可以使用NMT参数 -XX:NativeMemoryTracking<br>详情wiki ： <a href="https://docs.oracle.com/javase/8/docs/technotes/guides/vm/nmt-8.html" target="_blank" rel="external">https://docs.oracle.com/javase/8/docs/technotes/guides/vm/nmt-8.html</a><br>JVM常见内存泄漏检查方式可以按照 oracle提供的文档： <a href="http://www.oracle.com/technetwork/java/javase/memleaks-137499.html" target="_blank" rel="external">http://www.oracle.com/technetwork/java/javase/memleaks-137499.html</a><br>其中dbx是和perftools类似工具。</p>
 <p>除此之外<br>进程内存在用在linux 面下top,pmap 等工具是较好确定进程内存的手段， 在/proc/${pid}/ 目录下smaps文件等查看RSS，虚拟内存，swap占用等。<br>pmap 找到内存申请的地址块， 可以使用gdb attach 后 dump 某一段的内存地址 ，后查看内存的数据。 注意gdb attach 进程会暂停， 线上谨慎操作。</p>
 <p>如果发现进程内存过高，可能需要注意下程序是否存在堆外内存泄漏问题，java进程出现的堆外内存泄漏常见有如下几个方面：</p>
 <ul>
@@ -496,15 +496,11 @@ var _hmt = _hmt || [];
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">JVM</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">memory</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">collection</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">JVM</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -512,15 +508,11 @@ var _hmt = _hmt || [];
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">memory</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">heap memory</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">译文</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">全排列</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -533,6 +525,14 @@ var _hmt = _hmt || [];
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">kernel</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">译文</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">全排列</a>
               </li>
              
               <li class="article-tag-list-item">
