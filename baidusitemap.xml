@@ -4,6 +4,50 @@
 
     
   <url>
+    <loc>http://www.dylan326.com/2017/11/18/jiegouhua_slide/</loc>
+    <lastmod>2017-12-14T03:14:03.000Z</lastmod>
+    <data>
+        <display>
+        <title>思考和表达的方式</title>
+        <pubTime>2017-11-18T08:10:25.000Z</pubTime>
+        
+        <tag>raft</tag>
+         
+        <tag>slide</tag>
+         
+         
+           
+             
+              <breadCrumb title="slide" url="http://www.dylan326.com/categories/slide/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://www.dylan326.com/2017/12/14/201710090/</loc>
+    <lastmod>2017-12-14T03:08:18.000Z</lastmod>
+    <data>
+        <display>
+        <title>冬天</title>
+        <pubTime>2017-12-14T03:06:00.000Z</pubTime>
+        
+        <tag>心情</tag>
+         
+        <tag>日记</tag>
+         
+         
+           
+             
+              <breadCrumb title="其他" url="http://www.dylan326.com/categories/%E5%85%B6%E4%BB%96/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://www.dylan326.com/2017/10/09/20171009/</loc>
     <lastmod>2017-10-09T12:03:55.000Z</lastmod>
     <data>
@@ -222,16 +266,16 @@
 
     
   <url>
-    <loc>http://www.dylan326.com/2017/07/21/A01_diguishizi/</loc>
+    <loc>http://www.dylan326.com/2017/07/22/A01_quanpaileidigui/</loc>
     <lastmod>2017-08-13T08:45:18.000Z</lastmod>
     <data>
         <display>
-        <title>A01-递归式</title>
-        <pubTime>2017-07-21T13:41:00.000Z</pubTime>
+        <title>A01-递归式-全排列</title>
+        <pubTime>2017-07-22T13:28:00.000Z</pubTime>
         
         <tag>脑子秀逗</tag>
          
-        <tag>递归式子</tag>
+        <tag>递归</tag>
          
          
            
@@ -244,16 +288,16 @@
 
     
   <url>
-    <loc>http://www.dylan326.com/2017/07/22/A01_quanpaileidigui/</loc>
+    <loc>http://www.dylan326.com/2017/07/21/A01_diguishizi/</loc>
     <lastmod>2017-08-13T08:45:18.000Z</lastmod>
     <data>
         <display>
-        <title>A01-递归式-全排列</title>
-        <pubTime>2017-07-22T13:28:00.000Z</pubTime>
+        <title>A01-递归式</title>
+        <pubTime>2017-07-21T13:41:00.000Z</pubTime>
         
         <tag>脑子秀逗</tag>
          
-        <tag>递归</tag>
+        <tag>递归式子</tag>
          
          
            
