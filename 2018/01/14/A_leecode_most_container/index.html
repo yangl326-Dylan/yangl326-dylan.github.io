@@ -15,7 +15,7 @@
 <meta property="og:url" content="http://www.dylan326.com/2018/01/14/A_leecode_most_container/index.html">
 <meta property="og:site_name" content="Dylan&#39;s ...">
 <meta property="og:description" content="题目解析 Given n non-negative integers a1, a2, …, an, where each represents a point at coordinate (i, ai). n vertical lines are drawn &amp;gt;such that the two endpoints of line i is at (i, ai) and (i, 0). Fi">
-<meta property="og:updated_time" content="2018-01-15T08:20:26.595Z">
+<meta property="og:updated_time" content="2018-01-15T10:54:50.486Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="A-leecode-最大容量[MostContainer]">
 <meta name="twitter:description" content="题目解析 Given n non-negative integers a1, a2, …, an, where each represents a point at coordinate (i, ai). n vertical lines are drawn &amp;gt;such that the two endpoints of line i is at (i, ai) and (i, 0). Fi">
@@ -198,12 +198,12 @@ ga('send', 'pageview');
         <h2 id="题目解析"><a href="#题目解析" class="headerlink" title="题目解析"></a>题目解析</h2><blockquote>
 <p>Given n non-negative integers a1, a2, …, an, where each represents a point at coordinate (i, ai). n vertical lines are drawn &gt;such that the two endpoints of line i is at (i, ai) and (i, 0). Find two lines, which together with x-axis forms a container, &gt;such that the container contains the most water.<br>Note: You may not slant the container and n is at least 2.<br><a id="more"></a></p>
 </blockquote>
-<p>给出一系列a(i),任意两个(i, ai) and (i, 0) 和x轴组成的u型矩形面积最大，u型的两边长度可能不一致，所装容量为最短板</p>
-<h2 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h2><p>1、决定u型桶高度的是短板<br>2、决定面积的是x轴底边和上面所提到的短板边<br>3、O(n)负复杂度来处理问题，</p>
-<p>代码演示：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line"> * Created by dylan on 2017/9/21.</div><div class="line"> * 两个边的构成一个矩形，为初始面积， 比他大的只可能是短边被替换，因为delta X变小，如果出现面积更大，只可能是比短边更长的边</div><div class="line"> *</div><div class="line"> */</div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">A11MostContainer</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">maxArea</span><span class="params">(<span class="keyword">int</span>[] height)</span> </span>&#123;</div><div class="line">        <span class="keyword">int</span> max = <span class="number">0</span>;</div><div class="line">        <span class="keyword">int</span> left = <span class="number">0</span>;</div><div class="line">        <span class="keyword">int</span> right = height.length - <span class="number">1</span>;</div><div class="line">        <span class="keyword">while</span> (left &lt;= right) &#123;</div><div class="line">            <span class="keyword">int</span> minHeight = height[left] &lt; height[right] ? height[left] : height[right];<span class="comment">//u型桶的短板， 最小竖边</span></div><div class="line">            <span class="keyword">int</span> curr = (right - left) * minHeight;</div><div class="line">            max = max &gt; curr ? max : curr;</div><div class="line">            <span class="keyword">if</span> (height[left] &lt; height[right]) &#123; <span class="comment">// 逻辑思路是最短边变化才会出现面积更大的U形桶</span></div><div class="line">                left++;</div><div class="line">            &#125; <span class="keyword">else</span> &#123;</div><div class="line">                right--;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> max;</div><div class="line">    &#125;</div><div class="line"></div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</div><div class="line">      A11MostContainer a11MostContainer = <span class="keyword">new</span> A11MostContainer();</div><div class="line">      System.out.println(a11MostContainer.maxArea(<span class="keyword">new</span> <span class="keyword">int</span>[]&#123;<span class="number">1</span>, <span class="number">6</span>, <span class="number">3</span>, <span class="number">4</span>&#125;));</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>给出一系列a(i),任意两个(i, ai) and (i, 0) 和x轴组成的u型矩形面积最大，u型的两边长度可能不一致，所装容量为短板边长决定</p>
+<h2 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h2><p>1、决定u型桶高度的是短板<br>2、决定面积的是x轴底边和上面所提到的短板边<br>3、O(n)负复杂度来处理问题，上一情况下，最短边调整，才会可能出现面积较大的场景。 那么采用两边夹逼</p>
+<p>代码演示：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line"> * Created by dylan on 2017/9/21.</div><div class="line"> * 两个边的构成一个矩形，为初始面积， 比它面积大的只可能是短边被替换，因为delta X变小，如果出现面积更大，只可能是比短边更长的边</div><div class="line"> * 例如图例中最大面积为a2和a4组成的u型矩形 面积为2*2=4</div><div class="line"> *               a3  </div><div class="line"> *          a2   |    a4</div><div class="line"> *     a1   |    |    |</div><div class="line"> *     |    |    |    |</div><div class="line"> *     ----------------</div><div class="line"> */</div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">A11MostContainer</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">maxArea</span><span class="params">(<span class="keyword">int</span>[] height)</span> </span>&#123;</div><div class="line">        <span class="keyword">int</span> max = <span class="number">0</span>;</div><div class="line">        <span class="keyword">int</span> left = <span class="number">0</span>;</div><div class="line">        <span class="keyword">int</span> right = height.length - <span class="number">1</span>;</div><div class="line">        <span class="keyword">while</span> (left &lt;= right) &#123;</div><div class="line">            <span class="keyword">int</span> minHeight = height[left] &lt; height[right] ? height[left] : height[right];<span class="comment">//u型桶的短板， 最小竖边</span></div><div class="line">            <span class="keyword">int</span> curr = (right - left) * minHeight;</div><div class="line">            max = max &gt; curr ? max : curr;</div><div class="line">            <span class="keyword">if</span> (height[left] &lt; height[right]) &#123; <span class="comment">// 逻辑思路是最短边变化才会出现面积更大的u型桶</span></div><div class="line">                left++;</div><div class="line">            &#125; <span class="keyword">else</span> &#123;</div><div class="line">                right--;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> max;</div><div class="line">    &#125;</div><div class="line"></div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</div><div class="line">      A11MostContainer a11MostContainer = <span class="keyword">new</span> A11MostContainer();</div><div class="line">      System.out.println(a11MostContainer.maxArea(<span class="keyword">new</span> <span class="keyword">int</span>[]&#123;<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">2</span>&#125;));</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
 <p>代码文件：<br><a href="https://github.com/yangl326-Dylan/apus/blob/master/src/main/java/com/dylan326/apus/A11MostContainer.java" target="_blank" rel="external">A11MostContainer.java</a></p>
 <h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><ul>
-<li>思路是这个: “逻辑思路是最短边变化才会出现面积更大的U形桶”</li>
+<li>如果能想到这个思路，解题较简单， “逻辑思路是最短边变化才会出现面积更大的u型桶”。</li>
 </ul>
 <hr>
 <p><strong>版权声明：本文为博主原创文章，未经允许不得转载。</strong></p>
@@ -454,15 +454,15 @@ var _hmt = _hmt || [];
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Algorithms</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">递归式子</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">递归</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Algorithms</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -475,10 +475,6 @@ var _hmt = _hmt || [];
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">数据结构</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">设计模式</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -498,6 +494,10 @@ var _hmt = _hmt || [];
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">设计模式</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">collection</a>
               </li>
              
@@ -506,7 +506,15 @@ var _hmt = _hmt || [];
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">读书笔记</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">heap memory</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">memory</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -522,10 +530,6 @@ var _hmt = _hmt || [];
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">memory</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Socket</a>
               </li>
              
@@ -538,19 +542,15 @@ var _hmt = _hmt || [];
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">读书笔记</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">全排列</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">分布式</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">一致性</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">全排列</a>
               </li>
              
               <li class="article-tag-list-item">
