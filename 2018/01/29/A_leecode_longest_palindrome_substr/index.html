@@ -15,7 +15,7 @@
 <meta property="og:url" content="http://www.dylan326.com/2018/01/29/A_leecode_longest_palindrome_substr/index.html">
 <meta property="og:site_name" content="Dylan&#39;s ...">
 <meta property="og:description" content="题目解析 Given a string s, find the longest palindromic substring in s. You may assume that the maximum length of s is 1000.">
-<meta property="og:updated_time" content="2018-01-29T07:18:31.980Z">
+<meta property="og:updated_time" content="2018-01-29T07:30:27.935Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="A-leecode-最长回文子串问题">
 <meta name="twitter:description" content="题目解析 Given a string s, find the longest palindromic substring in s. You may assume that the maximum length of s is 1000.">
@@ -219,9 +219,9 @@ ga('send', 'pageview');
 <li>状态转移方程决定初始条件和遍历条件, 初始条件为a[i]\[i]=1,遍历条件可以是 i从length-1 开始 i–, j从i+1开始j++.</li>
 </ul>
 <p>代码演示：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div></pre></td><td class="code"><pre><div class="line"> <span class="comment">/**</span></div><div class="line"> *  方法一  动态规划， result[i][j] 表示 i-&gt;j为回文串</div><div class="line"> *  那么 array[i]=array[j] 并且result[i+1][j-1]为回文串， 那么新结果为长度+2</div><div class="line"> * <span class="doctag">@param</span> str</div><div class="line"> * <span class="doctag">@return</span></div><div class="line"> */</div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">maxSubStr</span><span class="params">(String str)</span> </span>&#123;</div><div class="line">    <span class="keyword">char</span>[] array = str.toCharArray();</div><div class="line">    <span class="keyword">if</span> (array.length &lt;= <span class="number">1</span>) &#123;</div><div class="line">        <span class="keyword">return</span> array.length;</div><div class="line"></div><div class="line">    &#125;</div><div class="line">    <span class="keyword">int</span> size = array.length;</div><div class="line">    <span class="keyword">int</span>[][] result = <span class="keyword">new</span> <span class="keyword">int</span>[size][size];</div><div class="line">    <span class="keyword">int</span> max = <span class="number">1</span>;</div><div class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = size - <span class="number">1</span>; i &gt;= <span class="number">0</span>; i--) &#123; <span class="comment">// 注意 遍历的方式和初始条件取决于 状态转移方程。需要利用到之前计算出的结果。</span></div><div class="line">        result[i][i] = <span class="number">1</span>;</div><div class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> j = i + <span class="number">1</span>; j &lt; size; j++) &#123;</div><div class="line">            <span class="keyword">if</span> (array[i] == array[j]) &#123;</div><div class="line">                result[i][j] = result[i + <span class="number">1</span>][j - <span class="number">1</span>] + <span class="number">2</span>;</div><div class="line">            &#125;</div><div class="line">            <span class="keyword">if</span> (result[i][j] &gt; max) &#123;</div><div class="line">                max = result[i][j];</div><div class="line">                System.out.println(String.format(<span class="string">"index,i=%d,j=%d, max=%d"</span>, i, j,max));</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> max;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<h3 id="方法四"><a href="#方法四" class="headerlink" title="方法四"></a>方法四</h3><p>回文串特点是反过来也是它本身,那么最长回文子串问题实际就是源串和源串翻转串的最长公共子串问题</p>
+<h3 id="方法四"><a href="#方法四" class="headerlink" title="方法四"></a>方法四</h3><p>回文串特点是反过来也是它本身,那么最长回文子串问题实际就是源串和源串翻转串的最长公共子串问题<br>但是需要排除掉某些场景”abc123cba”和”abc321cba”,可以最长公共子串加上是否回文判定就行</p>
 <ul>
-<li>LCS问题</li>
+<li>LCS问题+回文判定</li>
 </ul>
 <p>代码演示：见 C5LCS.java</p>
 <p>代码文件：<br><a href="https://github.com/yangl326-Dylan/apus/blob/master/src/main/java/com/dylan326/justcode/C9MaxPalindromeSubStr.java" target="_blank" rel="external">C9MaxPalindromeSubStr.java</a><br><a href="https://github.com/yangl326-Dylan/apus/blob/master/src/main/java/com/dylan326/justcode/C5LCS.java" target="_blank" rel="external">C5LCS.java</a><br><a href="https://github.com/yangl326-Dylan/apus/blob/master/src/main/java/com/dylan326/apus/A5LongestPalindromeStr.java" target="_blank" rel="external">A5LongestPalindromeStr.java</a></p>
@@ -469,7 +469,7 @@ var _hmt = _hmt || [];
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">递归</a>
+                <a href="javascript:void(0)" class="js-tag color1">Algorithms</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -477,7 +477,7 @@ var _hmt = _hmt || [];
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Algorithms</a>
+                <a href="javascript:void(0)" class="js-tag color3">递归</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -509,15 +509,19 @@ var _hmt = _hmt || [];
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">JVM</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">collection</a>
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">JVM</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">final</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">读书笔记</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -533,6 +537,14 @@ var _hmt = _hmt || [];
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">译文</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">memory</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Socket</a>
               </li>
              
@@ -545,19 +557,7 @@ var _hmt = _hmt || [];
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">译文</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">memory</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">全排列</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">读书笔记</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -581,11 +581,11 @@ var _hmt = _hmt || [];
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">spark</a>
+                <a href="javascript:void(0)" class="js-tag color1">TCP重传</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">TCP重传</a>
+                <a href="javascript:void(0)" class="js-tag color1">spark</a>
               </li>
              
               <li class="article-tag-list-item">
