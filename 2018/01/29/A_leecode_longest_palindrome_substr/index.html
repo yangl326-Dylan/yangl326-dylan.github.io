@@ -15,7 +15,7 @@
 <meta property="og:url" content="http://www.dylan326.com/2018/01/29/A_leecode_longest_palindrome_substr/index.html">
 <meta property="og:site_name" content="Dylan&#39;s ...">
 <meta property="og:description" content="题目解析 Given a string s, find the longest palindromic substring in s. You may assume that the maximum length of s is 1000.">
-<meta property="og:updated_time" content="2018-01-29T07:30:27.935Z">
+<meta property="og:updated_time" content="2018-05-04T02:19:20.601Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="A-leecode-最长回文子串问题">
 <meta name="twitter:description" content="题目解析 Given a string s, find the longest palindromic substring in s. You may assume that the maximum length of s is 1000.">
@@ -212,7 +212,7 @@ ga('send', 'pageview');
 <li>先找长度为n的回文子串，再找n-1长度的,如果找到了退出查找， 即为结果。</li>
 </ul>
 <p>代码演示：略</p>
-<h3 id="方法三"><a href="#方法三" class="headerlink" title="方法三"></a>方法三</h3><p>思考到方法1中其实有很多重复判定,如果知晓r[i+1]\[j-1]标识数组i+1到j-1位置的子串为回文串,如果a[i] == a[j]条件下 r[i]\[j]也为回文子串,且长度+2.那么首先想到的就是动态规划,先确定状态转移方程.<br>需要注意初始条件和遍历条件，这两者取决于转义方程的推导思路.</p>
+<h3 id="方法三"><a href="#方法三" class="headerlink" title="方法三"></a>方法三</h3><p>思考到方法1中其实有很多重复判定,如果知晓r[i+1]\[j-1]标识数组i+1到j-1位置的子串为回文串,如果a[i] == a[j]条件下 r[i]\[j]也为回文子串,且长度+2.那么首先想到的就是动态规划,先确定状态转移方程.<br>需要注意初始条件和遍历条件，这两者取决于转移方程的推导思路.</p>
 <ul>
 <li>a[] 标识原始串数组。r[i]\[j]标识源串从i到j为回文串</li>
 <li>a[i]=a[j] 并且r[i+1]\[j-1]为回文串， 那么新结果为i+1,j-1的结果长度+2</li>
@@ -482,15 +482,11 @@ var _hmt = _hmt || [];
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Algorithms</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">排序</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">递归</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Algorithms</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -499,6 +495,10 @@ var _hmt = _hmt || [];
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">数据结构</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">排序</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -522,6 +522,10 @@ var _hmt = _hmt || [];
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">JVM</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">final</a>
               </li>
              
@@ -534,11 +538,23 @@ var _hmt = _hmt || [];
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">读书笔记</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">memory</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">heap memory</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">JVM</a>
+                <a href="javascript:void(0)" class="js-tag color3">译文</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">全排列</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -554,27 +570,11 @@ var _hmt = _hmt || [];
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">译文</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">全排列</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">分布式</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">一致性</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">读书笔记</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">memory</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -590,11 +590,11 @@ var _hmt = _hmt || [];
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">spark</a>
+                <a href="javascript:void(0)" class="js-tag color1">TCP重传</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">TCP重传</a>
+                <a href="javascript:void(0)" class="js-tag color1">spark</a>
               </li>
              
               <li class="article-tag-list-item">
