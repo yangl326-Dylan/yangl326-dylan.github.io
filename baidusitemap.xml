@@ -4,11 +4,33 @@
 
     
   <url>
-    <loc>http://www.dylan326.com/2018/11/13/20181026/</loc>
-    <lastmod>2018-11-23T07:58:55.189Z</lastmod>
+    <loc>http://www.dylan326.com/2018/11/26/A_leecode_nest_permutation/</loc>
+    <lastmod>2018-11-26T07:02:03.167Z</lastmod>
     <data>
         <display>
-        <title></title>
+        <title>A-leecode-字典序下一个[NextPermutation]</title>
+        <pubTime>2018-11-26T06:22:00.000Z</pubTime>
+        
+        <tag>脑子秀逗</tag>
+         
+        <tag>leecode</tag>
+         
+         
+           
+             
+              <breadCrumb title="算法" url="http://www.dylan326.com/categories/%E7%AE%97%E6%B3%95/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://www.dylan326.com/2018/11/13/20181026/</loc>
+    <lastmod>2018-11-26T06:34:59.148Z</lastmod>
+    <data>
+        <display>
+        <title>小记一日</title>
         <pubTime>2018-11-12T22:29:00.000Z</pubTime>
         
         <tag>心情</tag>
@@ -27,7 +49,7 @@
     
   <url>
     <loc>http://www.dylan326.com/2018/10/30/A_leecode_remove_element/</loc>
-    <lastmod>2018-10-30T07:03:09.588Z</lastmod>
+    <lastmod>2018-11-26T06:34:51.738Z</lastmod>
     <data>
         <display>
         <title>A-leecode-移除元素[remove element]</title>
@@ -813,28 +835,6 @@
 
     
   <url>
-    <loc>http://www.dylan326.com/2016/06/30/tcpip_1/</loc>
-    <lastmod>2017-08-06T15:03:54.000Z</lastmod>
-    <data>
-        <display>
-        <title>TCP/IP卷1笔记大纲</title>
-        <pubTime>2016-06-30T11:59:00.000Z</pubTime>
-        
-        <tag>网络</tag>
-         
-        <tag>TCP/IP</tag>
-         
-         
-           
-             
-              <breadCrumb title="网络" url="http://www.dylan326.com/categories/%E7%BD%91%E7%BB%9C/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
     <loc>http://www.dylan326.com/2013/09/11/string_null/</loc>
     <lastmod>2017-08-06T15:03:54.000Z</lastmod>
     <data>
@@ -851,6 +851,28 @@
           
              
               <breadCrumb title="JDK" url="http://www.dylan326.com/categories/%E8%AF%AD%E8%A8%80/JDK/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://www.dylan326.com/2016/06/30/tcpip_1/</loc>
+    <lastmod>2017-08-06T15:03:54.000Z</lastmod>
+    <data>
+        <display>
+        <title>TCP/IP卷1笔记大纲</title>
+        <pubTime>2016-06-30T11:59:00.000Z</pubTime>
+        
+        <tag>网络</tag>
+         
+        <tag>TCP/IP</tag>
+         
+         
+           
+             
+              <breadCrumb title="网络" url="http://www.dylan326.com/categories/%E7%BD%91%E7%BB%9C/"/>
           
         </display>
     </data>
