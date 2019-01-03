@@ -4,12 +4,78 @@
 
     
   <url>
-    <loc>http://www.dylan326.com/2019/12/29/20181229/</loc>
-    <lastmod>2018-12-29T02:14:52.083Z</lastmod>
+    <loc>http://www.dylan326.com/2017/04/06/checksum/</loc>
+    <lastmod>2019-01-03T06:32:54.495Z</lastmod>
     <data>
         <display>
-        <title>兼听则明</title>
-        <pubTime>2019-12-29T02:29:00.000Z</pubTime>
+        <title>什么是CheckSum校验和</title>
+        <pubTime>2017-04-06T09:58:00.000Z</pubTime>
+        
+        <tag>网络</tag>
+         
+        <tag>TCP/IP</tag>
+         
+         
+           
+             
+              <breadCrumb title="网络" url="http://www.dylan326.com/categories/%E7%BD%91%E7%BB%9C/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://www.dylan326.com/2018/01/29/A_leecode_longest_palindrome_substr/</loc>
+    <lastmod>2019-01-03T06:18:18.686Z</lastmod>
+    <data>
+        <display>
+        <title>A-leecode-最长回文子串问题</title>
+        <pubTime>2018-01-29T06:39:00.000Z</pubTime>
+        
+        <tag>脑子秀逗</tag>
+         
+        <tag>leecode</tag>
+         
+         
+           
+             
+              <breadCrumb title="算法" url="http://www.dylan326.com/categories/%E7%AE%97%E6%B3%95/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://www.dylan326.com/2016/04/11/quorum_consensus_algorithm/</loc>
+    <lastmod>2019-01-03T06:16:45.041Z</lastmod>
+    <data>
+        <display>
+        <title>Quorum一致性算法</title>
+        <pubTime>2016-04-11T06:36:00.000Z</pubTime>
+        
+        <tag>分布式</tag>
+         
+        <tag>一致性</tag>
+         
+         
+           
+             
+              <breadCrumb title="系统" url="http://www.dylan326.com/categories/%E7%B3%BB%E7%BB%9F/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://www.dylan326.com/2016/06/30/xinqin20160630/</loc>
+    <lastmod>2019-01-03T06:13:22.104Z</lastmod>
+    <data>
+        <display>
+        <title>机遇</title>
+        <pubTime>2016-06-30T11:36:00.000Z</pubTime>
         
         <tag>心情</tag>
          
@@ -26,8 +92,120 @@
 
     
   <url>
+    <loc>http://www.dylan326.com/2017/03/03/xinqin20170303/</loc>
+    <lastmod>2019-01-03T06:13:20.343Z</lastmod>
+    <data>
+        <display>
+        <title>面试官感想</title>
+        <pubTime>2017-03-03T11:31:00.000Z</pubTime>
+        
+        <tag>心情</tag>
+         
+        <tag>日记</tag>
+         
+         
+           
+             
+              <breadCrumb title="其他" url="http://www.dylan326.com/categories/%E5%85%B6%E4%BB%96/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://www.dylan326.com/2016/10/20/xinqin20161020/</loc>
+    <lastmod>2019-01-03T06:13:19.140Z</lastmod>
+    <data>
+        <display>
+        <title>national geographic</title>
+        <pubTime>2016-10-20T12:36:00.000Z</pubTime>
+        
+        <tag>心情</tag>
+         
+        <tag>日记</tag>
+         
+         
+           
+             
+              <breadCrumb title="其他" url="http://www.dylan326.com/categories/%E5%85%B6%E4%BB%96/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://www.dylan326.com/2016/10/11/xinqin20161011/</loc>
+    <lastmod>2019-01-03T06:13:18.055Z</lastmod>
+    <data>
+        <display>
+        <title>驾照</title>
+        <pubTime>2016-10-11T11:36:00.000Z</pubTime>
+        
+        <tag>心情</tag>
+         
+        <tag>日记</tag>
+         
+         
+           
+             
+              <breadCrumb title="其他" url="http://www.dylan326.com/categories/%E5%85%B6%E4%BB%96/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://www.dylan326.com/2016/08/03/xinqin20160803/</loc>
+    <lastmod>2019-01-03T06:13:16.745Z</lastmod>
+    <data>
+        <display>
+        <title>情绪</title>
+        <pubTime>2016-08-03T07:36:00.000Z</pubTime>
+        
+        <tag>心情</tag>
+         
+        <tag>日记</tag>
+         
+         
+           
+             
+              <breadCrumb title="其他" url="http://www.dylan326.com/categories/%E5%85%B6%E4%BB%96/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://www.dylan326.com/2016/06/23/20160623/</loc>
+    <lastmod>2019-01-03T06:13:14.839Z</lastmod>
+    <data>
+        <display>
+        <title>领证了</title>
+        <pubTime>2016-06-23T03:37:00.000Z</pubTime>
+        
+        <tag>心情</tag>
+         
+        <tag>日记</tag>
+         
+        <tag>D&amp;E</tag>
+         
+         
+           
+             
+              <breadCrumb title="其他" url="http://www.dylan326.com/categories/%E5%85%B6%E4%BB%96/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://www.dylan326.com/2018/12/24/A_leecode_rotaed_sorted_array/</loc>
-    <lastmod>2018-12-24T07:47:10.979Z</lastmod>
+    <lastmod>2018-12-29T02:17:45.921Z</lastmod>
     <data>
         <display>
         <title>A-leecode-轮转的排序数组查找元素[RotatedSortedArray]</title>
@@ -49,7 +227,7 @@
     
   <url>
     <loc>http://www.dylan326.com/2018/11/28/20181128/</loc>
-    <lastmod>2018-12-18T09:15:36.344Z</lastmod>
+    <lastmod>2018-12-29T02:17:42.173Z</lastmod>
     <data>
         <display>
         <title>七个习惯摘要</title>
@@ -70,21 +248,21 @@
 
     
   <url>
-    <loc>http://www.dylan326.com/2018/01/29/A_leecode_longest_palindrome_substr/</loc>
-    <lastmod>2018-12-05T03:59:03.166Z</lastmod>
+    <loc>http://www.dylan326.com/2019/12/29/20181229/</loc>
+    <lastmod>2018-12-29T02:17:40.008Z</lastmod>
     <data>
         <display>
-        <title>A-leecode-最长回文子串问题</title>
-        <pubTime>2018-01-29T06:39:00.000Z</pubTime>
+        <title>兼听则明</title>
+        <pubTime>2019-12-29T02:29:00.000Z</pubTime>
         
-        <tag>脑子秀逗</tag>
+        <tag>心情</tag>
          
-        <tag>leecode</tag>
+        <tag>日记</tag>
          
          
            
              
-              <breadCrumb title="算法" url="http://www.dylan326.com/categories/%E7%AE%97%E6%B3%95/"/>
+              <breadCrumb title="其他" url="http://www.dylan326.com/categories/%E5%85%B6%E4%BB%96/"/>
           
         </display>
     </data>
@@ -747,30 +925,6 @@
 
     
   <url>
-    <loc>http://www.dylan326.com/2016/06/23/20160623/</loc>
-    <lastmod>2017-08-08T03:44:33.000Z</lastmod>
-    <data>
-        <display>
-        <title>领证了</title>
-        <pubTime>2016-06-23T03:37:00.000Z</pubTime>
-        
-        <tag>心情</tag>
-         
-        <tag>日记</tag>
-         
-        <tag>D&amp;E</tag>
-         
-         
-           
-             
-              <breadCrumb title="其他" url="http://www.dylan326.com/categories/%E5%85%B6%E4%BB%96/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
     <loc>http://www.dylan326.com/2017/08/08/20170808/</loc>
     <lastmod>2017-08-08T03:37:25.000Z</lastmod>
     <data>
@@ -1183,28 +1337,6 @@
 
     
   <url>
-    <loc>http://www.dylan326.com/2016/04/11/quorum_consensus_algorithm/</loc>
-    <lastmod>2017-08-06T15:02:43.000Z</lastmod>
-    <data>
-        <display>
-        <title>Quorum一致性算法</title>
-        <pubTime>2016-04-11T06:36:00.000Z</pubTime>
-        
-        <tag>分布式</tag>
-         
-        <tag>一致性</tag>
-         
-         
-           
-             
-              <breadCrumb title="系统" url="http://www.dylan326.com/categories/%E7%B3%BB%E7%BB%9F/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
     <loc>http://www.dylan326.com/2016/05/05/socket_io/</loc>
     <lastmod>2017-08-06T14:59:33.000Z</lastmod>
     <data>
@@ -1233,28 +1365,6 @@
         <display>
         <title>纪念日</title>
         <pubTime>2017-06-23T15:11:00.000Z</pubTime>
-        
-        <tag>心情</tag>
-         
-        <tag>日记</tag>
-         
-         
-           
-             
-              <breadCrumb title="其他" url="http://www.dylan326.com/categories/%E5%85%B6%E4%BB%96/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://www.dylan326.com/2016/06/30/xinqin20160630/</loc>
-    <lastmod>2017-06-23T14:24:30.000Z</lastmod>
-    <data>
-        <display>
-        <title>机遇</title>
-        <pubTime>2016-06-30T11:36:00.000Z</pubTime>
         
         <tag>心情</tag>
          
@@ -1323,94 +1433,6 @@
         <display>
         <title>2017新年</title>
         <pubTime>2017-02-07T05:08:00.000Z</pubTime>
-        
-        <tag>心情</tag>
-         
-        <tag>日记</tag>
-         
-         
-           
-             
-              <breadCrumb title="其他" url="http://www.dylan326.com/categories/%E5%85%B6%E4%BB%96/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://www.dylan326.com/2017/03/03/xinqin20170303/</loc>
-    <lastmod>2017-05-09T02:37:51.000Z</lastmod>
-    <data>
-        <display>
-        <title>面试官感想</title>
-        <pubTime>2017-03-03T11:31:00.000Z</pubTime>
-        
-        <tag>心情</tag>
-         
-        <tag>日记</tag>
-         
-         
-           
-             
-              <breadCrumb title="其他" url="http://www.dylan326.com/categories/%E5%85%B6%E4%BB%96/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://www.dylan326.com/2016/10/20/xinqin20161020/</loc>
-    <lastmod>2017-05-05T11:48:29.000Z</lastmod>
-    <data>
-        <display>
-        <title>national geographic</title>
-        <pubTime>2016-10-20T12:36:00.000Z</pubTime>
-        
-        <tag>心情</tag>
-         
-        <tag>日记</tag>
-         
-         
-           
-             
-              <breadCrumb title="其他" url="http://www.dylan326.com/categories/%E5%85%B6%E4%BB%96/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://www.dylan326.com/2016/10/11/xinqin20161011/</loc>
-    <lastmod>2017-05-05T11:36:03.000Z</lastmod>
-    <data>
-        <display>
-        <title>驾照</title>
-        <pubTime>2016-10-11T11:36:00.000Z</pubTime>
-        
-        <tag>心情</tag>
-         
-        <tag>日记</tag>
-         
-         
-           
-             
-              <breadCrumb title="其他" url="http://www.dylan326.com/categories/%E5%85%B6%E4%BB%96/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://www.dylan326.com/2016/08/03/xinqin20160803/</loc>
-    <lastmod>2017-05-05T11:35:15.000Z</lastmod>
-    <data>
-        <display>
-        <title>情绪</title>
-        <pubTime>2016-08-03T07:36:00.000Z</pubTime>
         
         <tag>心情</tag>
          

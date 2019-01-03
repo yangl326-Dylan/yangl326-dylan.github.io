@@ -15,7 +15,7 @@
 <meta property="og:url" content="http://www.dylan326.com/2018/01/29/A_leecode_longest_palindrome_substr/index.html">
 <meta property="og:site_name" content="Dylan&#39;s ...">
 <meta property="og:description" content="题目解析 Given a string s, find the longest palindromic substring in s. You may assume that the maximum length of s is 1000.">
-<meta property="og:updated_time" content="2018-12-05T03:59:03.166Z">
+<meta property="og:updated_time" content="2019-01-03T06:18:18.686Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="A-leecode-最长回文子串问题">
 <meta name="twitter:description" content="题目解析 Given a string s, find the longest palindromic substring in s. You may assume that the maximum length of s is 1000.">
@@ -227,6 +227,7 @@ ga('send', 'pageview');
 <p>代码文件：<br><a href="https://github.com/yangl326-Dylan/apus/blob/master/src/main/java/com/dylan326/justcode/C9MaxPalindromeSubStr.java" target="_blank" rel="external">C9MaxPalindromeSubStr.java</a><br><a href="https://github.com/yangl326-Dylan/apus/blob/master/src/main/java/com/dylan326/justcode/C5LCS.java" target="_blank" rel="external">C5LCS.java</a><br><a href="https://github.com/yangl326-Dylan/apus/blob/master/src/main/java/com/dylan326/apus/A5LongestPalindromeStr.java" target="_blank" rel="external">A5LongestPalindromeStr.java</a></p>
 <h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><ul>
 <li>避免重复计算判定，保存中间结果，符合动态规划条件之一</li>
+<li>状态转移方程如何推导和编写</li>
 <li>存在转移关系, 知晓i+1,j-1结果，那么i,j的结果可以推导出来，条件二</li>
 </ul>
 <hr>
@@ -366,7 +367,7 @@ ga('send', 'pageview');
   <div class="outer">
     <div id="footer-info">
     	<div class="footer-left">
-    		&copy; 2018 Dylan326
+    		&copy; 2019 Dylan326
     	</div>
       	<div class="footer-right">
 <span id="busuanzi_container_site_pv"> 
@@ -477,19 +478,19 @@ var _hmt = _hmt || [];
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Algorithms</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">递归式子</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">排序</a>
+                <a href="javascript:void(0)" class="js-tag color3">递归</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">递归</a>
+                <a href="javascript:void(0)" class="js-tag color1">Algorithms</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">排序</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -513,11 +514,15 @@ var _hmt = _hmt || [];
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">java</a>
+                <a href="javascript:void(0)" class="js-tag color3">网络</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">JVM</a>
+                <a href="javascript:void(0)" class="js-tag color2">TCP/IP</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">java</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -525,7 +530,7 @@ var _hmt = _hmt || [];
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">heap memory</a>
+                <a href="javascript:void(0)" class="js-tag color4">JVM</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -533,7 +538,7 @@ var _hmt = _hmt || [];
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">memory</a>
+                <a href="javascript:void(0)" class="js-tag color2">heap memory</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -545,7 +550,7 @@ var _hmt = _hmt || [];
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">译文</a>
+                <a href="javascript:void(0)" class="js-tag color2">memory</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -561,7 +566,7 @@ var _hmt = _hmt || [];
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">读书笔记</a>
+                <a href="javascript:void(0)" class="js-tag color3">译文</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -577,15 +582,11 @@ var _hmt = _hmt || [];
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">读书笔记</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">raft</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">网络</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">TCP/IP</a>
               </li>
              
               <li class="article-tag-list-item">

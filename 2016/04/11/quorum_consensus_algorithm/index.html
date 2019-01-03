@@ -15,7 +15,7 @@
 <meta property="og:url" content="http://www.dylan326.com/2016/04/11/quorum_consensus_algorithm/index.html">
 <meta property="og:site_name" content="Dylan&#39;s ...">
 <meta property="og:description" content="Quorum一致性算法简介背景一个组包含若干副本集合，个数为N。每个副本集合存储着items的集合，这个集合可以是文件或者内容，每个item有着唯一的标示和一个状态，我们称之为NWR问题。">
-<meta property="og:updated_time" content="2017-08-06T15:02:43.000Z">
+<meta property="og:updated_time" content="2019-01-03T06:16:45.041Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Quorum一致性算法">
 <meta name="twitter:description" content="Quorum一致性算法简介背景一个组包含若干副本集合，个数为N。每个副本集合存储着items的集合，这个集合可以是文件或者内容，每个item有着唯一的标示和一个状态，我们称之为NWR问题。">
@@ -195,7 +195,7 @@ ga('send', 'pageview');
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="Quorum一致性算法简介"><a href="#Quorum一致性算法简介" class="headerlink" title="Quorum一致性算法简介"></a>Quorum一致性算法简介</h1><h3 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h3><p>一个组包含若干副本集合，个数为N。每个副本集合存储着items的集合，这个集合可以是文件或者内容，每个item有着唯一的标示和一个状态，我们称之为NWR问题。</p>
+        <h2 id="Quorum一致性算法简介"><a href="#Quorum一致性算法简介" class="headerlink" title="Quorum一致性算法简介"></a>Quorum一致性算法简介</h2><h3 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h3><p>一个组包含若干副本集合，个数为N。每个副本集合存储着items的集合，这个集合可以是文件或者内容，每个item有着唯一的标示和一个状态，我们称之为NWR问题。</p>
 <a id="more"></a>
 <h3 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h3><p>R：定义R为读的最小票数，W：定义为写的最小票数。N为副本个数。<br>每个副本集存储着同一个item的不同的版本号码，越大的版本号标示这个数据是最近的。<br>读的个数是对写的个数感兴趣的，因为读到的数据应该是大多数写成功的结果。  </p>
 <h3 id="公式"><a href="#公式" class="headerlink" title="公式"></a>公式</h3><p>R+W&gt;N;读写的票数和应该大于总的副本集数（节点数）<br>W&gt;N/2;写的票数应该大于一般的副本集数（节点数）  </p>
@@ -341,7 +341,7 @@ ga('send', 'pageview');
   <div class="outer">
     <div id="footer-info">
     	<div class="footer-left">
-    		&copy; 2018 Dylan326
+    		&copy; 2019 Dylan326
     	</div>
       	<div class="footer-right">
 <span id="busuanzi_container_site_pv"> 
@@ -452,19 +452,19 @@ var _hmt = _hmt || [];
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Algorithms</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">递归式子</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">排序</a>
+                <a href="javascript:void(0)" class="js-tag color3">递归</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">递归</a>
+                <a href="javascript:void(0)" class="js-tag color1">Algorithms</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">排序</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -488,11 +488,15 @@ var _hmt = _hmt || [];
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">java</a>
+                <a href="javascript:void(0)" class="js-tag color3">网络</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">JVM</a>
+                <a href="javascript:void(0)" class="js-tag color2">TCP/IP</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">java</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -500,7 +504,7 @@ var _hmt = _hmt || [];
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">heap memory</a>
+                <a href="javascript:void(0)" class="js-tag color4">JVM</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -508,7 +512,7 @@ var _hmt = _hmt || [];
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">memory</a>
+                <a href="javascript:void(0)" class="js-tag color2">heap memory</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -520,7 +524,7 @@ var _hmt = _hmt || [];
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">译文</a>
+                <a href="javascript:void(0)" class="js-tag color2">memory</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -536,7 +540,7 @@ var _hmt = _hmt || [];
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">读书笔记</a>
+                <a href="javascript:void(0)" class="js-tag color3">译文</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -552,15 +556,11 @@ var _hmt = _hmt || [];
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">读书笔记</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">raft</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">网络</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">TCP/IP</a>
               </li>
              
               <li class="article-tag-list-item">
