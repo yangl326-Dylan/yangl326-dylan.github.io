@@ -180,28 +180,6 @@
 
     
   <url>
-    <loc>http://www.dylan326.com/2016/10/20/xinqin20161020/</loc>
-    <lastmod>2019-01-03T06:13:19.140Z</lastmod>
-    <data>
-        <display>
-        <title>national geographic</title>
-        <pubTime>2016-10-20T12:36:00.000Z</pubTime>
-        
-        <tag>心情</tag>
-         
-        <tag>日记</tag>
-         
-         
-           
-             
-              <breadCrumb title="其他" url="http://www.dylan326.com/categories/%E5%85%B6%E4%BB%96/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
     <loc>http://www.dylan326.com/2016/10/11/xinqin20161011/</loc>
     <lastmod>2019-01-03T06:13:18.055Z</lastmod>
     <data>
@@ -1292,9 +1270,9 @@
         
         <tag>java</tag>
          
-        <tag>JVM</tag>
-         
         <tag>heap memory</tag>
+         
+        <tag>JVM</tag>
          
          
            
