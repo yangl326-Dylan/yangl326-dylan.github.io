@@ -175,6 +175,90 @@ ga('send', 'pageview');
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-kernel" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+<div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/06/08/kernel/">用户态和系统态区分</a>
+    </h1>
+  
+
+        
+        <a href="/2016/06/08/kernel/" class="archive-article-date">
+  	<time datetime="2016-06-08T08:01:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-06-08</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h1><p>​    在操作系统中，有着分区域保护特性，也作保护环、或者CPU环，简称Rings。用来处理发生故障时候数据错误处理，及恶意操作处理。内层Ring可以使用外层Ring的任意资源。而外层需要请求权限才能访问内层资源。<br>​    在此基础上就区分了系统态（核心态）和用户态。每一个用户进程运行自己的代码存在在用户运行态，当调用系统函数的时候，运行模式转变为进入系统态。</p>
+        
+          <a class="article-more-a" href="/2016/06/08/kernel/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Socket</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">IO</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">kernel</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/网络/" class="article-tag-list-link color3">网络</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/系统/" class="article-tag-list-link color3">系统</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2016/06/08/kernel/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+  
     <article id="post-socket_io" class="article article-type-post  article-index" itemscope itemprop="blogPost">
 <div class="article-inner">
     
@@ -853,103 +937,6 @@ ga('send', 'pageview');
 
 
   
-    <article id="post-arraylist-remove" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-<div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2013/06/11/arraylist-remove/">ArrayList删除元素问题及问题扩展</a>
-    </h1>
-  
-
-        
-        <a href="/2013/06/11/arraylist-remove/" class="archive-article-date">
-  	<time datetime="2013-06-11T05:29:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2013-06-11</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>初学者容易犯错的细小问题，collection集合类（ArrayList list Hashmap）中移除元素问题。</p>
-<p>其它集合会出现类似问题，java遍历中移除元素某些情况不会提示任何错误信息，因为是合法，但会引起数据问题，不易被发现。其他语言也类似如python按照dict的items去遍历出现del(key)会引发个错误。</p>
-<p>所以遍历的时候一定得考虑是否对被遍历对象做过了修改，你去遍历的是什么对象，遍历的循环中操作的又是什么对象。</p>
-<p>下面正对ArrayList移除某一对象问题做个分析：</p>
-<p>问题：ArrayList&lt;&gt;String对象包含如下字符串  “a”, “b”, “c”, “c”, “d”。 现在我们需要移除所有的c字符串，都知道list的remove方法只能移除首次出现的这个对象。</p>
-<p>于是很容易就想到遍历这个collection遇到c的移除掉，看如下代码：</p>
-<p>缺省listA，B，C，D 四个相同的arraylist对象，移除所有c字符串。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">String[] tmp = &#123;<span class="string">"a"</span>,<span class="string">"b"</span>,<span class="string">"c"</span>,<span class="string">"c"</span>,<span class="string">"d"</span>&#125;;</div><div class="line">		List&lt;String&gt; listA = <span class="keyword">new</span> ArrayList&lt;String&gt;();</div><div class="line">		List&lt;String&gt; listB = <span class="keyword">new</span> ArrayList&lt;String&gt;();</div><div class="line">		List&lt;String&gt; listC = <span class="keyword">new</span> ArrayList&lt;String&gt;();</div><div class="line">		List&lt;String&gt; listD = <span class="keyword">new</span> ArrayList&lt;String&gt;();</div><div class="line">		<span class="keyword">for</span>(String str:tmp)&#123;</div><div class="line">			listA.add(str);</div><div class="line">			listB.add(str);</div><div class="line">			listC.add(str);</div><div class="line">			listD.add(str);</div><div class="line">		&#125;<span class="comment">//listA B C D 装有相同tmp数组中的对象</span></div></pre></td></tr></table></figure>
-<p>容易犯错的代码：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//listA.remove("c");//仅仅移除第一次出现的c，那么很容易想到去遍历遇到c都remove（索引）</span></div><div class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; listA.size(); i++) &#123;</div><div class="line">			<span class="keyword">if</span> (listA.get(i).equals(<span class="string">"c"</span>)) &#123;</div><div class="line">				listA.remove(i);</div><div class="line">			&#125;</div><div class="line">		&#125;</div><div class="line">		System.out.println(listA);<span class="comment">// 结果：[a, b, c, d] 为什么第二个c没有被全部移除掉? 不会出现错误或者异常，见分析</span></div></pre></td></tr></table></figure>
-<p>分析：顺序遍历，循环的第3次 即索引2的位置的时候碰到第一个c的，移除掉，此时listA的大小改变了，而下次循环的时候2索引后面的元素实际索引都变化了。而循环的遍历索引变为3了从d开始，相邻的第二个c元素被跳过了，就是错误结果了。</p>
-<p>解决方法有如下几种，还是希望明白本文开头的黑体字。</p>
-<p>方法一：根据上述的分析那么最简单的方法便是倒序遍历</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//倒序移除</span></div><div class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> i = listB.size() -<span class="number">1</span>; i&gt;=<span class="number">0</span>; i--) &#123;</div><div class="line">			<span class="keyword">if</span> (listB.get(i).equals(<span class="string">"c"</span>)) &#123;</div><div class="line">				listB.remove(i);</div><div class="line">			&#125;</div><div class="line">		&#125;</div><div class="line">		System.out.println(listB); <span class="comment">//结果：[a, b, d] 符合期望</span></div></pre></td></tr></table></figure>
-<p>分析：倒序遍历后 遍历过的元素因当前元素被移除而引起的索引变化已经无关紧要了，因为已经遍历过了。保证未遍历的索引不变化，那么所有的元素都会被处理到的。</p>
-<p>方法二：使用removeAll，只不过它的参数是个集合，方法的定义是移除所有包含的所有元素。（注意‘所有包含’和‘所有’）</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//使用 removeAll包装起来需要移除的元素</span></div><div class="line">		List&lt;String&gt; tmpDel = <span class="keyword">new</span> ArrayList&lt;String&gt;();</div><div class="line">		tmpDel.add(<span class="string">"c"</span>);</div><div class="line">		listC.removeAll(tmpDel);<span class="comment">//移除tmpDel所包含的其 所有元素</span></div><div class="line">		System.out.println(listC); <span class="comment">//结果：[a, b, d] 符合期望</span></div></pre></td></tr></table></figure>
-<p>分析： 看removeAll的文档：它指的是移除所有包含的所有元素，两个所有。</p>
-<p>方法三：</p>
-<p>使用迭代器Iterator，使用的时候注意迭代器的原理。有些用法是错误的，比如说在迭代中修改被迭代的对象</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//使用迭代器 注意正确用法见注释部分</span></div><div class="line">		Iterator&lt;String&gt; iterator = listD.iterator();</div><div class="line">		<span class="keyword">while</span> (iterator.hasNext()) &#123;</div><div class="line">			<span class="keyword">if</span>(iterator.next().equals(<span class="string">"c"</span>))&#123;</div><div class="line">				iterator.remove();</div><div class="line">				<span class="comment">//listD.remove("c"); // error Iterator是工作在一个独立的线程，不允许迭代的对象被改变，否则会并发异常</span></div><div class="line">			&#125;;</div><div class="line">			</div><div class="line">		&#125;</div><div class="line">		System.out.println(listD); <span class="comment">//结果：[a, b, d] 符合期望</span></div></pre></td></tr></table></figure>
-<p>分析：listD是被迭代的对象，Iterator被创建的时候，建立了一个内存索引表（单链表），这 个索引表指向原来的对象，当被迭代的对象改变的时候，这个索引表的内容没有同步改变，所以当索引指针往下移动的时候，便找不到要迭代的对象，使用注释的代码会产生错误。</p>
-<hr>
-<p><strong>版权声明：本文为博主原创文章，未经允许不得转载。</strong></p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">java</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">collection</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/JDK/" class="article-tag-list-link color4">JDK</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2013/06/11/arraylist-remove/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-  
   
     <nav id="page-nav">
       <a class="extend prev" rel="prev" href="/page/6/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/">5</a><a class="page-number" href="/page/6/">6</a><span class="page-number current">7</span><a class="page-number" href="/page/8/">8</a><a class="extend next" rel="next" href="/page/8/">Next &raquo;</a>
@@ -1087,15 +1074,15 @@ var _hmt = _hmt || [];
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">leecode</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">排序</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">数据结构</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">leecode</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1115,11 +1102,11 @@ var _hmt = _hmt || [];
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">JVM</a>
+                <a href="javascript:void(0)" class="js-tag color1">collection</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">collection</a>
+                <a href="javascript:void(0)" class="js-tag color4">JVM</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1131,10 +1118,6 @@ var _hmt = _hmt || [];
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">heap memory</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">final</a>
               </li>
              
@@ -1143,15 +1126,7 @@ var _hmt = _hmt || [];
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">金字塔</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">slide</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">读书笔记</a>
+                <a href="javascript:void(0)" class="js-tag color2">heap memory</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1167,11 +1142,15 @@ var _hmt = _hmt || [];
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">译文</a>
+                <a href="javascript:void(0)" class="js-tag color5">读书笔记</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">全排列</a>
+                <a href="javascript:void(0)" class="js-tag color4">金字塔</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">slide</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1180,6 +1159,14 @@ var _hmt = _hmt || [];
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">一致性</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">全排列</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">译文</a>
               </li>
              
               <li class="article-tag-list-item">
