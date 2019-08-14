@@ -175,6 +175,170 @@ ga('send', 'pageview');
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-A01_taijie_n" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+<div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/07/22/A01_taijie_n/">A01-递归式-台阶走法</a>
+    </h1>
+  
+
+        
+        <a href="/2017/07/22/A01_taijie_n/" class="archive-article-date">
+  	<time datetime="2017-07-22T13:30:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-07-22</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>问题</p>
+<blockquote>
+<p>n个台阶走法问题， 已知可以一次一个台阶，一次两个台阶，一次三个台阶。 那么n个台阶有多少种走法？</p>
+</blockquote>
+<p>问题分析步骤</p>
+<ol>
+<li>n个台阶的走法为n-1个台阶走法+1，1=走一个台阶</li>
+<li>最后一步的走法可以是题目中的三类</li>
+<li>那么最后的结果必然是，最后的方案是一步、两步、或者三步，走法的和即为结果</li>
+<li>最小边界， 只有一个台阶，两个台阶，三个台阶</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">nTJ</span><span class="params">(<span class="keyword">int</span> n)</span> </span>&#123;</div><div class="line">        <span class="keyword">if</span> (n == <span class="number">1</span>) &#123;</div><div class="line">            <span class="keyword">return</span> <span class="number">1</span>;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">if</span> (n == <span class="number">2</span>) &#123;</div><div class="line">            <span class="keyword">return</span> <span class="number">2</span>;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">if</span> (n == <span class="number">3</span>) &#123;</div><div class="line">            <span class="keyword">return</span> <span class="number">4</span>;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">if</span> (n &gt; <span class="number">3</span>) &#123;</div><div class="line">            <span class="keyword">return</span> nTJ(n - <span class="number">1</span>) + nTJ(n - <span class="number">2</span>) + nTJ(n - <span class="number">3</span>);</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>代码:<a href="https://github.com/yangl326-Dylan/apus/blob/master/src/main/java/com/dylan326/justcode/C6nTJ.java" target="_blank" rel="external">C6nTJ.java</a></p>
+<hr>
+<p><strong>版权声明：本文为博主原创文章，未经允许不得转载。</strong></p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">脑子秀逗</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">递归</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/算法/" class="article-tag-list-link color3">算法</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/07/22/A01_taijie_n/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+  
+    <article id="post-A01_quanpaileidigui" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+<div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/07/22/A01_quanpaileidigui/">A01-递归式-全排列</a>
+    </h1>
+  
+
+        
+        <a href="/2017/07/22/A01_quanpaileidigui/" class="archive-article-date">
+  	<time datetime="2017-07-22T13:28:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-07-22</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>全排列递归：<a href="http://www.dylan326.com/2017/06/23/quanpailie_digui/">链接页面</a></p>
+<hr>
+<p><strong>版权声明：本文为博主原创文章，未经允许不得转载。</strong></p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">脑子秀逗</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">递归</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/算法/" class="article-tag-list-link color3">算法</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/07/22/A01_quanpaileidigui/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+  
     <article id="post-A01_diguishizi" class="article article-type-post  article-index" itemscope itemprop="blogPost">
 <div class="article-inner">
     
@@ -811,169 +975,6 @@ ga('send', 'pageview');
 
 
   
-    <article id="post-aqs1" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-<div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/05/15/aqs1/">AbstractQueuedSynchronizer实现分析</a>
-    </h1>
-  
-
-        
-        <a href="/2017/05/15/aqs1/" class="archive-article-date">
-  	<time datetime="2017-05-15T12:01:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-05-15</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="背景介绍"><a href="#背景介绍" class="headerlink" title="背景介绍"></a>背景介绍</h3><p>JDK1.5开始的java.util.concurrent包（简称J.U.C包）提供了大部分同步器的构建源框架类：AbstractQueuedSynchronizer，简称AQS类。我们使用到的大部分同步器都会有一个实现了AQS的子类。</p>
-        
-          <a class="article-more-a" href="/2017/05/15/aqs1/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">java</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">JVM</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/语言/" class="article-tag-list-link color3">语言</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/JDK/" class="article-tag-list-link color4">JDK</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/05/15/aqs1/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-  
-    <article id="post-checksum" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-<div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/04/06/checksum/">什么是CheckSum校验和</a>
-    </h1>
-  
-
-        
-        <a href="/2017/04/06/checksum/" class="archive-article-date">
-  	<time datetime="2017-04-06T09:58:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-04-06</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>对于了解过TCP/IP协议的来说，会注意到部分协议头中的checksum字段，如TCP， IP等。那么checksum是什么、为什么被使用、如何计算出来， 对这些问题做一个简单的讲述。</p>
-<h2 id="回顾"><a href="#回顾" class="headerlink" title="回顾"></a>回顾</h2><p>IP头结构的理解，详见本本站一篇IP头的结构文章。简单的归纳就是32bit倍数的数据， 最大头长度位数数据是4bit-IHL（单位是4字节即32bit）那么最大15*32bit=60字节；最小无可选数据为20字节。  </p>
-<p>数据结构如下：  </p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"> 0                   1                   2                   3  </div><div class="line"> 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1  </div><div class="line">+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+  </div><div class="line">|Version|  IHL  |Type of Service|          Total Length         |  </div><div class="line">+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+  </div><div class="line">|         Identification        |Flags|      Fragment Offset    |  </div><div class="line">+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+  </div><div class="line">|  Time to Live |    Protocol   |         Header Checksum       |  </div><div class="line">+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+  </div><div class="line">|                       Source Address                          |  </div><div class="line">+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+  </div><div class="line">|                    Destination Address                        |  </div><div class="line">+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+  </div><div class="line">|                    Options                    |    Padding    |  </div><div class="line">+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+</div></pre></td></tr></table></figure>
-<p>我们看比较关注的几个字段:<br>Header Checksum， header checksum占用16bit数据空间。<br>Padding：补充数据，确保为32bit的倍数，那么头数据肯定也是16bit的倍数。<br>其他字段本文暂且用不到，如需详细了解请看另一篇文章。</p>
-<h2 id="定义及描述"><a href="#定义及描述" class="headerlink" title="定义及描述"></a>定义及描述</h2><p>什么是checksum， 校验和是一个用来检测数据是否和原来一致的一个值， 它的位数16bit，根据数据计算出来的。因为数据在网络上传输存在误码或者错误，那么需要一个检测值在包头判定数据是否正确。<br>我们把包头数据按照16bit分组，然后对每组数据按位求和， 那么这个值可认为为校验和。</p>
-<h2 id="IP头checksum计算方式"><a href="#IP头checksum计算方式" class="headerlink" title="IP头checksum计算方式"></a>IP头checksum计算方式</h2><p>当发送端发送数据的时候，把checksum数据位置为0，IP头数据按照16bit分组计算出校验和值；接收端接收到的头数据同样按照16bit分组，计算出每组的反码并求和， 如果ip头在传输中不存在数据错误，那么计算结果应该全为1。</p>
-<h2 id="总结及后记"><a href="#总结及后记" class="headerlink" title="总结及后记"></a>总结及后记</h2><p>校验和是一种数据有效性的检测手段，优点对比MD5/CRC等是计算快速，缺点是并不能完全的保证数据的正确性， 需要应用协议或者程序去保证。 亚马逊S3某次故障中就出现内网传输数据bit错误导致的问题，所以应用层做数据校验。</p>
-<hr>
-<p><strong>版权声明：本文为博主原创文章，未经允许不得转载。</strong></p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">网络</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">TCP/IP</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/网络/" class="article-tag-list-link color3">网络</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/04/06/checksum/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-  
   
     <nav id="page-nav">
       <a class="extend prev" rel="prev" href="/page/4/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><span class="page-number current">5</span><a class="page-number" href="/page/6/">6</a><a class="page-number" href="/page/7/">7</a><a class="page-number" href="/page/8/">8</a><a class="extend next" rel="next" href="/page/6/">Next &raquo;</a>
@@ -1099,11 +1100,11 @@ var _hmt = _hmt || [];
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Algorithms</a>
+                <a href="javascript:void(0)" class="js-tag color5">递归式子</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">递归式子</a>
+                <a href="javascript:void(0)" class="js-tag color3">排序</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1111,11 +1112,11 @@ var _hmt = _hmt || [];
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">leecode</a>
+                <a href="javascript:void(0)" class="js-tag color1">Algorithms</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">排序</a>
+                <a href="javascript:void(0)" class="js-tag color3">leecode</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1131,19 +1132,15 @@ var _hmt = _hmt || [];
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">设计模式</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">java</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">collection</a>
+                <a href="javascript:void(0)" class="js-tag color4">JVM</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">JVM</a>
+                <a href="javascript:void(0)" class="js-tag color5">设计模式</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1155,11 +1152,31 @@ var _hmt = _hmt || [];
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">final</a>
+                <a href="javascript:void(0)" class="js-tag color1">collection</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">memory</a>
+                <a href="javascript:void(0)" class="js-tag color4">金字塔</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">slide</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">IM</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">DX</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">微信</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">final</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1179,15 +1196,23 @@ var _hmt = _hmt || [];
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">memory</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">译文</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">读书笔记</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">金字塔</a>
+                <a href="javascript:void(0)" class="js-tag color4">全排列</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">slide</a>
+                <a href="javascript:void(0)" class="js-tag color5">raft</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1196,18 +1221,6 @@ var _hmt = _hmt || [];
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">一致性</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">全排列</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">译文</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">raft</a>
               </li>
              
               <li class="article-tag-list-item">
