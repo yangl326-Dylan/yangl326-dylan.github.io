@@ -175,85 +175,6 @@ ga('send', 'pageview');
           <div id="js-content" class="content-ll">
             
   
-    <article id="post-large_occupant" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-<div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/08/14/large_occupant/">IM万人群设计</a>
-    </h1>
-  
-
-        
-        <a href="/2019/08/14/large_occupant/" class="archive-article-date">
-  	<time datetime="2019-08-14T04:05:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-08-14</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <hr>
-<p><strong>版权声明：本文为博主原创文章，未经允许不得转载。</strong></p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">IM</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">DX</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">微信</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/THINK/" class="article-tag-list-link color1">THINK</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/08/14/large_occupant/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-  
     <article id="post-id_desgin" class="article article-type-post  article-index" itemscope itemprop="blogPost">
 <div class="article-inner">
     
@@ -274,34 +195,10 @@ ga('send', 'pageview');
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="背景和目标"><a href="#背景和目标" class="headerlink" title="背景和目标"></a>背景和目标</h2><p>需要一个唯一数据标示<br>ID类型可以使字符串或者整型。 这两类选择对方案影响较大<br>ID生产性能， 决定服务瓶颈<br>ID生产容灾解决， 如果ID是你的系统十分重要的数据，那么容灾较为重要</p>
-<h2 id="可行的解决方案"><a href="#可行的解决方案" class="headerlink" title="可行的解决方案"></a>可行的解决方案</h2><ul>
-<li>大数， 参考一般电商系统订单ID</li>
-<li>uniq字符串 ， 可参考UUID、MongoObjectID等</li>
-<li>MySQL 主键</li>
-<li>redis incr</li>
-</ul>
-<h3 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h3><p>snowflake<br><a href="https://developer.twitter.com/en/docs/basics/twitter-ids.html" target="_blank" rel="external">https://developer.twitter.com/en/docs/basics/twitter-ids.html</a><br><a href="https://blog.twitter.com/engineering/en_us/a/2010/announcing-snowflake.html" target="_blank" rel="external">https://blog.twitter.com/engineering/en_us/a/2010/announcing-snowflake.html</a></p>
-<h4 id="优点"><a href="#优点" class="headerlink" title="优点"></a>优点</h4><ul>
-<li>长整型处理性能相对较高</li>
-<li>生产性能高</li>
-<li>生成分布式容错</li>
-</ul>
-<h4 id="弊端"><a href="#弊端" class="headerlink" title="弊端"></a>弊端</h4><ul>
-<li>时间有限，取决于设计的其实时间戳， 目前可使用年限有限， 取决于分配的位数和起始时间戳</li>
-<li>机器时间回拨，会导致循环hang一段时间，直到比上次生产ID值大</li>
-<li>每一毫秒2^12次， 单节点QPS过大，也会导致hang住一段时间</li>
-<li>workID，个数有限，可以做成rpc， 产生了rpc调用时耗</li>
-</ul>
-<h2 id="可参考其他实现"><a href="#可参考其他实现" class="headerlink" title="可参考其他实现"></a>可参考其他实现</h2><p>侧重不一样，导致实现有难易</p>
-<ul>
-<li>MQ messageid  例如kafka</li>
-<li>RPC requestID。 例如dubbo 只需要保证某次连接上唯一</li>
-<li>TCP/IP 序列id</li>
-</ul>
-<hr>
-<p><strong>版权声明：本文为博主原创文章，未经允许不得转载。</strong></p>
-
+        <h2 id="背景和目标"><a href="#背景和目标" class="headerlink" title="背景和目标"></a>背景和目标</h2><p>需要一个唯一数据标示<br>ID类型可以使字符串或者整型。 这两类选择对方案影响较大<br>ID生产性能， 决定服务瓶颈<br>ID生产容灾解决， 如果ID是你的系统十分重要的数据，那么容灾较为重要<br></p>
+        
+          <a class="article-more-a" href="/2019/08/06/id_desgin/#more">more >></a>
+        
       
 
       
@@ -969,6 +866,82 @@ ga('send', 'pageview');
 
 
   
+    <article id="post-20181229" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+<div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/12/29/20181229/">兼听则明</a>
+    </h1>
+  
+
+        
+        <a href="/2018/12/29/20181229/" class="archive-article-date">
+  	<time datetime="2018-12-29T02:29:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-12-29</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="年末"><a href="#年末" class="headerlink" title="年末"></a>年末</h2><blockquote>
+<p>偏听偏言，兼听则明。2018的工作总结</p>
+</blockquote>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">心情</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">日记</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/其他/" class="article-tag-list-link color3">其他</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/12/29/20181229/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+  
   
     <nav id="page-nav">
       <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/8/">8</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
@@ -1094,6 +1067,10 @@ var _hmt = _hmt || [];
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Algorithms</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">递归式子</a>
               </li>
              
@@ -1106,15 +1083,15 @@ var _hmt = _hmt || [];
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Algorithms</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">leecode</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">数据结构</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">设计模式</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1134,10 +1111,6 @@ var _hmt = _hmt || [];
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">设计模式</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">网络</a>
               </li>
              
@@ -1147,14 +1120,6 @@ var _hmt = _hmt || [];
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">collection</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">金字塔</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">slide</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1174,7 +1139,23 @@ var _hmt = _hmt || [];
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">memory</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">heap memory</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">金字塔</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">slide</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">读书笔记</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1190,23 +1171,11 @@ var _hmt = _hmt || [];
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">memory</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">译文</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">读书笔记</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">全排列</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">raft</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1215,6 +1184,10 @@ var _hmt = _hmt || [];
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">一致性</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">raft</a>
               </li>
              
               <li class="article-tag-list-item">
