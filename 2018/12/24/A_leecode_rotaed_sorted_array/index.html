@@ -78,6 +78,13 @@
                 </a>
             </li>
             
+            <li>
+                <a id="search">
+                    <i class="iconfont icon-sousuo1"></i>
+                    <span>搜索</span>
+                </a>
+            </li>
+            
         </ul>
     </div>
     
@@ -133,7 +140,7 @@
 </span>
 </span>
     </div>
-    <div class="post-content ">
+    <div class="post-content no-indent">
         <h2 id="题目解析"><a href="#题目解析" class="headerlink" title="题目解析"></a>题目解析</h2><blockquote>
 <p>Suppose an array sorted in ascending order is rotated at some pivot unknown to you beforehand.<br>(i.e., [0,1,2,3,4,5,6] might become [5,6,0,1,2,3,4]).<br>You are given a target value to search. If found in the array return its index, otherwise return -1.<br>You may assume no duplicate exists in the array.<br>Your algorithm’s runtime complexity must be in the order of O(log n).<br><a id="more"></a><br>思路类比二分， 变种，比较中位数和左右两个边界大小， 能确定哪半边是有序，哪半边是转置。再比较大小确target再哪半边，有序的采用二分查找，转置的回到了初始问题</p>
 </blockquote>
@@ -169,14 +176,52 @@
         
 
         
-
+        <li>
+            <a target="_blank" href="http://weibo.com/youngchou326">
+                            <span class="fa-stack fa-lg">
+                                  <i class="iconfont icon-weibo"></i>
+                            </span>
+            </a>
+        </li>
         
 
         
 
+        
+        <li>
+            <a target="_blank"  href="https://github.com/yangl326-Dylan">
+                            <span class="fa-stack fa-lg">
+                                <i class="iconfont icon-github"></i>
+                            </span>
+            </a>
+        </li>
+        
+
+        
+        <li>
+            <a target="_blank"  href="https://www.linkedin.com/in/敦飏-周-49a752b7">
+                            <span class="fa-stack fa-lg">
+                                <i class="iconfont icon-linkedin"></i>
+                            </span>
+            </a>
+        </li>
         
 
     </ul>
+    
+    <p>
+        <span>/</span>
+        
+        <span><a href="https://github.com/yangl326-Dylan">Github</a></span>
+        <span>/</span>
+        
+        <span><a href="http://www.dylan326.com/2013/02/13/about/">About</a></span>
+        <span>/</span>
+        
+        <span><a href="mailto:zhoudunyang@gmail.com">Mail</a></span>
+        <span>/</span>
+        
+    </p>
     
     <p>
         <span id="busuanzi_container_site_pv">
@@ -195,7 +240,7 @@
 
 <script>
     // We expose some of the variables needed by the front end
-    window.hexo_search_path = ""
+    window.hexo_search_path = "search.json"
     window.hexo_root = "/"
     window.isPost = true
 </script>

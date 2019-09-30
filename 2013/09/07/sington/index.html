@@ -78,6 +78,13 @@
                 </a>
             </li>
             
+            <li>
+                <a id="search">
+                    <i class="iconfont icon-sousuo1"></i>
+                    <span>搜索</span>
+                </a>
+            </li>
+            
         </ul>
     </div>
     
@@ -130,7 +137,7 @@
 </span>
 </span>
     </div>
-    <div class="post-content ">
+    <div class="post-content no-indent">
         <h3 id="含义"><a href="#含义" class="headerlink" title="含义"></a>含义</h3><p>什么叫单例模式或单件模式，由名字可知存在一个对象，我们可以重复使用这个对象。那么如何实现整个系统中存在一个对象，如何保证一个对象只被实例化一次。实际上约定一个全局变量可以，通过静态方法或者静态类的变量和一定限定修饰可以实现。实际中我们会遇到很多需要的场景，如果一个对象的初始化比较耗资源时间较长，并且可重复利用，那么就需要单例模式去实现。如：线程池、缓存、日志对象等，只需要一个对象就行了。</p>
 <p>创建对象 new一个实例，那么如何去保证这个对象实例只会存在一个。java对象缺省有无参构造器（构造方法），私有化这个构造方法，来看看几种实现方法。</p>
 <h3 id="常见三种单例的实现方法"><a href="#常见三种单例的实现方法" class="headerlink" title="常见三种单例的实现方法"></a>常见三种单例的实现方法</h3><p>首先想到的私有化构造方法，提供一个静态方法返回同一个对象：<br><a id="more"></a><br></p>
@@ -170,14 +177,52 @@
         
 
         
-
+        <li>
+            <a target="_blank" href="http://weibo.com/youngchou326">
+                            <span class="fa-stack fa-lg">
+                                  <i class="iconfont icon-weibo"></i>
+                            </span>
+            </a>
+        </li>
         
 
         
 
+        
+        <li>
+            <a target="_blank"  href="https://github.com/yangl326-Dylan">
+                            <span class="fa-stack fa-lg">
+                                <i class="iconfont icon-github"></i>
+                            </span>
+            </a>
+        </li>
+        
+
+        
+        <li>
+            <a target="_blank"  href="https://www.linkedin.com/in/敦飏-周-49a752b7">
+                            <span class="fa-stack fa-lg">
+                                <i class="iconfont icon-linkedin"></i>
+                            </span>
+            </a>
+        </li>
         
 
     </ul>
+    
+    <p>
+        <span>/</span>
+        
+        <span><a href="https://github.com/yangl326-Dylan">Github</a></span>
+        <span>/</span>
+        
+        <span><a href="http://www.dylan326.com/2013/02/13/about/">About</a></span>
+        <span>/</span>
+        
+        <span><a href="mailto:zhoudunyang@gmail.com">Mail</a></span>
+        <span>/</span>
+        
+    </p>
     
     <p>
         <span id="busuanzi_container_site_pv">
@@ -196,7 +241,7 @@
 
 <script>
     // We expose some of the variables needed by the front end
-    window.hexo_search_path = ""
+    window.hexo_search_path = "search.json"
     window.hexo_root = "/"
     window.isPost = true
 </script>

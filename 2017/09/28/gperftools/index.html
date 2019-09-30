@@ -78,6 +78,13 @@
                 </a>
             </li>
             
+            <li>
+                <a id="search">
+                    <i class="iconfont icon-sousuo1"></i>
+                    <span>搜索</span>
+                </a>
+            </li>
+            
         </ul>
     </div>
     
@@ -133,7 +140,7 @@
 </span>
 </span>
     </div>
-    <div class="post-content ">
+    <div class="post-content no-indent">
         <h2 id="google-perftools"><a href="#google-perftools" class="headerlink" title="google-perftools"></a>google-perftools</h2><p>perftools wiki地址 ：<a href="https://github.com/gperftools/gperftools/wiki" target="_blank" rel="external">https://github.com/gperftools/gperftools/wiki</a><br>安装perftools<br>…<br>工具主要作用分析程序：heap、cpu等，常用于c/c++程序分析<br>使用文档如下：<br><a href="https://gperftools.github.io/gperftools/heapprofile.html" target="_blank" rel="external">https://gperftools.github.io/gperftools/heapprofile.html</a><br><a href="https://gperftools.github.io/gperftools/heap_checker.html" target="_blank" rel="external">https://gperftools.github.io/gperftools/heap_checker.html</a><br><a href="https://gperftools.github.io/gperftools/cpuprofile.html" target="_blank" rel="external">https://gperftools.github.io/gperftools/cpuprofile.html</a><br><a id="more"></a></p>
 <h2 id="JVM堆外内存分析"><a href="#JVM堆外内存分析" class="headerlink" title="JVM堆外内存分析"></a>JVM堆外内存分析</h2><p>本文针对于 Oracle Hotspot jvm 虚拟机<br>JVM 进程占用大小一般约等于： heap + perm + thread stack + nio directbuffer<br>当然还有其他占用，一般情况来看native memory跟踪可以使用NMT参数 -XX:NativeMemoryTracking<br>详情wiki ： <a href="https://docs.oracle.com/javase/8/docs/technotes/guides/vm/nmt-8.html" target="_blank" rel="external">https://docs.oracle.com/javase/8/docs/technotes/guides/vm/nmt-8.html</a><br>JVM常见内存泄漏检查方式可以按照 oracle提供的文档： <a href="http://www.oracle.com/technetwork/java/javase/memleaks-137499.html" target="_blank" rel="external">http://www.oracle.com/technetwork/java/javase/memleaks-137499.html</a><br>其中dbx是和perftools类似工具。</p>
 <p>除此之外<br>进程内存在用在linux 面下top,pmap 等工具是较好确定进程内存的手段， 在/proc/${pid}/ 目录下smaps文件等查看RSS，虚拟内存，swap占用等。<br>pmap 找到内存申请的地址块， 可以使用gdb attach 后 dump 某一段的内存地址 ，后查看内存的数据。 注意gdb attach 进程会暂停， 线上谨慎操作。</p>
@@ -180,14 +187,52 @@
         
 
         
-
+        <li>
+            <a target="_blank" href="http://weibo.com/youngchou326">
+                            <span class="fa-stack fa-lg">
+                                  <i class="iconfont icon-weibo"></i>
+                            </span>
+            </a>
+        </li>
         
 
         
 
+        
+        <li>
+            <a target="_blank"  href="https://github.com/yangl326-Dylan">
+                            <span class="fa-stack fa-lg">
+                                <i class="iconfont icon-github"></i>
+                            </span>
+            </a>
+        </li>
+        
+
+        
+        <li>
+            <a target="_blank"  href="https://www.linkedin.com/in/敦飏-周-49a752b7">
+                            <span class="fa-stack fa-lg">
+                                <i class="iconfont icon-linkedin"></i>
+                            </span>
+            </a>
+        </li>
         
 
     </ul>
+    
+    <p>
+        <span>/</span>
+        
+        <span><a href="https://github.com/yangl326-Dylan">Github</a></span>
+        <span>/</span>
+        
+        <span><a href="http://www.dylan326.com/2013/02/13/about/">About</a></span>
+        <span>/</span>
+        
+        <span><a href="mailto:zhoudunyang@gmail.com">Mail</a></span>
+        <span>/</span>
+        
+    </p>
     
     <p>
         <span id="busuanzi_container_site_pv">
@@ -206,7 +251,7 @@
 
 <script>
     // We expose some of the variables needed by the front end
-    window.hexo_search_path = ""
+    window.hexo_search_path = "search.json"
     window.hexo_root = "/"
     window.isPost = true
 </script>
