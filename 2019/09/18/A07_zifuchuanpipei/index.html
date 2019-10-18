@@ -89,7 +89,7 @@
     </div>
     
         <div id="toc" class="toc-article">
-    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#单模式串字符串匹配"><span class="toc-text">单模式串字符串匹配</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#KMP关键点"><span class="toc-text">KMP关键点</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#总结"><span class="toc-text">总结</span></a></li></ol></li></ol>
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#单模式串字符串匹配"><span class="toc-text">单模式串字符串匹配</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#KMP相对朴素匹配"><span class="toc-text">KMP相对朴素匹配</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#KMP关键点"><span class="toc-text">KMP关键点</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#总结"><span class="toc-text">总结</span></a></li></ol></li></ol>
 </div>
     
 </div>
@@ -142,7 +142,7 @@
     </div>
     <div class="post-content no-indent">
         <h2 id="单模式串字符串匹配"><a href="#单模式串字符串匹配" class="headerlink" title="单模式串字符串匹配"></a>单模式串字符串匹配</h2><p>给定单个字符串S（长度m），查找目标模式串pattern（长度n）。 这个问题常见的会是采用朴素匹配，<br><a id="more"></a><br>朴素匹配实际为暴力匹配（BrueForce）本文讲述的是<a href="https://en.wikipedia.org/wiki/Knuth%E2%80%93Morris%E2%80%93Pratt_algorithm" target="_blank" rel="external">KMP算法, 维基百科</a> 维基百科里面讲述的较详细， 就如下几个重点本文讲述下。</p>
-<p>KMP相对朴素匹配<br>本质上是在朴素匹配上做了一个剪枝， 朴素匹配在S串上依次对pattern串进行比较,复杂度O(m*n), 而KMP逻辑会进行跳过，复杂度O(m+n)。</p>
+<h3 id="KMP相对朴素匹配"><a href="#KMP相对朴素匹配" class="headerlink" title="KMP相对朴素匹配"></a>KMP相对朴素匹配</h3><p>本质上是在朴素匹配上做了一个剪枝， 朴素匹配在S串上依次对pattern串进行比较,复杂度O(m*n), 而KMP逻辑会进行跳过，复杂度O(m+n)。</p>
 <h3 id="KMP关键点"><a href="#KMP关键点" class="headerlink" title="KMP关键点"></a>KMP关键点</h3><ul>
 <li>理解字符串的真前缀（proper preffix）、真后缀（proper suffix）。不包含本身的前缀或者后缀，如snake的真前缀s，sn，sna，snak。</li>
 <li>真前缀和真后缀的相同意味着什么，这个理解清楚了就是KMP对比跳过的剪枝逻辑。理解见代码</li>
