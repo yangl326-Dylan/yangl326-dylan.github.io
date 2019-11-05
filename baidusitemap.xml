@@ -4,8 +4,52 @@
 
     
   <url>
+    <loc>http://www.dylan326.com/2019/11/05/20191105/</loc>
+    <lastmod>2019-11-05T05:21:54.154Z</lastmod>
+    <data>
+        <display>
+        <title>think more</title>
+        <pubTime>2019-11-05T05:17:01.000Z</pubTime>
+        
+        <tag>心情</tag>
+         
+        <tag>日记</tag>
+         
+         
+           
+             
+              <breadCrumb title="其他" url="http://www.dylan326.com/categories/%E5%85%B6%E4%BB%96/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://www.dylan326.com/2019/10/15/20191015/</loc>
+    <lastmod>2019-11-05T05:21:52.785Z</lastmod>
+    <data>
+        <display>
+        <title>人格自立</title>
+        <pubTime>2019-10-15T06:54:01.000Z</pubTime>
+        
+        <tag>心情</tag>
+         
+        <tag>日记</tag>
+         
+         
+           
+             
+              <breadCrumb title="其他" url="http://www.dylan326.com/categories/%E5%85%B6%E4%BB%96/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://www.dylan326.com/2019/09/18/A07_zifuchuanpipei/</loc>
-    <lastmod>2019-10-22T03:39:02.637Z</lastmod>
+    <lastmod>2019-10-25T02:23:20.642Z</lastmod>
     <data>
         <display>
         <title>A07-字符串匹配-KMP</title>
@@ -48,23 +92,21 @@
 
     
   <url>
-    <loc>http://www.dylan326.com/2017/01/05/tcpip_1_kuaisuchongchuan/</loc>
+    <loc>http://www.dylan326.com/2016/06/30/xinqin20160630/</loc>
     <lastmod>2019-10-18T03:13:09.081Z</lastmod>
     <data>
         <display>
-        <title>TCP Retransmit,TCP重传</title>
-        <pubTime>2017-01-05T11:45:00.000Z</pubTime>
+        <title>机遇</title>
+        <pubTime>2016-06-30T11:36:00.000Z</pubTime>
         
-        <tag>网络</tag>
+        <tag>心情</tag>
          
-        <tag>TCP/IP</tag>
-         
-        <tag>TCP重传</tag>
+        <tag>日记</tag>
          
          
            
              
-              <breadCrumb title="网络" url="http://www.dylan326.com/categories/%E7%BD%91%E7%BB%9C/"/>
+              <breadCrumb title="其他" url="http://www.dylan326.com/categories/%E5%85%B6%E4%BB%96/"/>
           
         </display>
     </data>
@@ -94,18 +136,16 @@
 
     
   <url>
-    <loc>http://www.dylan326.com/2017/01/10/xinqin20170110/</loc>
+    <loc>http://www.dylan326.com/2016/10/11/xinqin20161011/</loc>
     <lastmod>2019-10-18T03:13:09.081Z</lastmod>
     <data>
         <display>
-        <title>日常</title>
-        <pubTime>2017-01-10T07:36:00.000Z</pubTime>
+        <title>驾照</title>
+        <pubTime>2016-10-11T11:36:00.000Z</pubTime>
         
         <tag>心情</tag>
          
         <tag>日记</tag>
-         
-        <tag>日常</tag>
          
          
            
@@ -118,12 +158,36 @@
 
     
   <url>
-    <loc>http://www.dylan326.com/2016/10/11/xinqin20161011/</loc>
+    <loc>http://www.dylan326.com/2017/01/05/tcpip_1_kuaisuchongchuan/</loc>
     <lastmod>2019-10-18T03:13:09.081Z</lastmod>
     <data>
         <display>
-        <title>驾照</title>
-        <pubTime>2016-10-11T11:36:00.000Z</pubTime>
+        <title>TCP Retransmit,TCP重传</title>
+        <pubTime>2017-01-05T11:45:00.000Z</pubTime>
+        
+        <tag>网络</tag>
+         
+        <tag>TCP/IP</tag>
+         
+        <tag>TCP重传</tag>
+         
+         
+           
+             
+              <breadCrumb title="网络" url="http://www.dylan326.com/categories/%E7%BD%91%E7%BB%9C/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://www.dylan326.com/2016/08/03/xinqin20160803/</loc>
+    <lastmod>2019-10-18T03:13:09.081Z</lastmod>
+    <data>
+        <display>
+        <title>情绪</title>
+        <pubTime>2016-08-03T07:36:00.000Z</pubTime>
         
         <tag>心情</tag>
          
@@ -184,16 +248,18 @@
 
     
   <url>
-    <loc>http://www.dylan326.com/2016/08/03/xinqin20160803/</loc>
+    <loc>http://www.dylan326.com/2017/01/10/xinqin20170110/</loc>
     <lastmod>2019-10-18T03:13:09.081Z</lastmod>
     <data>
         <display>
-        <title>情绪</title>
-        <pubTime>2016-08-03T07:36:00.000Z</pubTime>
+        <title>日常</title>
+        <pubTime>2017-01-10T07:36:00.000Z</pubTime>
         
         <tag>心情</tag>
          
         <tag>日记</tag>
+         
+        <tag>日常</tag>
          
          
            
@@ -206,21 +272,21 @@
 
     
   <url>
-    <loc>http://www.dylan326.com/2016/06/30/xinqin20160630/</loc>
-    <lastmod>2019-10-18T03:13:09.081Z</lastmod>
+    <loc>http://www.dylan326.com/2013/06/11/arraylist-remove/</loc>
+    <lastmod>2019-10-18T03:13:09.071Z</lastmod>
     <data>
         <display>
-        <title>机遇</title>
-        <pubTime>2016-06-30T11:36:00.000Z</pubTime>
+        <title>ArrayList删除元素问题及问题扩展</title>
+        <pubTime>2013-06-11T05:29:00.000Z</pubTime>
         
-        <tag>心情</tag>
+        <tag>java</tag>
          
-        <tag>日记</tag>
+        <tag>collection</tag>
          
          
            
              
-              <breadCrumb title="其他" url="http://www.dylan326.com/categories/%E5%85%B6%E4%BB%96/"/>
+              <breadCrumb title="JDK" url="http://www.dylan326.com/categories/JDK/"/>
           
         </display>
     </data>
@@ -252,21 +318,44 @@
 
     
   <url>
-    <loc>http://www.dylan326.com/2013/06/11/arraylist-remove/</loc>
-    <lastmod>2019-10-18T03:13:09.071Z</lastmod>
+    <loc>http://www.dylan326.com/2013/09/11/string_null/</loc>
+    <lastmod>2019-10-18T03:13:09.070Z</lastmod>
     <data>
         <display>
-        <title>ArrayList删除元素问题及问题扩展</title>
-        <pubTime>2013-06-11T05:29:00.000Z</pubTime>
+        <title>String.valueOf()能否传入null</title>
+        <pubTime>2013-09-11T03:23:00.000Z</pubTime>
         
         <tag>java</tag>
-         
-        <tag>collection</tag>
          
          
            
              
-              <breadCrumb title="JDK" url="http://www.dylan326.com/categories/JDK/"/>
+              <breadCrumb title="语言" url="http://www.dylan326.com/categories/%E8%AF%AD%E8%A8%80/"/>
+          
+             
+              <breadCrumb title="JDK" url="http://www.dylan326.com/categories/%E8%AF%AD%E8%A8%80/JDK/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://www.dylan326.com/2016/05/05/socket_io/</loc>
+    <lastmod>2019-10-18T03:13:09.070Z</lastmod>
+    <data>
+        <display>
+        <title>IO类型介绍</title>
+        <pubTime>2016-05-05T08:01:00.000Z</pubTime>
+        
+        <tag>Socket</tag>
+         
+        <tag>IO</tag>
+         
+         
+           
+             
+              <breadCrumb title="网络" url="http://www.dylan326.com/categories/%E7%BD%91%E7%BB%9C/"/>
           
         </display>
     </data>
@@ -339,14 +428,34 @@
 
     
   <url>
-    <loc>http://www.dylan326.com/2013/09/11/string_null/</loc>
-    <lastmod>2019-10-18T03:13:09.070Z</lastmod>
+    <loc>http://www.dylan326.com/2016/04/12/raft/</loc>
+    <lastmod>2019-10-18T03:13:09.069Z</lastmod>
     <data>
         <display>
-        <title>String.valueOf()能否传入null</title>
-        <pubTime>2013-09-11T03:23:00.000Z</pubTime>
+        <title>Raft协议算法简介</title>
+        <pubTime>2016-04-12T09:36:00.000Z</pubTime>
+        
+         
+           
+             
+              <breadCrumb title="分布式系统" url="http://www.dylan326.com/categories/%E5%88%86%E5%B8%83%E5%BC%8F%E7%B3%BB%E7%BB%9F/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://www.dylan326.com/2013/08/21/final-java/</loc>
+    <lastmod>2019-10-18T03:13:09.069Z</lastmod>
+    <data>
+        <display>
+        <title>final修饰符</title>
+        <pubTime>2013-08-21T15:39:00.000Z</pubTime>
         
         <tag>java</tag>
+         
+        <tag>final</tag>
          
          
            
@@ -355,28 +464,6 @@
           
              
               <breadCrumb title="JDK" url="http://www.dylan326.com/categories/%E8%AF%AD%E8%A8%80/JDK/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://www.dylan326.com/2016/05/05/socket_io/</loc>
-    <lastmod>2019-10-18T03:13:09.070Z</lastmod>
-    <data>
-        <display>
-        <title>IO类型介绍</title>
-        <pubTime>2016-05-05T08:01:00.000Z</pubTime>
-        
-        <tag>Socket</tag>
-         
-        <tag>IO</tag>
-         
-         
-           
-             
-              <breadCrumb title="网络" url="http://www.dylan326.com/categories/%E7%BD%91%E7%BB%9C/"/>
           
         </display>
     </data>
@@ -404,87 +491,21 @@
 
     
   <url>
-    <loc>http://www.dylan326.com/2017/05/15/aqs1/</loc>
+    <loc>http://www.dylan326.com/2016/04/11/quorum_consensus_algorithm/</loc>
     <lastmod>2019-10-18T03:13:09.069Z</lastmod>
     <data>
         <display>
-        <title>AbstractQueuedSynchronizer实现分析</title>
-        <pubTime>2017-05-15T12:01:00.000Z</pubTime>
+        <title>Quorum一致性算法</title>
+        <pubTime>2016-04-11T06:36:00.000Z</pubTime>
         
-        <tag>java</tag>
+        <tag>分布式</tag>
          
-        <tag>JVM</tag>
+        <tag>一致性</tag>
          
          
            
              
-              <breadCrumb title="语言" url="http://www.dylan326.com/categories/%E8%AF%AD%E8%A8%80/"/>
-          
-             
-              <breadCrumb title="JDK" url="http://www.dylan326.com/categories/%E8%AF%AD%E8%A8%80/JDK/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://www.dylan326.com/2016/04/12/raft/</loc>
-    <lastmod>2019-10-18T03:13:09.069Z</lastmod>
-    <data>
-        <display>
-        <title>Raft协议算法简介</title>
-        <pubTime>2016-04-12T09:36:00.000Z</pubTime>
-        
-         
-           
-             
-              <breadCrumb title="分布式系统" url="http://www.dylan326.com/categories/%E5%88%86%E5%B8%83%E5%BC%8F%E7%B3%BB%E7%BB%9F/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://www.dylan326.com/2013/10/06/adaptor/</loc>
-    <lastmod>2019-10-18T03:13:09.069Z</lastmod>
-    <data>
-        <display>
-        <title>适配器模式概念简析</title>
-        <pubTime>2013-10-06T04:58:00.000Z</pubTime>
-        
-        <tag>设计模式</tag>
-         
-         
-           
-             
-              <breadCrumb title="设计模式" url="http://www.dylan326.com/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://www.dylan326.com/2013/08/21/final-java/</loc>
-    <lastmod>2019-10-18T03:13:09.069Z</lastmod>
-    <data>
-        <display>
-        <title>final修饰符</title>
-        <pubTime>2013-08-21T15:39:00.000Z</pubTime>
-        
-        <tag>java</tag>
-         
-        <tag>final</tag>
-         
-         
-           
-             
-              <breadCrumb title="语言" url="http://www.dylan326.com/categories/%E8%AF%AD%E8%A8%80/"/>
-          
-             
-              <breadCrumb title="JDK" url="http://www.dylan326.com/categories/%E8%AF%AD%E8%A8%80/JDK/"/>
+              <breadCrumb title="系统" url="http://www.dylan326.com/categories/%E7%B3%BB%E7%BB%9F/"/>
           
         </display>
     </data>
@@ -519,50 +540,6 @@
 
     
   <url>
-    <loc>http://www.dylan326.com/2017/04/06/checksum/</loc>
-    <lastmod>2019-10-18T03:13:09.069Z</lastmod>
-    <data>
-        <display>
-        <title>什么是CheckSum校验和</title>
-        <pubTime>2017-04-06T09:58:00.000Z</pubTime>
-        
-        <tag>网络</tag>
-         
-        <tag>TCP/IP</tag>
-         
-         
-           
-             
-              <breadCrumb title="网络" url="http://www.dylan326.com/categories/%E7%BD%91%E7%BB%9C/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://www.dylan326.com/2017/07/06/quanpailie_permutation/</loc>
-    <lastmod>2019-10-18T03:13:09.069Z</lastmod>
-    <data>
-        <display>
-        <title>全排列问题-字典序</title>
-        <pubTime>2017-07-06T12:18:00.000Z</pubTime>
-        
-        <tag>脑子秀逗</tag>
-         
-        <tag>全排列</tag>
-         
-         
-           
-             
-              <breadCrumb title="算法" url="http://www.dylan326.com/categories/%E7%AE%97%E6%B3%95/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
     <loc>http://www.dylan326.com/2017/09/30/jingzitayuanli/</loc>
     <lastmod>2019-10-18T03:13:09.069Z</lastmod>
     <data>
@@ -583,33 +560,6 @@
 
     
   <url>
-    <loc>http://www.dylan326.com/2016/06/08/kernel/</loc>
-    <lastmod>2019-10-18T03:13:09.069Z</lastmod>
-    <data>
-        <display>
-        <title>用户态和系统态区分</title>
-        <pubTime>2016-06-08T08:01:00.000Z</pubTime>
-        
-        <tag>Socket</tag>
-         
-        <tag>IO</tag>
-         
-        <tag>kernel</tag>
-         
-         
-           
-             
-              <breadCrumb title="网络" url="http://www.dylan326.com/categories/%E7%BD%91%E7%BB%9C/"/>
-          
-             
-              <breadCrumb title="系统" url="http://www.dylan326.com/categories/%E7%BD%91%E7%BB%9C/%E7%B3%BB%E7%BB%9F/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
     <loc>http://www.dylan326.com/2014/03/12/lockAndSync/</loc>
     <lastmod>2019-10-18T03:13:09.069Z</lastmod>
     <data>
@@ -620,6 +570,31 @@
         <tag>java</tag>
          
         <tag>译文</tag>
+         
+         
+           
+             
+              <breadCrumb title="语言" url="http://www.dylan326.com/categories/%E8%AF%AD%E8%A8%80/"/>
+          
+             
+              <breadCrumb title="JDK" url="http://www.dylan326.com/categories/%E8%AF%AD%E8%A8%80/JDK/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://www.dylan326.com/2017/05/15/aqs1/</loc>
+    <lastmod>2019-10-18T03:13:09.069Z</lastmod>
+    <data>
+        <display>
+        <title>AbstractQueuedSynchronizer实现分析</title>
+        <pubTime>2017-05-15T12:01:00.000Z</pubTime>
+        
+        <tag>java</tag>
+         
+        <tag>JVM</tag>
          
          
            
@@ -657,21 +632,21 @@
 
     
   <url>
-    <loc>http://www.dylan326.com/2016/04/11/quorum_consensus_algorithm/</loc>
+    <loc>http://www.dylan326.com/2017/04/06/checksum/</loc>
     <lastmod>2019-10-18T03:13:09.069Z</lastmod>
     <data>
         <display>
-        <title>Quorum一致性算法</title>
-        <pubTime>2016-04-11T06:36:00.000Z</pubTime>
+        <title>什么是CheckSum校验和</title>
+        <pubTime>2017-04-06T09:58:00.000Z</pubTime>
         
-        <tag>分布式</tag>
+        <tag>网络</tag>
          
-        <tag>一致性</tag>
+        <tag>TCP/IP</tag>
          
          
            
              
-              <breadCrumb title="系统" url="http://www.dylan326.com/categories/%E7%B3%BB%E7%BB%9F/"/>
+              <breadCrumb title="网络" url="http://www.dylan326.com/categories/%E7%BD%91%E7%BB%9C/"/>
           
         </display>
     </data>
@@ -679,12 +654,81 @@
 
     
   <url>
-    <loc>http://www.dylan326.com/2018/11/26/A_leecode_nest_permutation/</loc>
+    <loc>http://www.dylan326.com/2016/06/08/kernel/</loc>
+    <lastmod>2019-10-18T03:13:09.069Z</lastmod>
+    <data>
+        <display>
+        <title>用户态和系统态区分</title>
+        <pubTime>2016-06-08T08:01:00.000Z</pubTime>
+        
+        <tag>Socket</tag>
+         
+        <tag>IO</tag>
+         
+        <tag>kernel</tag>
+         
+         
+           
+             
+              <breadCrumb title="网络" url="http://www.dylan326.com/categories/%E7%BD%91%E7%BB%9C/"/>
+          
+             
+              <breadCrumb title="系统" url="http://www.dylan326.com/categories/%E7%BD%91%E7%BB%9C/%E7%B3%BB%E7%BB%9F/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://www.dylan326.com/2017/07/06/quanpailie_permutation/</loc>
+    <lastmod>2019-10-18T03:13:09.069Z</lastmod>
+    <data>
+        <display>
+        <title>全排列问题-字典序</title>
+        <pubTime>2017-07-06T12:18:00.000Z</pubTime>
+        
+        <tag>脑子秀逗</tag>
+         
+        <tag>全排列</tag>
+         
+         
+           
+             
+              <breadCrumb title="算法" url="http://www.dylan326.com/categories/%E7%AE%97%E6%B3%95/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://www.dylan326.com/2013/10/06/adaptor/</loc>
+    <lastmod>2019-10-18T03:13:09.069Z</lastmod>
+    <data>
+        <display>
+        <title>适配器模式概念简析</title>
+        <pubTime>2013-10-06T04:58:00.000Z</pubTime>
+        
+        <tag>设计模式</tag>
+         
+         
+           
+             
+              <breadCrumb title="设计模式" url="http://www.dylan326.com/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://www.dylan326.com/2018/10/10/A_leecode_phone_num_combine/</loc>
     <lastmod>2019-10-18T03:13:09.046Z</lastmod>
     <data>
         <display>
-        <title>A-leecode-字典序下一个[NextPermutation]</title>
-        <pubTime>2018-11-26T06:22:00.000Z</pubTime>
+        <title>A-leecode-手机号T9字母组合</title>
+        <pubTime>2018-10-10T06:39:00.000Z</pubTime>
         
         <tag>脑子秀逗</tag>
          
@@ -701,12 +745,12 @@
 
     
   <url>
-    <loc>http://www.dylan326.com/2018/10/30/A_leecode_remove_element/</loc>
+    <loc>http://www.dylan326.com/2018/09/03/A_leecode_reverseInt/</loc>
     <lastmod>2019-10-18T03:13:09.046Z</lastmod>
     <data>
         <display>
-        <title>A-leecode-移除元素[remove element]</title>
-        <pubTime>2018-10-30T06:56:00.000Z</pubTime>
+        <title>A-leecode-反转整数[ReverseInteger]</title>
+        <pubTime>2018-09-03T09:39:00.000Z</pubTime>
         
         <tag>脑子秀逗</tag>
          
@@ -767,94 +811,6 @@
 
     
   <url>
-    <loc>http://www.dylan326.com/2019/01/28/A_leecode_sum3orN/</loc>
-    <lastmod>2019-10-18T03:13:09.046Z</lastmod>
-    <data>
-        <display>
-        <title>A-leecode-三数和[Three Sum] or N数和或者相近</title>
-        <pubTime>2019-01-28T07:01:00.000Z</pubTime>
-        
-        <tag>脑子秀逗</tag>
-         
-        <tag>leecode</tag>
-         
-         
-           
-             
-              <breadCrumb title="算法" url="http://www.dylan326.com/categories/%E7%AE%97%E6%B3%95/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://www.dylan326.com/2018/09/03/A_leecode_reverseInt/</loc>
-    <lastmod>2019-10-18T03:13:09.046Z</lastmod>
-    <data>
-        <display>
-        <title>A-leecode-反转整数[ReverseInteger]</title>
-        <pubTime>2018-09-03T09:39:00.000Z</pubTime>
-        
-        <tag>脑子秀逗</tag>
-         
-        <tag>leecode</tag>
-         
-         
-           
-             
-              <breadCrumb title="算法" url="http://www.dylan326.com/categories/%E7%AE%97%E6%B3%95/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://www.dylan326.com/2018/01/29/A_leecode_longest_palindrome_substr/</loc>
-    <lastmod>2019-10-18T03:13:09.046Z</lastmod>
-    <data>
-        <display>
-        <title>A-leecode-最长回文子串问题</title>
-        <pubTime>2018-01-29T06:39:00.000Z</pubTime>
-        
-        <tag>脑子秀逗</tag>
-         
-        <tag>leecode</tag>
-         
-         
-           
-             
-              <breadCrumb title="算法" url="http://www.dylan326.com/categories/%E7%AE%97%E6%B3%95/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://www.dylan326.com/2017/07/22/A01_taijie_n/</loc>
-    <lastmod>2019-10-18T03:13:09.046Z</lastmod>
-    <data>
-        <display>
-        <title>A01-递归式-台阶走法</title>
-        <pubTime>2017-07-22T13:30:00.000Z</pubTime>
-        
-        <tag>脑子秀逗</tag>
-         
-        <tag>递归</tag>
-         
-         
-           
-             
-              <breadCrumb title="算法" url="http://www.dylan326.com/categories/%E7%AE%97%E6%B3%95/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
     <loc>http://www.dylan326.com/2017/08/06/A02_duipaixu/</loc>
     <lastmod>2019-10-18T03:13:09.046Z</lastmod>
     <data>
@@ -899,6 +855,50 @@
 
     
   <url>
+    <loc>http://www.dylan326.com/2018/11/26/A_leecode_nest_permutation/</loc>
+    <lastmod>2019-10-18T03:13:09.046Z</lastmod>
+    <data>
+        <display>
+        <title>A-leecode-字典序下一个[NextPermutation]</title>
+        <pubTime>2018-11-26T06:22:00.000Z</pubTime>
+        
+        <tag>脑子秀逗</tag>
+         
+        <tag>leecode</tag>
+         
+         
+           
+             
+              <breadCrumb title="算法" url="http://www.dylan326.com/categories/%E7%AE%97%E6%B3%95/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://www.dylan326.com/2017/07/22/A01_taijie_n/</loc>
+    <lastmod>2019-10-18T03:13:09.046Z</lastmod>
+    <data>
+        <display>
+        <title>A01-递归式-台阶走法</title>
+        <pubTime>2017-07-22T13:30:00.000Z</pubTime>
+        
+        <tag>脑子秀逗</tag>
+         
+        <tag>递归</tag>
+         
+         
+           
+             
+              <breadCrumb title="算法" url="http://www.dylan326.com/categories/%E7%AE%97%E6%B3%95/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://www.dylan326.com/2018/01/14/A_leecode_most_container/</loc>
     <lastmod>2019-10-18T03:13:09.046Z</lastmod>
     <data>
@@ -921,12 +921,12 @@
 
     
   <url>
-    <loc>http://www.dylan326.com/2018/10/10/A_leecode_phone_num_combine/</loc>
+    <loc>http://www.dylan326.com/2018/10/30/A_leecode_remove_element/</loc>
     <lastmod>2019-10-18T03:13:09.046Z</lastmod>
     <data>
         <display>
-        <title>A-leecode-手机号T9字母组合</title>
-        <pubTime>2018-10-10T06:39:00.000Z</pubTime>
+        <title>A-leecode-移除元素[remove element]</title>
+        <pubTime>2018-10-30T06:56:00.000Z</pubTime>
         
         <tag>脑子秀逗</tag>
          
@@ -943,16 +943,60 @@
 
     
   <url>
-    <loc>http://www.dylan326.com/2017/07/17/A00_daolun/</loc>
-    <lastmod>2019-10-18T03:13:09.045Z</lastmod>
+    <loc>http://www.dylan326.com/2018/01/29/A_leecode_longest_palindrome_substr/</loc>
+    <lastmod>2019-10-18T03:13:09.046Z</lastmod>
     <data>
         <display>
-        <title>A00-Algorithms导论系列</title>
-        <pubTime>2017-07-17T11:38:00.000Z</pubTime>
+        <title>A-leecode-最长回文子串问题</title>
+        <pubTime>2018-01-29T06:39:00.000Z</pubTime>
         
         <tag>脑子秀逗</tag>
          
-        <tag>Algorithms</tag>
+        <tag>leecode</tag>
+         
+         
+           
+             
+              <breadCrumb title="算法" url="http://www.dylan326.com/categories/%E7%AE%97%E6%B3%95/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://www.dylan326.com/2019/01/28/A_leecode_sum3orN/</loc>
+    <lastmod>2019-10-18T03:13:09.046Z</lastmod>
+    <data>
+        <display>
+        <title>A-leecode-三数和[Three Sum] or N数和或者相近</title>
+        <pubTime>2019-01-28T07:01:00.000Z</pubTime>
+        
+        <tag>脑子秀逗</tag>
+         
+        <tag>leecode</tag>
+         
+         
+           
+             
+              <breadCrumb title="算法" url="http://www.dylan326.com/categories/%E7%AE%97%E6%B3%95/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://www.dylan326.com/2019/06/26/A_leecode_combination_sum/</loc>
+    <lastmod>2019-10-18T03:13:09.045Z</lastmod>
+    <data>
+        <display>
+        <title>A-leecode-和为目标值问题</title>
+        <pubTime>2019-06-26T08:18:00.000Z</pubTime>
+        
+        <tag>脑子秀逗</tag>
+         
+        <tag>leecode</tag>
          
          
            
@@ -987,28 +1031,6 @@
 
     
   <url>
-    <loc>http://www.dylan326.com/2017/07/21/A01_diguishizi/</loc>
-    <lastmod>2019-10-18T03:13:09.045Z</lastmod>
-    <data>
-        <display>
-        <title>A01-递归式</title>
-        <pubTime>2017-07-21T13:41:00.000Z</pubTime>
-        
-        <tag>脑子秀逗</tag>
-         
-        <tag>递归式子</tag>
-         
-         
-           
-             
-              <breadCrumb title="算法" url="http://www.dylan326.com/categories/%E7%AE%97%E6%B3%95/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
     <loc>http://www.dylan326.com/2017/09/22/A03_shujujiegou/</loc>
     <lastmod>2019-10-18T03:13:09.045Z</lastmod>
     <data>
@@ -1019,28 +1041,6 @@
         <tag>脑子秀逗</tag>
          
         <tag>数据结构</tag>
-         
-         
-           
-             
-              <breadCrumb title="算法" url="http://www.dylan326.com/categories/%E7%AE%97%E6%B3%95/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://www.dylan326.com/2019/06/26/A_leecode_combination_sum/</loc>
-    <lastmod>2019-10-18T03:13:09.045Z</lastmod>
-    <data>
-        <display>
-        <title>A-leecode-和为目标值问题</title>
-        <pubTime>2019-06-26T08:18:00.000Z</pubTime>
-        
-        <tag>脑子秀逗</tag>
-         
-        <tag>leecode</tag>
          
          
            
@@ -1097,6 +1097,50 @@
 
     
   <url>
+    <loc>http://www.dylan326.com/2017/07/17/A00_daolun/</loc>
+    <lastmod>2019-10-18T03:13:09.045Z</lastmod>
+    <data>
+        <display>
+        <title>A00-Algorithms导论系列</title>
+        <pubTime>2017-07-17T11:38:00.000Z</pubTime>
+        
+        <tag>脑子秀逗</tag>
+         
+        <tag>Algorithms</tag>
+         
+         
+           
+             
+              <breadCrumb title="算法" url="http://www.dylan326.com/categories/%E7%AE%97%E6%B3%95/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://www.dylan326.com/2017/07/21/A01_diguishizi/</loc>
+    <lastmod>2019-10-18T03:13:09.045Z</lastmod>
+    <data>
+        <display>
+        <title>A01-递归式</title>
+        <pubTime>2017-07-21T13:41:00.000Z</pubTime>
+        
+        <tag>脑子秀逗</tag>
+         
+        <tag>递归式子</tag>
+         
+         
+           
+             
+              <breadCrumb title="算法" url="http://www.dylan326.com/categories/%E7%AE%97%E6%B3%95/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://www.dylan326.com/2019/07/10/20190710/</loc>
     <lastmod>2019-10-18T03:13:09.045Z</lastmod>
     <data>
@@ -1119,12 +1163,12 @@
 
     
   <url>
-    <loc>http://www.dylan326.com/2018/05/09/20180509/</loc>
+    <loc>http://www.dylan326.com/2018/11/28/20181128/</loc>
     <lastmod>2019-10-18T03:13:09.023Z</lastmod>
     <data>
         <display>
-        <title>漫漫长路，半程风雨，半程春</title>
-        <pubTime>2018-05-09T05:21:00.000Z</pubTime>
+        <title>七个习惯摘要</title>
+        <pubTime>2018-11-28T08:29:00.000Z</pubTime>
         
         <tag>心情</tag>
          
@@ -1147,72 +1191,6 @@
         <display>
         <title>海纳百川，有容乃大；壁立千仞，无欲则刚</title>
         <pubTime>2018-07-19T06:21:00.000Z</pubTime>
-        
-        <tag>心情</tag>
-         
-        <tag>日记</tag>
-         
-         
-           
-             
-              <breadCrumb title="其他" url="http://www.dylan326.com/categories/%E5%85%B6%E4%BB%96/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://www.dylan326.com/2018/08/07/20180807/</loc>
-    <lastmod>2019-10-18T03:13:09.023Z</lastmod>
-    <data>
-        <display>
-        <title>心志</title>
-        <pubTime>2018-08-06T23:21:00.000Z</pubTime>
-        
-        <tag>心情</tag>
-         
-        <tag>日记</tag>
-         
-         
-           
-             
-              <breadCrumb title="其他" url="http://www.dylan326.com/categories/%E5%85%B6%E4%BB%96/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://www.dylan326.com/2018/11/13/20181026/</loc>
-    <lastmod>2019-10-18T03:13:09.023Z</lastmod>
-    <data>
-        <display>
-        <title>小记一日</title>
-        <pubTime>2018-11-12T22:29:00.000Z</pubTime>
-        
-        <tag>心情</tag>
-         
-        <tag>日记</tag>
-         
-         
-           
-             
-              <breadCrumb title="其他" url="http://www.dylan326.com/categories/%E5%85%B6%E4%BB%96/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://www.dylan326.com/2018/11/28/20181128/</loc>
-    <lastmod>2019-10-18T03:13:09.023Z</lastmod>
-    <data>
-        <display>
-        <title>七个习惯摘要</title>
-        <pubTime>2018-11-28T08:29:00.000Z</pubTime>
         
         <tag>心情</tag>
          
@@ -1275,28 +1253,6 @@
 
     
   <url>
-    <loc>http://www.dylan326.com/2019/05/07/20190507/</loc>
-    <lastmod>2019-10-18T03:13:09.023Z</lastmod>
-    <data>
-        <display>
-        <title>五月</title>
-        <pubTime>2019-05-07T02:39:00.000Z</pubTime>
-        
-        <tag>心情</tag>
-         
-        <tag>日记</tag>
-         
-         
-           
-             
-              <breadCrumb title="其他" url="http://www.dylan326.com/categories/%E5%85%B6%E4%BB%96/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
     <loc>http://www.dylan326.com/2019/01/03/20190103/</loc>
     <lastmod>2019-10-18T03:13:09.023Z</lastmod>
     <data>
@@ -1319,12 +1275,34 @@
 
     
   <url>
-    <loc>http://www.dylan326.com/2017/07/03/20170703/</loc>
+    <loc>http://www.dylan326.com/2018/08/07/20180807/</loc>
     <lastmod>2019-10-18T03:13:09.023Z</lastmod>
     <data>
         <display>
-        <title>脑子vs嗓门</title>
-        <pubTime>2017-07-03T12:11:00.000Z</pubTime>
+        <title>心志</title>
+        <pubTime>2018-08-06T23:21:00.000Z</pubTime>
+        
+        <tag>心情</tag>
+         
+        <tag>日记</tag>
+         
+         
+           
+             
+              <breadCrumb title="其他" url="http://www.dylan326.com/categories/%E5%85%B6%E4%BB%96/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://www.dylan326.com/2019/05/07/20190507/</loc>
+    <lastmod>2019-10-18T03:13:09.023Z</lastmod>
+    <data>
+        <display>
+        <title>五月</title>
+        <pubTime>2019-05-07T02:39:00.000Z</pubTime>
         
         <tag>心情</tag>
          
@@ -1363,56 +1341,34 @@
 
     
   <url>
-    <loc>http://www.dylan326.com/2017/07/17/20170717/</loc>
-    <lastmod>2019-10-18T03:13:09.023Z</lastmod>
-    <data>
-        <display>
-        <title>小记窗台多肉</title>
-        <pubTime>2017-07-17T11:34:00.000Z</pubTime>
-        
-        <tag>心情</tag>
-         
-        <tag>日记</tag>
-         
-         
-           
-             
-              <breadCrumb title="其他" url="http://www.dylan326.com/categories/%E5%85%B6%E4%BB%96/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://www.dylan326.com/2017/08/24/20170824/</loc>
-    <lastmod>2019-10-18T03:13:09.023Z</lastmod>
-    <data>
-        <display>
-        <title>国画</title>
-        <pubTime>2017-08-24T10:58:00.000Z</pubTime>
-        
-        <tag>心情</tag>
-         
-        <tag>日记</tag>
-         
-         
-           
-             
-              <breadCrumb title="其他" url="http://www.dylan326.com/categories/%E5%85%B6%E4%BB%96/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
     <loc>http://www.dylan326.com/2017/07/06/20170706/</loc>
     <lastmod>2019-10-18T03:13:09.023Z</lastmod>
     <data>
         <display>
         <title>公园小车</title>
         <pubTime>2017-07-06T09:37:00.000Z</pubTime>
+        
+        <tag>心情</tag>
+         
+        <tag>日记</tag>
+         
+         
+           
+             
+              <breadCrumb title="其他" url="http://www.dylan326.com/categories/%E5%85%B6%E4%BB%96/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://www.dylan326.com/2017/07/03/20170703/</loc>
+    <lastmod>2019-10-18T03:13:09.023Z</lastmod>
+    <data>
+        <display>
+        <title>脑子vs嗓门</title>
+        <pubTime>2017-07-03T12:11:00.000Z</pubTime>
         
         <tag>心情</tag>
          
@@ -1451,12 +1407,12 @@
 
     
   <url>
-    <loc>http://www.dylan326.com/2017/09/19/20170919/</loc>
+    <loc>http://www.dylan326.com/2017/08/24/20170824/</loc>
     <lastmod>2019-10-18T03:13:09.023Z</lastmod>
     <data>
         <display>
-        <title>哈尔滨</title>
-        <pubTime>2017-09-19T11:05:00.000Z</pubTime>
+        <title>国画</title>
+        <pubTime>2017-08-24T10:58:00.000Z</pubTime>
         
         <tag>心情</tag>
          
@@ -1495,12 +1451,56 @@
 
     
   <url>
-    <loc>http://www.dylan326.com/2017/12/14/20171214/</loc>
+    <loc>http://www.dylan326.com/2017/07/17/20170717/</loc>
     <lastmod>2019-10-18T03:13:09.023Z</lastmod>
     <data>
         <display>
-        <title>冬天</title>
-        <pubTime>2017-12-14T03:06:00.000Z</pubTime>
+        <title>小记窗台多肉</title>
+        <pubTime>2017-07-17T11:34:00.000Z</pubTime>
+        
+        <tag>心情</tag>
+         
+        <tag>日记</tag>
+         
+         
+           
+             
+              <breadCrumb title="其他" url="http://www.dylan326.com/categories/%E5%85%B6%E4%BB%96/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://www.dylan326.com/2017/09/19/20170919/</loc>
+    <lastmod>2019-10-18T03:13:09.023Z</lastmod>
+    <data>
+        <display>
+        <title>哈尔滨</title>
+        <pubTime>2017-09-19T11:05:00.000Z</pubTime>
+        
+        <tag>心情</tag>
+         
+        <tag>日记</tag>
+         
+         
+           
+             
+              <breadCrumb title="其他" url="http://www.dylan326.com/categories/%E5%85%B6%E4%BB%96/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://www.dylan326.com/2018/05/09/20180509/</loc>
+    <lastmod>2019-10-18T03:13:09.023Z</lastmod>
+    <data>
+        <display>
+        <title>漫漫长路，半程风雨，半程春</title>
+        <pubTime>2018-05-09T05:21:00.000Z</pubTime>
         
         <tag>心情</tag>
          
@@ -1539,12 +1539,56 @@
 
     
   <url>
+    <loc>http://www.dylan326.com/2017/12/14/20171214/</loc>
+    <lastmod>2019-10-18T03:13:09.023Z</lastmod>
+    <data>
+        <display>
+        <title>冬天</title>
+        <pubTime>2017-12-14T03:06:00.000Z</pubTime>
+        
+        <tag>心情</tag>
+         
+        <tag>日记</tag>
+         
+         
+           
+             
+              <breadCrumb title="其他" url="http://www.dylan326.com/categories/%E5%85%B6%E4%BB%96/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://www.dylan326.com/2018/04/04/20180327/</loc>
     <lastmod>2019-10-18T03:13:09.023Z</lastmod>
     <data>
         <display>
         <title>清明时节</title>
         <pubTime>2018-04-04T11:21:00.000Z</pubTime>
+        
+        <tag>心情</tag>
+         
+        <tag>日记</tag>
+         
+         
+           
+             
+              <breadCrumb title="其他" url="http://www.dylan326.com/categories/%E5%85%B6%E4%BB%96/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://www.dylan326.com/2018/11/13/20181026/</loc>
+    <lastmod>2019-10-18T03:13:09.023Z</lastmod>
+    <data>
+        <display>
+        <title>小记一日</title>
+        <pubTime>2018-11-12T22:29:00.000Z</pubTime>
         
         <tag>心情</tag>
          
@@ -1589,28 +1633,6 @@
         <display>
         <title>2019-春雪</title>
         <pubTime>2019-02-13T07:32:00.000Z</pubTime>
-        
-        <tag>心情</tag>
-         
-        <tag>日记</tag>
-         
-         
-           
-             
-              <breadCrumb title="其他" url="http://www.dylan326.com/categories/%E5%85%B6%E4%BB%96/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://www.dylan326.com/2019/10/15/20191015/</loc>
-    <lastmod>2019-10-15T06:57:57.189Z</lastmod>
-    <data>
-        <display>
-        <title>人格自立</title>
-        <pubTime>2019-10-15T06:54:01.000Z</pubTime>
         
         <tag>心情</tag>
          
